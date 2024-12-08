@@ -1,0 +1,24 @@
+.input-field{
+    display: flex;
+    flex-direction: column;
+    max-width: 500px;
+    margin-bottom: 20px;
+}
+.input-field input{
+    background-color: #EDF0F4;
+    font-weight: 500;
+    border: none;
+    margin-top: 5px;
+    font-size: 16px;
+    padding: 8px 5px;
+    border-radius: 5px;
+    outline: none;
+    border: 2px solid #EDF0F4 
+}
+.input-field input:focus{
+    border: 2px solid rgb(209, 209, 209);
+}
+.input-field label{
+    font-size: 12px;
+    font-weight: 500;
+}

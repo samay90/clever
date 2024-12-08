@@ -1,0 +1,24 @@
+.button_primary{
+    background: #5C60F5;
+    padding: 10px 5px;
+    max-width: 500px;
+    font-size: 16px;
+    border-radius: 5px;
+    color: white;
+    margin-bottom: 20px;
+    border:none;
+    cursor: pointer;
+    position: relative;
+    transition: .3s ease;
+}
+.button_primary span{
+    font-weight: 500;
+    transition: .3s ease;
+    margin-left: 10px;
+}
+.button_primary:hover span:nth-child(1){
+    margin-left: 15px;
+}
+.button_primary:hover span:nth-child(2){
+    margin-left: 15px;
+}

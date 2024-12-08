@@ -1,0 +1,19 @@
+.checkbox{
+    max-width: 500px;
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    margin-bottom: 20px;
+}
+.checkbox input{
+    width: 25px !important;
+    margin: 0;
+    margin-left: -5px;
+    padding: 0;
+    border-radius: 8px;
+}
+.checkbox label{
+    width: 100%;
+    margin: 0;
+    font-size: 12px;
+}
