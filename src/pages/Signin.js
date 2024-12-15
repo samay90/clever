@@ -5,6 +5,7 @@ import CheckBox from '../components/Checkbox'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
+import full_logo from "../images/full_logo.png"
 const Signin = ({api,setToken}) => {
   const [form,setForm] = React.useState({
     "authenticator":"",
@@ -43,25 +44,22 @@ const Signin = ({api,setToken}) => {
             fontSize:"12px"
           }
         })
-        setToken(data.token)
+        setToken(data.data.token)
         if (checked){
           localStorage.setItem("token",data.data.token)
         }else{
           localStorage.setItem("token","")
         }
-        navigate("/home")
+        navigate("/app/home")
       }
     })
   }
   return (
     <>
-      <div className='page'>
+      <div className='page auth_page'>
         <div className='side_bar'>
-            <div className='logo'>
-              <span className='logo_chr'>
-                C
-              </span>
-                <h1>lever</h1>
+        <div className='logo'>
+                <img className='logo_img' src={full_logo} alt="Full Logo" />
             </div>
             <div className='content'>
               <h2>Let's learn<br/>something<br/>amazing today.</h2>

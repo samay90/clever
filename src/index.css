@@ -8,6 +8,12 @@ body {
 *{
   font-weight: 600;
 }
+:root{
+  --primary-color: #5C60F5;
+  --secondary-color: #FF8C00;
+  --tertiary-color: #4D4D4D;
+  --quaternary-color: #F4F4F4;
+}
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
