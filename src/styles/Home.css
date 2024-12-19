@@ -34,16 +34,31 @@
     height: 150px;
     max-width: 400px;
     border-radius: 10px;
-    background: url("../images/bg.png");
-    background-size: cover;
-    background-color: var(--primary-color);
-    background-blend-mode: lighten;
     position: relative;
     margin: 10px;
+    background-size: auto 100% !important;
+    background-position: center !important;
     margin-left: 0px;
     cursor: pointer;
     transition: .3s ease;
     margin-right: 20px;
+    overflow: hidden;
+}
+.home_content .classrooms .classroom_card::after{
+    content: "";
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+    top: 0;
+    left: 0;
+    background: linear-gradient(to bottom, #00000028, transparent);
+    z-index: 0;
+}
+.home_content .classrooms .classroom_card .poster_img{
+    height: 100%;
+    position: absolute;
+    left: 0px;
 }
 .home_content .classrooms .classroom_card .content{
     z-index: 1;
@@ -58,6 +73,8 @@
     margin: 0;
     padding: 0;
     width: 100%;
+    word-wrap: break-word;
+    white-space: nowrap;
 }
 .home_content .classrooms .classroom_card .content p{
     margin: 0;
@@ -65,47 +82,19 @@
     padding: 0;
     width: 100%;
 }
-.home_content .classrooms .classroom_card::before{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    top: 0;
-    left: 0;
-    background-image: url("../images/noise.png");
-    z-index: 1;
-}
-.home_content .classrooms .classroom_card::after{
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    border-radius: 10px;
-    top: 0;
-    left: 0;
-    background: linear-gradient(to bottom, var(--primary-color) 30%, transparent);
-    z-index: 0;
-}
+
 .home_content .classrooms .classroom_card:hover{
     box-shadow: 0px 10px 10px #00000062;
     transform: translateY(-3px);
 }
-.home_content .classrooms .classroom_card_active{
-    transform: scale(30);
-    background: white;
-    z-index: 3;
-}
-.home_content .classrooms .classroom_card_active::after{
-    display: none;
-}
-.home_content .classrooms .classroom_card_active::before{
-    display: none;
-}
-.home_content .classrooms .classroom_card_active .content{
-    opacity: 0;
-}
-.home_content .classrooms .classroom_card_active:hover{
-    box-shadow: none;
-    transform: scale(10);
+@media screen and (max-width:690px){
+    .home_content{
+        padding: 10px 15px;
+    }
+    .home_content .classrooms .classroom_card{
+        width: calc(100% - 00px);
+        margin: 0px;
+        margin-bottom:15px;
+        min-width: 0px;
+    }
 }

@@ -29,6 +29,7 @@
 .home_page .navbar .nav_button{
     width: 40px;
     display: flex;
+    padding: 2px;
     align-items: center;
     justify-content: center;
     font-size: 22px;
@@ -41,11 +42,6 @@
     color: #4D4D4D;
     margin-right: 10px;
     overflow: hidden;
-}
-.home_page .navbar .nav_button img{
-    width: 35px;
-    height: 35px;
-    border-radius: 50%;
 }
 .home_page .navbar .nav_button:hover{
     background: #00000018;
@@ -65,37 +61,11 @@
     margin-bottom: -2px;
     filter: invert(0.7);
 }
-.home_page .navbar .nav_left .breadcrumb{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #4D4D4D;
-    font-size: 25px;
-    font-weight: 500;
-}
-.home_page .navbar .nav_left .breadcrumb .breadcrumb_item{
-    text-decoration: none;
-    color: #4D4D4D;
-    font-weight: 500;
-}
-.home_page .navbar .nav_left .breadcrumb .breadcrumb_item:hover{
-    color: #5C60F5;
-    text-decoration: underline;
-}
-.home_page .navbar .nav_left .divider{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    color: #4D4D4D;
-    font-size: 25px;
-    font-weight: 500;
-    margin-right: 10px;
-}
 .home_page .navbar .nav_right{
     display: flex;
     align-items: center;
     justify-content: center;
-    margin-right: 20px;
+    margin-right: 10px;
 }
 .home_page .main{
     min-height: 500px;
@@ -298,4 +268,18 @@
 }
 .home_page .main .sidebar_open .class_title .title{
     display: block
+}
+@media screen and (max-width:690px) {
+    .home_page .main .side_bar{
+        width: 0px;
+        overflow: hidden;
+        box-shadow: 0px 0px 10px #2c2c2c7e;
+    }
+    .home_page .main .sidebar_open{
+        width: 280px;
+    }
+    .home_page .main .content{
+        width: 100%;
+        zoom: calc(100vw / 690px);
+    }
 }

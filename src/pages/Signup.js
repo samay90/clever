@@ -5,7 +5,7 @@ import CheckBox from '../components/Checkbox'
 import ButtonPrimary from '../components/ButtonPrimary'
 import { Link, useNavigate } from 'react-router-dom'
 import toast from 'react-hot-toast'
-import full_logo from "../images/full_logo.png"
+import full_logo from "../static/images/full_logo.png"
 const Signup = ({api,setToken}) => {
   const [form,setForm] = React.useState({
     "email":"",

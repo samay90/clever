@@ -13,6 +13,10 @@ body {
   --secondary-color: #FF8C00;
   --tertiary-color: #4D4D4D;
   --quaternary-color: #F4F4F4;
+  --faded-color:#d8daff;
+  --skeleton-background2: linear-gradient(120deg,#a8a8a8 ,#e4e4e4,#a8a8a8);
+  --skeleton-background:#a8a8a8;
+  --skeleton-animation:skeleton_animation 0.5s ease 0s infinite alternate; 
 }
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
@@ -35,4 +39,12 @@ code {
       transform: translateX(0px);
       opacity: 1;
     }
+}
+@keyframes skeleton_animation {
+  0%{
+    background-color: #a8a8a8;
+  }
+  100%{
+    background-color: #e4e4e4;
+  }
 }

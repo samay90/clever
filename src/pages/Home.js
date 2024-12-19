@@ -1,14 +1,11 @@
 import React from "react";
 import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
+import conv from "../static/banner.json"
 const Home = ({ token, api, user ,classrooms}) => {
   const navigate = useNavigate()
   const handleClassroomClick = (ele) =>{
-    const element = document.getElementById(`classroom_card_${ele}`)
-    element.classList.add("classroom_card_active")
-    setTimeout(()=>{
-      navigate("/app/classroom/"+classrooms[ele].class_id)
-    },[300])
+    navigate("/app/classroom/"+classrooms[ele].class_id)
   }
   return (
     <div className="home_content page">
@@ -20,19 +17,15 @@ const Home = ({ token, api, user ,classrooms}) => {
         </div>
       </div>
       <div className="classrooms" >
-        {classrooms.map((classroom,key) => (
-          <div className="classroom_card" id={`classroom_card_${key}`} key={key} onClick={()=>handleClassroomClick(key)}>
+        {classrooms.map((classroom,key) => {
+          return <div className="classroom_card" style={{background:`url(${api}/banners/${conv[classroom.banner_id]})`}} key={key} onClick={()=>handleClassroomClick(key)}>
             <div className="content">
-              <h2>{classroom.class_name}</h2>
-              <p>{classroom.class_description} hello this isi samds
-                sdf
-                sdfds
-                fdsf
-                samdsfd
+              <h2>{classroom.class_name.length>20?classroom.class_name.slice(0,20)+"...":classroom.class_name}</h2>
+              <p>{classroom.class_description}
               </p>
             </div>
         </div>
-        ))}
+        })}
       </div>
     </div>
   );

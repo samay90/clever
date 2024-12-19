@@ -1,0 +1,252 @@
+.classroom_page{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    flex-direction: column;
+    position: relative;
+}
+.classroom_page .navigation{
+    width: 100%;
+    height: 45px;
+    position: sticky;
+    top: 0px !important;
+    background-color: #ffffff;
+    /* backdrop-filter: blur(20px); */
+    border-bottom: 1px solid #c0c0c0;
+    /* border-top: 1px solid #c0c0c0; */
+    z-index: 100;
+    left: 0;
+}
+.classroom_page .navigation ul{
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin-left: 15px;
+    align-items: center;
+    height: 100%;
+}
+.classroom_page .navigation ul li{
+    height: 30px;
+    margin-right: 10px;
+    padding: 0px 10px;
+    cursor: pointer;
+    display: flex;
+    border-radius: 20px;
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    transition: .2s ease;
+    position: relative;
+    color: var(--tertiary-color);
+}
+.classroom_page .navigation ul li::after{
+    content: "";
+    height:5px;
+    width: 20px;
+    position: absolute;
+    bottom: -8px;
+    background: var(--primary-color);
+    border-radius: 10px 10px 0 0 ;
+    transition: .2s ease;
+    transform: scale(0);
+}
+.classroom_page .navigation ul li i{
+    margin-right: 5px;
+}
+.classroom_page .navigation ul li .tab_link{
+    color: var(--tertiary-color);
+    text-decoration: none;
+}
+.classroom_page .navigation ul li.active::after{
+    transform: scale(1);
+    width: 40px;
+}
+.classroom_page .navigation ul li.active .tab_link{
+    color: var(--primary-color);
+    font-weight: 600;
+}
+.classroom_page .navigation ul li:hover::after{
+    transform: scale(1);
+}
+.classroom_page .navigation ul li .tab_link:hover{
+    color: var(--primary-color);
+}
+.classroom_page .main_content{
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    margin-top: 30px;
+}
+.classroom_page .main_content .banner{
+    height: 13rem;
+    background-size: cover;
+    width: 100%;
+    border-radius:10px;
+    display: flex;
+    align-items: end;
+    justify-content: start;
+    background-position: center;
+}
+.classroom_page .main_content .banner h1{
+    padding: 20px;
+    margin: 0;
+    color: white;
+    font-size: 30px;
+}
+@media screen and (max-width: 640px) {
+    .classroom_page .main_content .banner{
+        height: 10rem;
+        background-size: cover;
+        width: 100%;
+        border-radius:10px;
+        background-position: center;
+    }
+    .classroom_page .main_content .banner h1{
+        font-size: 25px;
+    }
+    .classroom_page .navigation ul{
+        justify-content: center;
+    }
+}
+.classroom_page .main_content .classroom_cards{
+    margin-top: 30px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card{
+    width: calc(100% - 42px);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 1px solid #c0c0c0;
+    margin-bottom: 20px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .tag{
+    width: fit-content;
+    color: white;
+    height: 20px;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0px 5px;
+    border-radius: 10px;
+    margin: 0;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .tags{
+    display: flex;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .tag{
+    margin-right: 5px;
+
+}
+.classroom_page .main_content .classroom_cards .classroom_card .tag i{
+    margin:0 3px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info{
+    display: flex;
+    align-items: start;
+    margin-top: 10px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info .icon_image{
+    height: 35px;
+    width: 35px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info .info{
+    margin-left: 10px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info .info h3{
+    margin: 0;
+    font-size: 0.875rem;
+    color: #3C4043;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info .info p{
+    margin: 0;
+    color:#5F6368;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .body{
+    position: relative;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .body h4{
+    color: black;
+    margin: 0;
+    margin-top: 10px;
+    font-size: 15px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .body p{
+    white-space: pre-wrap;
+    width: 100%;
+    font-size: 0.8125rem;
+    color: rgba(0,0,0,.87);
+    font-weight: 500;
+}
+.skeleton_classroom_card{
+}
+.skeleton_classroom_card .tags .tag{
+    width: 50px !important;
+    height: 15px !important;
+    background: var(--skeleton-background);
+    background-size: 220%;
+    background-position: right;
+    animation: var(--skeleton-animation);
+}
+.skeleton_classroom_card .creator_info .ske_icon{
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation);
+    background-position: right;
+    background-size: 220%;
+    height: 35px;
+    width: 35px;
+    border-radius: 50%;
+}
+.skeleton_classroom_card .creator_info .ske_info {
+    width: 80px !important;
+    height: 35px;
+    margin-left: 10px;
+}
+.skeleton_classroom_card .creator_info .ske_info h3{
+    height: 12px;
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation);
+    border-radius: 20px;
+    background-size: 220%;
+    background-position: right;
+    margin: 0;
+    margin-top: 3px;
+}
+.skeleton_classroom_card .creator_info .ske_info p{
+    height: 12px;
+    margin: 0;
+    width: calc(100% - 10px);
+    border-radius: 20px;
+    background-size: 220% !important;
+    background-position: right;
+    animation: var(--skeleton-animation) ;
+    margin-top: 5px;
+    background: var(--skeleton-background);
+}
+.skeleton_classroom_card .body h4{
+    width: 100%;
+    background-size: 220% !important;
+    background-position: right ;
+    border-radius: 20px;
+    height: 20px;
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation);
+}
+.skeleton_classroom_card .body p{
+    width: calc(100% - 20px) !important;
+    border-radius: 20px;
+    height: 10px;
+    background-size: 220% !important;
+    background-position: right ;
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation) ;
+}
+.skeleton_classroom_card .body p:nth-child(3){
+    width: calc(100% - 50px) !important;
+}
+.skeleton_classroom_card .body p:nth-child(4){
+    width: calc(100% - 30px) !important;
+}
