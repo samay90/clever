@@ -13,8 +13,8 @@
 }
 .icon_image img{
     position: absolute;
-    height: 100%;
-    width: 100%;
+    height: calc( 100% + 5px);
+    width: calc( 100% + 5px);
     left: 50%;
     transform: translate(-50%,-50%);
     top: 50%;

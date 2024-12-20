@@ -53,6 +53,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       setCurrent(temp[4])
     }
   },[location.pathname])
+  console.log(data)
   return (
     <>
     <div className='page classroom_page'>

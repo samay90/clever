@@ -41,15 +41,18 @@ const ClassroomStream = ({classroom,data,api}) => {
               </div>
               <div className='info'>
                 <h3>{item.creator_first_name} {item.creator_last_name}</h3>
-                <p>{moment(parseInt(item.created_at)).format("Do MMM YYYY")} {item.created_at!==item.updated_at?`(Edited on ${moment(parseInt(item.updated_at)).format("Do MMM YYYY")})`:""}</p>
+                <p>{moment(parseInt(item.created_at)).format("ll")} {item.created_at!==item.updated_at?`(Edited on ${moment(parseInt(item.updated_at)).format("ll")})`:""}</p>
               </div>
             </div>
+            {item.due_date_time?<p className='due_date'>Due on {moment(parseInt(item.due_date_time)).format("lll")}</p>:""}
             <div className='body'>
               <h4>{item.title}</h4>
               <p>{item.body}</p>
             </div>
             {
-              item.resource_id?<div className='comment'></div>:""
+              item.resource_id?<div className='comment'>
+                <button><i class="fa-regular fa-sparkles"></i> Ask query...</button>
+              </div>:""
             }
           </div>
         })}
