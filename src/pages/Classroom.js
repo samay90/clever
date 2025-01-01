@@ -12,7 +12,14 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const [current,setCurrent] = React.useState("stream")
   const location = useLocation()
   useEffect(()=>{
-    if (token && api && class_id){
+    setData([])
+  },[class_id])
+  useEffect(()=>{
+    const temp = classrooms.filter((ele) => ele.class_id===parseInt(class_id))[0]
+    setClassroom(temp)
+  },[classrooms,class_id])
+  useEffect(()=>{
+    if (token && api && class_id ){
       setLoading(false)
       const getClassroom = async () =>{
         const req =await fetch(api+"/classroom/"+class_id, {
@@ -42,11 +49,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       }
       getClassroom()
     }
-  },[token,api,class_id,setLoading])
-  useEffect(()=>{
-    const temp = classrooms.filter((ele) => ele.class_id===parseInt(class_id))[0]
-    setClassroom(temp)
-  },[classrooms,class_id])
+  },[token,api,class_id,setLoading,classroom])
   useEffect(()=>{
     const temp  = location.pathname.split("/")
     if (!temp[4]){

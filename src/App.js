@@ -8,7 +8,6 @@ import Navbar from './components/Navbar'
 import Classroom from "./pages/Classroom"
 import Loading from './components/Loading'
 import CommandBox from './components/CommandBox'
-import Bypass from './pages/Bypass'
 
 const App = () => {
   const url = "http://192.168.0.107:9920"
@@ -89,7 +88,6 @@ const App = () => {
       <CommandBox classrooms={classrooms}/>
       <Loading loading={loading}/>
       <Routes>
-        <Route path='/bypass/*' element={<Bypass/>}></Route>
         <Route path='/auth/signin' element={<Signin api={url} token={token} setToken={setToken}/>}></Route>
         <Route path='/auth/signup' element={<Signup api={url} token={token} setToken={setToken}/>}></Route>
         <Route path="/app" element={<Navbar setLoading={setLoading} classrooms={classrooms} user={user} token={token} setToken={setToken} api={url}/>}>

@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
 import full_logo from "../../static/images/full_logo.png"
 import './style.css'
 import Dropdown from '../Dropdown'
@@ -9,8 +9,8 @@ const Navbar = ({token,setLoading,setToken,api,user,classrooms}) => {
   const logout = () =>{
     localStorage.setItem("token","")
     setToken("")
-
   } 
+  const navigate = useNavigate()
   return (
     <>
     {user?<div className='page home_page'>
@@ -43,7 +43,7 @@ const Navbar = ({token,setLoading,setToken,api,user,classrooms}) => {
             </div>
             {
               classrooms.map((classroom,key)=>{
-                return <div key={key} className='class_placeholder'>
+                return <div key={key} onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`)}} className='class_placeholder'>
                 <div className='icon'><h1>{classroom.class_name[0]}</h1></div>
                 <div className='class_name'>
                   <h2>{classroom.class_name}</h2>

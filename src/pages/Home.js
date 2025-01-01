@@ -8,6 +8,7 @@ const Home = ({ token, api, user ,classrooms}) => {
     navigate("/app/classroom/"+classrooms[ele].class_id)
   }
   return (
+    <>
     <div className="home_content page">
       <div className="header">
         <div className="emoji">👋</div>
@@ -28,6 +29,7 @@ const Home = ({ token, api, user ,classrooms}) => {
         })}
       </div>
     </div>
+    </>
   );
 };
 

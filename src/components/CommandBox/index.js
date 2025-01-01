@@ -7,7 +7,11 @@ const CommandBox = ({classrooms}) => {
     const ref2 = React.useRef()
     const ref3 = React.useRef()
     const navigate = useNavigate()
+    const [filtered,setFiltered] = React.useState([])
     const [search,setSearch] = React.useState("")
+    React.useEffect(()=>{
+        setFiltered(classrooms)
+    },[classrooms])
     React.useEffect(() => {
         document.addEventListener("keydown",(e)=>{
             if (e.key === "Escape" ){
@@ -20,19 +24,21 @@ const CommandBox = ({classrooms}) => {
             }
         }) 
     },[])
-    React.useMemo(()=>{
+    React.useEffect(()=>{
         document.addEventListener("keydown",(e)=>{
-            if (isOpen&&e.key==="Enter"){
+            if (e.key==="Enter" && isOpen){
                 e.preventDefault();
-                const classroom = classrooms.find((classroom)=>classroom.class_name.toLowerCase().includes(search.toLowerCase()))
-                setSearch("")
-                setIsOpen(false)
-                if (classroom){
-                    navigate(`bypass/app/classroom/${classroom.class_id}`);
+                if (filtered[0]){
+                    setFiltered((prev)=>{
+                        navigate(`/app/classroom/${prev[0].class_id}`);
+                        setIsOpen(false)
+                        setSearch("")
+                        return prev
+                    })
                 }
             }
         })
-    },[navigate,isOpen,classrooms,search])
+    },[isOpen,navigate,filtered])
     React.useEffect(()=>{
         if (isOpen){
             ref.current.style.display = "flex";
@@ -57,12 +63,12 @@ const CommandBox = ({classrooms}) => {
         <div className='command_content' ref={ref2}>
             <div className='command_input' autoFocus>
                 <i className="fa-regular fa-magnifying-glass"></i>
-                <input ref={ref3}  value={search} onChange={(e)=>{setSearch(e.target.value)}} type="text" placeholder='Search classrooms...' />
+                <input value={search} ref={ref3} onChange={(e)=>{setFiltered(classrooms.filter((classroom)=>classroom.class_name.toLowerCase().includes(e.target.value.toLowerCase())));setSearch(e.target.value)}} type="text" placeholder='Search classrooms...' />
             </div>
             <div className='command_list'>
                 {
-                    classrooms.filter(ele => ele.class_name.toLowerCase().includes(search.toLowerCase())).length>0?classrooms.filter(ele => ele.class_name.toLowerCase().includes(search.toLowerCase())).map((classroom,key) => {
-                        return <div className={'command_item' + (0===key?" active":"")} key={key}>
+                    filtered.length>0?filtered.map((classroom,key) => {
+                        return <div onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`);setIsOpen(false);setSearch("")}} className={'command_item' + (0===key?" active":"")} key={key}>
                             <i className="fa-regular fa-magnifying-glass"></i><h2> {classroom.class_name}</h2>
                         </div>
                     }):<div className='not_found'>
