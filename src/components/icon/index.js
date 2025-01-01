@@ -1,6 +1,7 @@
 import React from 'react'
 import "./index.css"
 const Icon = ({url,chr,height}) => {
+  if (!chr){chr=" "}
   return (
     <div className='icon_image'>
         {url?<img src={url} alt='icon_img'/>:""}

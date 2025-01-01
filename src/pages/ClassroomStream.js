@@ -2,7 +2,9 @@ import React from 'react'
 import conv from "../static/banner.json" 
 import Icon from "../components/icon"
 import moment from 'moment'
-const ClassroomStream = ({classroom,data,api}) => {   
+import { useNavigate } from 'react-router-dom'
+const ClassroomStream = ({classroom,data,api}) => {  
+  const navigate = useNavigate() 
   return (
     <div className='main_content'>
         {classroom?classroom.banner_id?<div className='banner' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>
@@ -30,9 +32,9 @@ const ClassroomStream = ({classroom,data,api}) => {
             </div>
           </div>:""}
         {data.map((item,key)=>{
-          return <div className='classroom_card'  key={key}>
+          return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
             <div className='tags'>
-            <div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>
+            {classroom?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}
             {item.assignment_id?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.total_marks} marks</div>:""}
             </div>
             <div className='creator_info'>
@@ -51,7 +53,7 @@ const ClassroomStream = ({classroom,data,api}) => {
             </div>
             {
               item.resource_id?<div className='comment'>
-                <button><i class="fa-regular fa-sparkles"></i> Ask query...</button>
+                <button><i className="fa-regular fa-comment-question"></i> Ask query...</button>
               </div>:""
             }
           </div>

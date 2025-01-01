@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import toast from 'react-hot-toast'
 import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import "../styles/Classroom.css"
-import ClassroomStream from './Classroom.Stream'
+import ClassroomStream from './ClassroomStream'
+import ClassroomAssignment from './ClassroomAssignment'
+import ClassroomResource from './ClassroomResource'
 const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const {class_id} = useParams()
   const [data,setData] = React.useState([])
@@ -53,7 +55,6 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       setCurrent(temp[4])
     }
   },[location.pathname])
-  console.log(data)
   return (
     <>
     <div className='page classroom_page'>
@@ -67,6 +68,8 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       <Outlet/>
       <Routes>
         <Route path='/' element={<ClassroomStream classroom={classroom} data={data} api={api}/>}/>
+        <Route path='/assignment/:assignment_id' element={<ClassroomAssignment api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
+        <Route path='/resource/:resource_id' element={<ClassroomResource api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
       </Routes>
     </div>
     </>

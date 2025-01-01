@@ -16,6 +16,9 @@
     transition: .3s ease;
     margin-left: 10px;
 }
+.button_primary .no_margin{
+    padding: 0 15px 0 10px;
+}
 .button_primary:hover span:nth-child(1){
     margin-left: 15px;
 }

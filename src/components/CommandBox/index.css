@@ -1,0 +1,127 @@
+.command_box{
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 100vh;
+    width: 100vw;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 1050;
+    transition: .3s ease;
+    background: #00000048;
+}
+
+.command_box .command_content{
+    width: 90vw;
+    padding: 10px;
+    border-radius: 20px;
+    max-width: 450px;
+    height: 100vh;
+    opacity: 1;
+    transform: scale(1);
+    transition: .3s ease;
+}
+/* .command_box.open .command_content{
+    transform: scale(1);
+    opacity: 1;
+} */
+.command_box .command_content .command_input{
+    display: flex;
+    padding: 10px 15px;
+    align-items: center;
+    justify-content: start;
+    background: #ffffffb0;
+    backdrop-filter: blur(20px);
+    border-radius: 10px;
+    position: absolute;
+    top: 30%;
+    width: calc(90vw - 30px);
+    max-width: 420px;
+}
+.command_box .command_content .command_input i{
+    font-size: 15px;
+    margin: 0;
+    color: #3d3d3d;
+}
+.command_box .command_content .command_input input{
+    background: transparent;
+    border: none;
+    outline: none;
+    margin-left: 10px;
+    font-size: 20px;
+    font-weight: 500;
+    width: 100%;
+}
+.command_box .command_content .command_list{
+    display: flex;
+    flex-direction: column;
+    padding: 5px;
+    background: #ffffffb0;
+    backdrop-filter: blur(20px);
+    position: absolute;
+    top: 40%;
+    width: calc(90vw - 10px);
+    max-width: 440px;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+}
+.command_box .command_content .command_list .not_found{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    opacity: 0.3;
+}
+.command_box .command_content .command_list .not_found h2{
+    font-weight: 500;
+    font-size: 15px;
+    color: #fff;
+    margin: 0;
+    margin-bottom: 20px;
+}
+.command_box .command_content .command_list .not_found i{
+    font-size: 40px;
+    color: #fff;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    width: fit-content;
+}
+.command_box .command_content .command_list .command_item.active{
+    background: var(--primary-color);
+    color: white;
+}
+.command_box .command_content .command_list .command_item.active h2{
+    color: white;
+}
+.command_box .command_content .command_list .command_item{
+    padding: 10px;
+    display: flex;
+    width: calc(100% - 20px);
+    align-items: center;
+    border-radius: 10px;
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+.command_box .command_content .command_list .command_item:hover{
+    color: white;
+    background: var(--primary-color);
+}
+.command_box .command_content .command_list .command_item:hover h2{
+    color: white;
+}
+.command_box .command_content .command_list .command_item i{
+    font-size: 15px;
+    margin: 0;
+}
+.command_box .command_content .command_list .command_item h2{
+    margin: 0;
+    font-size: 15px;
+    margin-left: 10px;
+    font-weight: 500;
+    padding: 0;
+    color: rgb(63, 63, 63);
+}
+.command_box .command_content .command_list .command_item:last-child{
+    margin-bottom: 0;
+}

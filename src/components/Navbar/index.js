@@ -5,7 +5,7 @@ import './style.css'
 import Dropdown from '../Dropdown'
 import Icon from '../icon'
 const Navbar = ({token,setLoading,setToken,api,user,classrooms}) => {
-  const [side_open,setSide_Open] = useState(true)
+  const [side_open,setSide_Open] = useState(false)
   const logout = () =>{
     localStorage.setItem("token","")
     setToken("")

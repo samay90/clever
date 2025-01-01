@@ -182,7 +182,7 @@
     color: black;
     margin: 0;
     margin-top: 10px;
-    font-size: 15px;
+    font-size: 0.925rem;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .body p{
     white-space: pre-wrap;
@@ -283,4 +283,159 @@
 }
 .skeleton_classroom_card .body p:nth-child(4){
     width: calc(100% - 30px) !important;
+}
+/* Resource Page */
+.ra_page .main_content .top_content{
+    width: 100%;
+    height: max-content;
+}
+.ra_page .main_content .mid_content {
+    margin-bottom: 15px;
+}
+.ra_page .main_content .mid_content p{
+    white-space: pre-wrap;
+    font-weight: 500;
+    font-size: 0.9025rem;
+    color: #3c4043;
+}
+.ra_page .main_content .mid_content .attachments h3{
+    color: #3C4043;
+    font-size: 15px;
+}
+.ra_page .main_content .mid_content .attachments .data{
+    display: flex;
+    flex-wrap: wrap;
+}
+.ra_page .main_content .mid_content .attachments .attachment{
+    display: flex;
+    border: 1px solid #c0c0c0;
+    font-size: 12px;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #3C4043;
+}
+.ra_page .main_content .mid_content .attachments .attachment:hover{
+    background: #f3f3f3;
+}
+.ra_page .main_content .mid_content .attachments .attachment i{
+    margin-right: 5px;
+}
+.ra_page .main_content .header{
+    display: flex;
+    margin-bottom: 20px;
+    position: relative;
+}
+.ra_page .main_content .header .icon i{
+    width: 30px ;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    color: white;
+}
+
+.ra_page .main_content .header .info .title {
+    font-weight: 500;
+    font-size: 25px;
+    display: flex;
+    align-items: start;
+    width: 100%;
+    margin-left: 10px;
+}
+.ra_page .main_content .header .info .creator_info{
+    display: flex;
+    align-items: start;
+    margin-top: -2px;
+    margin-left: 10px;
+}
+.ra_page .main_content .header .icon .icon_image{
+    height: 30px;
+    width: 30px;
+}
+.ra_page .main_content .header .info .creator_info .info h3{
+    margin: 0;
+    font-size: 0.875rem;
+    color: #3C4043;
+}
+.ra_page .main_content .header .info .creator_info .info p{
+    margin: 0;
+    color:#5F6368;
+    font-weight: 500;
+    font-size: 0.75rem;
+}
+
+
+/* Skeleton  */
+.ra_page .main_content.skeleton .header .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    animation: var(--skeleton-animation);
+}
+
+.ra_page .main_content.skeleton .header .info .title{
+    width: 60vw;
+    max-width: 60vw;
+    animation: var(--skeleton-animation);
+    border-radius: 20px;
+    height: 35px;
+}
+.ra_page .main_content.skeleton .header .icon span{
+    width: 35px;
+    height: 35px;
+    animation: var(--skeleton-animation);
+}
+.ra_page .main_content.skeleton .header .info h3{
+    width: 100px;
+    height: 15px;
+    border-radius: 20px;
+    animation: var(--skeleton-animation);
+}
+.ra_page .main_content.skeleton .header .info p{
+    width: 120px;
+    height: 10px;
+    margin-top: 5px !important;
+    border-radius: 20px;
+    animation: var(--skeleton-animation);
+}
+.ra_page .main_content.skeleton .mid_content p{
+    animation: var(--skeleton-animation);
+    border-radius: 20px;
+}
+.ra_page .main_content.skeleton .mid_content p:nth-child(2){
+    width: 90%;
+}
+.ra_page .main_content.skeleton .mid_content p:nth-child(3){
+    width: 70%;
+}
+.ra_page .main_content .bottom_content .queries .query_card{
+    /* margin-bottom: 10px; */
+    padding-bottom: 5px;
+    border-bottom: 1px solid #e4e4e4;
+    position: relative;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_question h3{
+    margin: 0;
+    padding: 0;
+    font-size: 0.925rem;
+    color: rgba(0,0,0,.87);
+}
+
+.ra_page .main_content .bottom_content .queries .query_card .query_question p:nth-child(2){
+    color: rgba(0,0,0,.87);
+    font-size: 0.825rem;
+    margin: 0px;
+    font-weight: 500;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_question p:nth-child(3){
+    font-size: 0.75rem;
+    color: #5F6368;
+    margin: 0;
+    font-weight: 500;
 }
