@@ -6,8 +6,10 @@ const Loading = ({loading}) => {
         const div = document.getElementById('loading')
         if (!loading){
             div.classList.add('loading__off')
+            setTimeout(()=>{div.style.display="none"},300)
         }else{
-            div.classList.remove('loading__off')
+            div.style.display="flex"
+            setTimeout(()=>{div.classList.remove('loading__off')},10)
         }
     },[loading])
   return (

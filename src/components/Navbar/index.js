@@ -25,7 +25,7 @@ const Navbar = ({token,setLoading,setToken,api,user,classrooms}) => {
         </div>
         <div className='nav_right'>
           <button className='nav_button'><i className="fa-regular fa-plus"></i></button>
-          <Dropdown opener={<button className='nav_button'>{user?user.first_name?<Icon url={user?.path} height={40} chr={user?.first_name[0]}/>:"":""}</button>}>
+          <Dropdown opener={<button className='nav_button'>{user?user.first_name?<Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={40} chr={user?.first_name[0]}/>:"":""}</button>}>
             <ul>
               <li><Link className='link' to="/app/profile"><i className="fa-regular fa-user"></i> My Profile</Link></li>
               <li><Link className='link' to="/app/settings"><i className="fa-regular fa-gear"></i> Settings</Link></li>

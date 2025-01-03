@@ -13,7 +13,7 @@
     position: sticky;
     top: 0px !important;
     background-color: #ffffff;
-    /* backdrop-filter: blur(20px); */
+    backdrop-filter: blur(20px);
     border-bottom: 1px solid #c0c0c0;
     /* border-top: 1px solid #c0c0c0; */
     z-index: 100;
@@ -43,10 +43,11 @@
 }
 .classroom_page .navigation ul li::after{
     content: "";
-    height:5px;
+    height:3px;
     width: 20px;
     position: absolute;
-    bottom: -8px;
+    bottom: 0px;
+    margin-bottom: -8px;
     background: var(--primary-color);
     border-radius: 10px 10px 0 0 ;
     transition: .2s ease;
@@ -329,6 +330,7 @@
     display: flex;
     margin-bottom: 20px;
     position: relative;
+    align-items: center;
 }
 .ra_page .main_content .header .icon i{
     width: 30px ;
@@ -353,6 +355,20 @@
     align-items: start;
     margin-top: -2px;
     margin-left: 10px;
+}
+.ra_page .main_content .header .info .assignment_info{
+    margin-left: 10px;
+}
+.ra_page .main_content .header .info .assignment_info h3{
+    margin: 0;
+    font-size: 0.875rem;
+    color: #3C4043;
+}
+.ra_page .main_content .header .info .assignment_info p{
+    margin: 0;
+    color:#5F6368;
+    font-weight: 500;
+    font-size: 0.75rem;
 }
 .ra_page .main_content .header .icon .icon_image{
     height: 30px;
@@ -404,6 +420,11 @@
     border-radius: 20px;
     animation: var(--skeleton-animation);
 }
+.ra_page .main_content.skeleton .header .info .assignment_info h3{
+    width: 100px;
+    height: 15px;
+    animation: var(--skeleton-animation);
+}
 .ra_page .main_content.skeleton .mid_content p{
     animation: var(--skeleton-animation);
     border-radius: 20px;
@@ -415,7 +436,8 @@
     width: 70%;
 }
 .ra_page .main_content .bottom_content .queries .query_card{
-    /* margin-bottom: 10px; */
+    margin-bottom: 10px;
+    margin-top: 10px;
     padding-bottom: 5px;
     border-bottom: 1px solid #e4e4e4;
     position: relative;
@@ -430,6 +452,7 @@
 .ra_page .main_content .bottom_content .queries .query_card .query_question p:nth-child(2){
     color: rgba(0,0,0,.87);
     font-size: 0.825rem;
+    white-space: pre-wrap;
     margin: 0px;
     font-weight: 500;
 }
@@ -438,4 +461,75 @@
     color: #5F6368;
     margin: 0;
     font-weight: 500;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution{
+    display: flex;
+    align-items: start;
+    margin-top: 5px;
+    padding: 10px;
+    border-radius: 10px;
+    background: #f3f3f3;
+    border: 1px solid #e4e4e4;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solver_logo .icon_image{
+    height: 30px;
+    width: 30px;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solution_content{
+    display: flex;
+    flex-direction: column;
+    margin-left: 10px;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solution_content .solver_info{
+    display: flex;
+    height: fit-content;
+    align-items: center;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solution_content .solver_info h3{
+    margin: 0;
+    font-size: 0.875rem;
+    color: #3C4043;
+    margin-top: -2px;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solution_content .solver_info p{
+    margin: 0;
+    color: #5F6368;
+    font-weight: 500;
+    margin-left: 5px;
+    font-size: 0.75rem;
+}
+
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .solution_content .solution p{
+    color: rgba(0,0,0,.87);
+    font-size: 0.825rem;
+    margin: 0px;
+    white-space: pre-wrap;
+    font-weight: 500;
+}
+.ra_page .main_content .bottom_content .attachments h3{
+    color: #3C4043;
+    font-size: 15px;
+}
+.ra_page .main_content .bottom_content .attachments .data{
+    display: flex;
+    flex-wrap: wrap;
+}
+.ra_page .main_content .bottom_content .attachments .attachment{
+    display: flex;
+    border: 1px solid #c0c0c0;
+    font-size: 12px;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 20px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #3C4043;
+}
+.ra_page .main_content .bottom_content .attachments .attachment:hover{
+    background: #f3f3f3;
+}
+.ra_page .main_content .bottom_content .attachments .attachment i{
+    margin-right: 5px;
 }

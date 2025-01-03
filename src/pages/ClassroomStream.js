@@ -35,7 +35,7 @@ const ClassroomStream = ({classroom,data,api}) => {
           return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
             <div className='tags'>
             {classroom?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}
-            {item.assignment_id?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.total_marks} marks</div>:""}
+            {item.assignment_id?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}><h3><i class="fa-regular fa-bullseye-arrow"></i> {item.total_marks} marks</h3></div>:""}
             </div>
             <div className='creator_info'>
               <div className='icon_image'>

@@ -16,7 +16,7 @@ const App = () => {
   const location = useLocation()
   const [user,setUser] = React.useState({})
   const [classrooms,setClassroooms] = React.useState([])
-  const [loading,setLoading] = React.useState(false)
+  const [loading,setLoading] = React.useState(true)
   useEffect(() => {
     const navigateToLogin = () =>{
       if (location.pathname!=="/auth/signup" && location.pathname!=="/auth/signin"){

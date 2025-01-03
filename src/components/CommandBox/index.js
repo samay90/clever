@@ -28,14 +28,14 @@ const CommandBox = ({classrooms}) => {
         document.addEventListener("keydown",(e)=>{
             if (e.key==="Enter" && isOpen){
                 e.preventDefault();
-                if (filtered[0]){
-                    setFiltered((prev)=>{
+                setFiltered((prev)=>{
+                    if (prev.length>0){
                         navigate(`/app/classroom/${prev[0].class_id}`);
                         setIsOpen(false)
                         setSearch("")
-                        return prev
-                    })
-                }
+                    }
+                    return prev
+                })
             }
         })
     },[isOpen,navigate,filtered])
