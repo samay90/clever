@@ -4,19 +4,26 @@ import conv from "../static/banner.json"
 import Icon from "../components/icon"
 import moment from 'moment'
 import Modal from '../components/Modal'
+import FileInput from '../components/FileInput'
+import toast from 'react-hot-toast'
+import axios from 'axios'
 const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     const {assignment_id} = useParams() 
     const [assignment,setAssignment] = React.useState(null)
     const [isOpen,setIsOpen] = React.useState(false)
     const navigate = useNavigate()
+    const [files,setFiles] = React.useState([]);
+    const handleFiles = (e)=>{
+        setFiles([...e.target.files])
+    }
     React.useEffect(()=>{
         const getAssignment =async ()=>{
             if (token && api){
                 const data = await fetch(api+`/classroom/${class_id}/assignment/${assignment_id}`,{
                     method:"GET",
                     headers:{
-                        "Content-Type":"application/json",
-                        "Accept":'application/json',
+                        "Content-Type":"multipart/form-data",
+                        "Accept":'multipart/form-data',
                         "Authorization":"Bearer "+token
                     }
                 })
@@ -31,12 +38,43 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
         getAssignment()
     },[assignment_id,api,class_id,token,navigate])
     
-
+    const handleAssignmentSubmit =async ()=>{
+        const newForm = new FormData()
+        for (let i = 0; i < files.length; i++) {
+            newForm.append("attachments", files[i]);
+        }
+        try{
+          const raw = await axios.post(api+`/classroom/${class_id}/assignment/${assignment_id}/submit`,newForm,{headers:{authorization:"Bearer "+token}})
+          toast.success(raw.data.message,{
+            iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+            style:{
+              borderRadius:"30px",
+              background:"#5C60F5",
+              color:"white",
+              fontWeight:"100",
+              fontSize:"12px"
+            }
+          })
+          setIsOpen(false)
+          setFiles([])
+        }catch(e){
+                toast.error(e.response.data.message,{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+              })
+        }
+    }
   return (
     <>
-        <Modal title={<>Submit Assignment</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
-            
-        </Modal>
+        {assignment?.due_date_time>((new Date()).getTime())?assignment?.submissions?.marks?"":<Modal onSubmit={handleAssignmentSubmit} title={<>Submit Assignment</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
+            <FileInput onChange={handleFiles} files={files} setFiles={setFiles} label={<><i className="fa-regular fa-plus"></i>&nbsp; Add work</>}/>
+        </Modal>:""}
     <div className='page classroom_page ra_page modal_page_content'>
         {assignment?<div className='main_content'>
             <div className='top_content'>

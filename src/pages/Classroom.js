@@ -66,6 +66,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
           <li className={current==="stream"?"active":""}><Link to="" className='tab_link'><i className="fa-regular fa-airplay"></i>Stream</Link></li>
           <li className={current==="myclass"?"active":""}><Link to="myclass" className='tab_link'><i className="fa-regular fa-screen-users"></i>My Class</Link></li>
           <li className={current==="about"?"active":""}><Link to="about" className='tab_link'><i className="fa-regular fa-circle-info"></i>About</Link></li>
+          <li className={current==="settings"?"active":""}><Link to="settings" className='tab_link'><i className="fa-regular fa-gear"></i>Settings</Link></li>
         </ul>
       </div>
       <Outlet/>

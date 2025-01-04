@@ -29,6 +29,7 @@ const App = () => {
         setToken(temp)
       }else{
         navigateToLogin()
+        setLoading(false)
       }
     }
   },[token,navigate,location.pathname])
