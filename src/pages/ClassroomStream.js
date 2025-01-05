@@ -9,6 +9,7 @@ const ClassroomStream = ({classroom,data,api}) => {
     <div className='main_content'>
         {classroom?classroom.banner_id?<div className='banner' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>
           <h1>{classroom?.class_name}</h1>
+          <span className='banner_settings' onClick={()=>{navigate(`/app/classroom/${classroom?.class_id}/settings`)}}><i className="fa-regular fa-gear"></i></span>
         </div>:"":""}
       <div>
         <div className='classroom_cards'>

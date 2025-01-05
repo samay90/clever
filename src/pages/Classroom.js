@@ -5,6 +5,7 @@ import "../styles/Classroom.css"
 import ClassroomStream from './ClassroomStream'
 import ClassroomAssignment from './ClassroomAssignment'
 import ClassroomResource from './ClassroomResource'
+import ClassroomSettings from './ClassroomSettings'
 const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const {class_id} = useParams()
   const [data,setData] = React.useState([])
@@ -66,7 +67,6 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
           <li className={current==="stream"?"active":""}><Link to="" className='tab_link'><i className="fa-regular fa-airplay"></i>Stream</Link></li>
           <li className={current==="myclass"?"active":""}><Link to="myclass" className='tab_link'><i className="fa-regular fa-screen-users"></i>My Class</Link></li>
           <li className={current==="about"?"active":""}><Link to="about" className='tab_link'><i className="fa-regular fa-circle-info"></i>About</Link></li>
-          <li className={current==="settings"?"active":""}><Link to="settings" className='tab_link'><i className="fa-regular fa-gear"></i>Settings</Link></li>
         </ul>
       </div>
       <Outlet/>
@@ -74,6 +74,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
         <Route path='/' element={<ClassroomStream classroom={classroom} data={data} api={api}/>}/>
         <Route path='/assignment/:assignment_id' element={<ClassroomAssignment api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
         <Route path='/resource/:resource_id' element={<ClassroomResource api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
+        <Route path='/settings' element={<ClassroomSettings api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
       </Routes>
     </div>
     </>

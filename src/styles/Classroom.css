@@ -15,7 +15,6 @@
     background-color: #ffffff;
     backdrop-filter: blur(20px);
     border-bottom: 1px solid #c0c0c0;
-    /* border-top: 1px solid #c0c0c0; */
     z-index: 100;
     left: 0;
 }
@@ -24,23 +23,31 @@
     margin: 0;
     padding: 0;
     display: flex;
-    margin-left: 15px;
+    padding-left: 15px;
     align-items: center;
+    justify-content: start;
     height: 100%;
+    overflow-x: scroll;
+}
+.classroom_page .navigation ul::-webkit-scrollbar{
+    display: none;
 }
 .classroom_page .navigation ul li{
     height: 30px;
-    margin-right: 10px;
+    margin-right: 5px;
     padding: 0px 10px;
     cursor: pointer;
     display: flex;
     border-radius: 20px;
+    white-space: nowrap;
+    /* background: #c3c5ff; */
     font-size: 15px;
     align-items: center;
     justify-content: center;
     transition: .2s ease;
     position: relative;
 }
+
 .classroom_page .navigation ul li::after{
     content: "";
     height:3px;
@@ -68,6 +75,9 @@
     transform: scale(1);
     width: calc(100% - 20px);
 }
+.classroom_page .navigation ul li.active{
+    background: #ebecff;
+}
 .classroom_page .navigation ul li.active .tab_link{
     color: var(--primary-color);
     font-weight: 600;
@@ -92,6 +102,24 @@
     align-items: end;
     justify-content: start;
     background-position: center;
+    position: relative;
+}
+.classroom_page .main_content .banner .banner_settings{
+    position: absolute;
+    cursor: pointer ;
+    bottom:10px;
+    color: white;
+    right: 10px;
+}
+.classroom_page .main_content .banner .banner_settings i{
+    transition: .3s ease;
+    padding: 5px;
+    border-radius: 50%;
+}
+.classroom_page .main_content .banner .banner_settings i:hover{
+    transform: rotate(45deg);
+    color: black;
+    background: white;
 }
 .classroom_page .main_content .banner h1{
     padding: 20px;
@@ -532,4 +560,95 @@
 }
 .ra_page .main_content .bottom_content .attachments .attachment i{
     margin-right: 5px;
+}
+
+/*** Settings Page ***/
+.settings_page{
+    width: 100%;
+    position: relative;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
+    height: 100vh;
+}
+.settings_page .main_content{
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    display: flex;
+    flex-direction: column;
+    margin-top: 20px;
+    height: 100px;
+}
+.settings_page .navbar {
+    width: 100%;
+    height: 50px;
+    position: sticky;
+    top: 45.9px;
+    margin-top: 30px;
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    border: none;
+    right:0;
+    display: flex;
+    justify-content: start;
+    background: white;
+    align-items: center;
+}
+.settings_page .navbar h2{
+    font-weight: 600;
+    margin: 0;
+    display: flex;
+    align-items: center;
+    color: var(--tertiary-color);
+    cursor: pointer;
+}
+.settings_page .navbar h2:hover i{
+    margin-left: -5px;
+    margin-right: 15px;
+}
+.settings_page .navbar h2 i{
+    margin-right:10px;
+    font-size: 18px;
+    transition: .3s ease;
+}
+.settings_page .main_content .header p{
+    margin: 0;
+    color: #5F6368;
+    font-size: 0.675rem;
+    font-weight: 500;
+    margin-top: -10px;
+}
+.settings_page .main_content .settings_content .input{
+    max-width: 400px;
+}
+.settings_page .main_content .settings_content .input p{
+    font-size: 10px;
+    color: #5F6368;
+    margin-top:-15px;
+    text-align: right;
+    width: 100%;
+    font-weight: 500;
+}
+.settings_page .main_content .settings_content .submit_area{
+    margin-top: 15px;
+    display: flex;
+    justify-content: start;
+}
+.settings_page .main_content .settings_content .submit_area button{
+    font-size: 0.875rem;
+    font-weight: 500;
+    padding: 8px 15px;
+    border-radius:5px;
+    border: none;
+    cursor: pointer;
+    text-transform: capitalize;
+    margin-right: 5px;
+}
+.settings_page .main_content .settings_content .submit_area button:first-child{
+    background: #dfe0ff;
+    color: #5C60F5;
+}
+.settings_page .main_content .settings_content .submit_area button:last-child{
+    background: #5C60F5;
+    color: white;
 }
