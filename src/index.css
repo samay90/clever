@@ -59,6 +59,60 @@ hr{
   background: var(--primary-color);
   color: white;
   border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer;
   border: 2px solid #fff;
+}
+.btn_secondary:disabled{
+  background: #7075ff;
+}
+.btn_tertiary{
+  padding: 8px 15px;
+  font-size: 15px;
+  font-weight: 500;
+  background: var(--faded-color);
+  color: var(--primary-color);
+  border-radius: 5px;
+  cursor: pointer;
+  border: 2px solid #fff;
+}
+.key_shortcut{
+  background: #e4e4e4;
+  padding: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 5px;
+  font-size: 12px;
+  flex-direction: column;
+  font-weight: 500;
+  color: #a8a8a8;
+  letter-spacing: -0.5px;
+}
+.key_shortcut b{
+  color: #4D4D4D;
+  margin-left: 3px;
+}
+.key_shortcut  span:last-child{
+  font-size: 10px;
+}
+.btn_loading{
+  height:12px;
+  display: flex;
+  width: 12px;
+  border-radius: 50%;
+  border: 2px solid white;
+  border-top: 2px solid transparent;
+  animation: btn_loading 1s linear 0s infinite;
+  /* background: red; */
+}
+@keyframes btn_loading {
+  0%{
+    transform: rotate(0deg);
+  }
+  100%{
+    transform: rotate(360deg);
+  }
 }

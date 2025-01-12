@@ -27,7 +27,7 @@
     align-items: center;
     justify-content: start;
     height: 100%;
-    overflow-x: scroll;
+    /* overflow-x: scroll; */
 }
 .classroom_page .navigation ul::-webkit-scrollbar{
     display: none;

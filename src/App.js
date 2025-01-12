@@ -8,9 +8,9 @@ import Navbar from './components/Navbar'
 import Classroom from "./pages/Classroom"
 import Loading from './components/Loading'
 import CommandBox from './components/CommandBox'
-
+import Redirects from './pages/Redirects'
 const App = () => {
-  const url = "http://192.168.0.107:9920"
+  const url = "http://10.196.37.139:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()
@@ -95,6 +95,7 @@ const App = () => {
           <Route path="/app/home" element={<Home classrooms={classrooms} user={user} token={token} api={url}/>}></Route>
           <Route path="/app/classroom/:class_id/*" element={<Classroom classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>
         </Route>
+        <Route path='/redirect/*' element={<Redirects api={url} token={token}/>}></Route>
       </Routes>
     </>
   )

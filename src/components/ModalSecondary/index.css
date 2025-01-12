@@ -1,0 +1,5 @@
+.modal_secondary .selector{
+    min-height: 0px !important;
+    height: max-content !important;
+    max-width: 400px !important;
+}

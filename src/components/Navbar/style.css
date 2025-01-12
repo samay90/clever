@@ -26,6 +26,12 @@
 .home_page .navbar .hamburger_button{
     margin-right: 25px;
 }
+.home_page .navbar .hamburger_button i{
+    transition: .3s ease;
+}
+.home_page .navbar .hamburger_button .ham_open{
+    transform: rotate(180deg);
+}
 .home_page .navbar .nav_button{
     width: 40px;
     display: flex;
@@ -282,4 +288,14 @@
         width: 100%;
         zoom: calc(100vw / 690px);
     }
+}
+.nav_form{
+    padding: 15px 20px 20px 20px;
+}
+.nav_form .button_group{
+    display: flex;
+    
+}
+.nav_form .button_group button{
+    margin-right: 5px;
 }

@@ -14,6 +14,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
     const [isOpen,setIsOpen] = React.useState(false)
     const [queries,setQueries] = React.useState([])
     const navigate = useNavigate()
+    const [submitLoading,setSubmitLoading] = React.useState(false)
     React.useEffect(()=>{
         const getResource =async ()=>{
             if (token && api){
@@ -36,6 +37,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
         getResource()
     },[resource_id,api,class_id,token,navigate])
     const onSubmit =async ()=>{
+        setSubmitLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/query/ask`,{
             method:"POST",
             headers:{
@@ -46,6 +48,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
             body:JSON.stringify(query)
         })
         const parsed = await raw.json()
+        setSubmitLoading(false)
         if (parsed.error){
             toast.error(parsed.message,{
                 iconTheme:{primary:"#fff",secondary:"#5C60F5"},
@@ -95,7 +98,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
     },[resource_id,api,class_id,token,navigate])
   return (
     <>
-        <Modal onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
+        <Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
             <div className='input_box'>
                 <InputSecondary placeholder={"Query title"} value={query.query_title} onChange={(e)=>setQuery({...query,query_title:e.target.value})} secondary_placeholder={"Ex. Doubt related to astronomy."}/>
                 <TextArea maxLength={200} placeholder={"Query body"} secondary_placeholder={"Ex. Why don't aliens eat clowns? "} value={query.query_body} onChange={(e)=>setQuery({...query,query_body:e.target.value})}/>

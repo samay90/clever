@@ -12,6 +12,21 @@
     opacity: 1;
     transition: 0.3s ease;
     backdrop-filter: blur(20px) ;
+    flex-direction: column;
+}
+#loading .new_feature{
+    margin-top: 20px;
+    position: absolute;
+    bottom: 50px;
+    left: 50%;
+    transform: translate(-50%,0);
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: 500;
+    color: #c4c6ff;
 }
 #loading .logo{
     height: 100px;
@@ -57,4 +72,7 @@
     overflow: hidden;
     background: #00000000 !important;
     backdrop-filter: blur(0px) !important;
+}
+.loading__off .new_feature{
+    display: none !important;
 }

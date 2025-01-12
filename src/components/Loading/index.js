@@ -18,6 +18,9 @@ const Loading = ({loading}) => {
             <span></span>
             <img src={logo} alt='logo'/>
         </div>
+        <div className='new_feature'>
+            New feature. ctrl+spc to search
+        </div>
     </div>
   )
 }

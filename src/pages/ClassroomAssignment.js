@@ -13,6 +13,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     const [isOpen,setIsOpen] = React.useState(false)
     const navigate = useNavigate()
     const [files,setFiles] = React.useState([]);
+    const [loading,setLoading] = React.useState(false)
     const handleFiles = (e)=>{
         setFiles([...e.target.files])
     }
@@ -39,12 +40,14 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     },[assignment_id,api,class_id,token,navigate])
     
     const handleAssignmentSubmit =async ()=>{
+        setLoading(true)
         const newForm = new FormData()
         for (let i = 0; i < files.length; i++) {
             newForm.append("attachments", files[i]);
         }
         try{
           const raw = await axios.post(api+`/classroom/${class_id}/assignment/${assignment_id}/submit`,newForm,{headers:{authorization:"Bearer "+token}})
+          setLoading(false)
           toast.success(raw.data.message,{
             iconTheme:{primary:"#fff",secondary:"#5C60F5"},
             style:{
@@ -58,6 +61,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
           setIsOpen(false)
           setFiles([])
         }catch(e){
+            setLoading(false)
                 toast.error(e.response.data.message,{
                 iconTheme:{primary:"#fff",secondary:"#5C60F5"},
                 style:{
@@ -72,7 +76,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     }
   return (
     <>
-        {assignment?.due_date_time>((new Date()).getTime())?assignment?.submissions?.marks?"":<Modal onSubmit={handleAssignmentSubmit} title={<>Submit Assignment</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
+        {assignment?.due_date_time>((new Date()).getTime())?assignment?.submissions?.marks?"":<Modal loading={loading} onSubmit={handleAssignmentSubmit} title={<>Submit Assignment</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
             <FileInput onChange={handleFiles} files={files} setFiles={setFiles} label={<><i className="fa-regular fa-plus"></i>&nbsp; Add work</>}/>
         </Modal>:""}
     <div className='page classroom_page ra_page modal_page_content'>

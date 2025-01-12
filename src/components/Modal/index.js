@@ -1,6 +1,6 @@
 import React, { useEffect, useRef } from 'react'
 import "./index.css"
-const Modal = ({children,title,isOpen,setIsOpen,onSubmit}) => {
+const Modal = ({children,title,isOpen,setIsOpen,onSubmit,loading}) => {
   const ref = useRef()
   const ref2 = useRef()
   const ref3 = useRef()
@@ -41,8 +41,8 @@ const Modal = ({children,title,isOpen,setIsOpen,onSubmit}) => {
 
           <div className='content'>{children}</div>
           <div className='bottom_content'>
-            <button className='button-1' onClick={()=>{setIsOpen(false)}}>Cancel</button>
-            <button className='button-2' onClick={onSubmit}>Submit</button>
+            <button className='btn_tertiary' onClick={()=>{setIsOpen(false)}}>Cancel</button>
+            <button className='btn_secondary' style={{width:"80px"}} onClick={onSubmit} disabled={loading}>{loading?<span className='btn_loading'/>:"Submit"}</button>
           </div>
 
         </div>

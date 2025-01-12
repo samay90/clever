@@ -6,9 +6,6 @@ const Dropdown = ({opener,children}) => {
         <div className='dropdown_opener'>
     	    {opener}
         </div>
-        <div className='dropdown_arrow'>
-            <span></span>
-        </div>
         <div className='dropdown_content'>
             {children}
         </div>
