@@ -13,7 +13,7 @@ body {
   --secondary-color: #FF8C00;
   --tertiary-color: #4D4D4D;
   --quaternary-color: #F4F4F4;
-  --faded-color:#d8daff;
+  --faded-color:#e2e4ff;
   --skeleton-background2: linear-gradient(120deg,#a8a8a8 ,#e4e4e4,#a8a8a8);
   --skeleton-background:#a8a8a8;
   --skeleton-animation:skeleton_animation 0.5s ease 0s infinite alternate; 
@@ -115,4 +115,12 @@ hr{
   100%{
     transform: rotate(360deg);
   }
+}
+button:active{
+  filter: brightness(0.9) ;
+}
+input::datetime-local::datetime-picker{  
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
 }

@@ -8,8 +8,9 @@ import ModalSecondary from '../ModalSecondary'
 import InputSecondary from '../InputSecondary'
 import TextArea from '../TextArea'
 import toast from 'react-hot-toast'
-const Navbar = ({token,setLoading,setToken,api,user,classrooms}) => {
-  const [side_open,setSide_Open] = useState(false)
+import { UiContext } from '../../store/UiContext'
+const Navbar = ({token,setToken,api,user,classrooms}) => {
+  const {side_open,setSide_Open} = React.useContext(UiContext);
   const [open,setOpen] = useState(false)  
   const [createLoading,setCreateLoading] = useState(false)
   const [createClass,setCreateClass] = useState({

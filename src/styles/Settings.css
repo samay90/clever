@@ -1,0 +1,192 @@
+.settings_page{
+    display: flex;
+    padding: 0;
+    width:calc(100vw - 60px);
+    flex-direction: column;
+    align-items: center;
+}
+.settings_page .settings_navigation{
+    height: 100px;
+    background: #fcfcfc;
+    overflow: hidden;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    right: 0;
+    z-index: 100;
+    width: 100%;
+    border-bottom: 1px solid #e2e2e2;
+}   
+.settings_page .settings_navigation .tabs{
+    display: flex;
+    margin-left: 15px;
+    margin-top: 20px;
+}
+.settings_page .settings_navigation .nav_label{
+    font-size: 20px;
+    margin-top: 15px;
+    margin-left: 15px;
+    color: var(--tertiary-color);
+}
+.settings_page .settings_navigation .tab{
+    height: 30px;
+    margin-right: 5px;
+    padding: 0px 10px;
+    cursor: pointer;
+    display: flex;
+    border-radius: 20px;
+    white-space: nowrap;
+    color: var(--tertiary-color);
+    font-size: 15px;
+    align-items: center;
+    justify-content: center;
+    transition: .2s ease;
+    text-decoration: none;
+    position: relative;
+}
+.settings_page .settings_navigation .tab.active{
+    background: #ebecff;
+    color: var(--primary-color);
+}
+.settings_page .settings_navigation .tab::before{
+    content: "";
+    height:3px;
+    width: 20px;
+    position: absolute;
+    bottom: 0px;
+    margin-bottom: -8px;
+    background: var(--primary-color);
+    border-radius: 10px 10px 0 0 ;
+    transition: .2s ease;
+    transform: scale(0);
+}
+.settings_page .settings_navigation .tab.active::before{
+    transform: scale(1);
+    width: calc(100% - 20px);
+}
+.settings_page .settings_navigation .tab i{
+    margin-right: 5px;
+}
+.settings_page .settings_navigation .tab:hover{
+    color: var(--primary-color);
+}
+.settings_page .settings_content{
+    width: 100%;
+    background: #fff;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 50px;
+    transition: .3s ease;
+    overflow-y: scroll;
+}
+.settings_page.active{
+    width: calc(100vw - 280px);
+}
+.settings_page .settings_navigation .tab:hover::before{
+    transform: scale(1);
+}
+.settings_page .settings_navigation .tab .tab_link:hover{
+    color: var(--primary-color);
+}
+.settings_page .settings_content .settings_form{
+    padding-top: 00px;
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    position: relative;
+}
+.settings_page .settings_content .settings_form .title{
+    font-size: 1.4rem;
+    color: var(--tertiary-color);
+}
+.settings_page .settings_content .settings_form .form .input{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: flex-start;
+    background: white;
+    margin-top: 10px;
+    border-radius: 10px;
+    margin-bottom: 20px;
+}
+.settings_page .settings_content .settings_form .form .input .button_group{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 15px;
+}
+.settings_page .settings_content .settings_form .form .input .label{
+    color: var(--tertiary-color);
+}
+.settings_page .settings_content .settings_form .form .input .text{
+    color: gray;
+    font-weight: 500;
+    font-size: 12px;
+}
+.settings_page .settings_content .settings_form .form .input .container{
+    position: relative;
+    margin-bottom: 15px;
+    display: flex;
+}
+.settings_page .settings_content .settings_form .form .input .container .edit_profile{
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    background: #0000003d;
+    justify-content: center;
+    cursor: pointer;
+    transition: .2s ease;
+    z-index: 90;
+    color: #e4e4e4;
+}
+.settings_page .settings_content .settings_form .form .input .image_view{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto;
+    display: flex;
+}
+.settings_page .settings_content .settings_form .form .input_group{
+    display: flex;
+    gap: 10px;
+}
+.settings_page .settings_content .settings_form .form .input_group .input-field_sec{
+    flex-grow: 1;
+}
+.settings_page .settings_content .settings_form .form .location_selector{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
+.settings_page .settings_content .settings_form .form .date_input{
+    display: flex;
+    flex-grow: 1;
+}
+.settings_page .settings_content .settings_form .form .location_selector .option_selector {
+    flex-grow: 1;
+    max-width: 54.5rem;
+} 
+.settings_page .settings_content .settings_form .form .date_input input{
+    width: calc(100% - 29px);
+}
+.settings_page .settings_content .settings_form .form .button_group2{
+    display: flex;
+    gap: 5px;
+}
+.settings_page .settings_content .settings_form .form .button_group2 .btn_secondary{
+    width: 60px;
+}
+@media screen and (max-width:690px){
+    .settings_page{
+        width: 100vw !important;
+    }
+    .settings_page .settings_navigation{
+        width: 100vw !important;
+    }
+}

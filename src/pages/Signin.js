@@ -76,7 +76,7 @@ const Signin = ({api,setToken}) => {
               <h2>Nice to see you back!</h2>
             </div>
             <div className='form'>
-              <InputPrimary placeholder="Email address or Username" type="text" value={form.authenticator} onChange={(e)=>{setForm({...form,authenticator:e.target.value})}}/>
+              <InputPrimary placeholder="Email address" type="text" value={form.authenticator} onChange={(e)=>{setForm({...form,authenticator:e.target.value})}}/>
               <InputPrimary placeholder="Password" type="password" value={form.password} onChange={(e)=>{setForm({...form,password:e.target.value})}}/>
               <CheckBox placeholder="Keep me logged in" value={checked} onChange={()=>{setChecked(!checked)}}/>
               <ButtonPrimary arrow={true} onClick={handleSubmit}>Sign in</ButtonPrimary>

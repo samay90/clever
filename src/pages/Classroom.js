@@ -59,19 +59,21 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       setCurrent(temp[4])
     }
   },[location.pathname])
+  
   return (
     <>
     <div className='page classroom_page'>
       <div className='navigation' >
-        <ul>
-          <li className={current==="stream"?"active":""}><Link to="" className='tab_link'><i className="fa-regular fa-airplay"></i>Stream</Link></li>
-          <li className={current==="myclass"?"active":""}><Link to="myclass" className='tab_link'><i className="fa-regular fa-screen-users"></i>My Class</Link></li>
-          <li className={current==="about"?"active":""}><Link to="about" className='tab_link'><i className="fa-regular fa-circle-info"></i>About</Link></li>
-        </ul>
+        <div className='tabs'>
+          <div className={`tab ${current==="stream"?"active":""}`}><Link to="" className='tab_link'><i className="fa-regular fa-airplay"></i><span>Stream</span></Link></div>
+          <div className={`tab ${current==="myclass"?"active":""}`}><Link to="myclass" className='tab_link'><i className="fa-regular fa-screen-users"></i><span>My</span> Class</Link></div>
+          <div className={`tab ${current==="about"?"active":""}`}><Link to="about" className='tab_link'><i className="fa-regular fa-circle-info"></i><span>About</span></Link></div>
+          <div className={`tab ${current==="settings"?"active":""}`}><Link to="settings" className='tab_link'><i className="fa-regular fa-sliders"></i><span>Settings</span></Link></div>
+        </div>
       </div>
       <Outlet/>
       <Routes>
-        <Route path='/' element={<ClassroomStream classroom={classroom} data={data} api={api}/>}/>
+        <Route path='/' element={<ClassroomStream token={token} classroom={classroom} data={data} api={api}/>}/>
         <Route path='/assignment/:assignment_id' element={<ClassroomAssignment api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
         <Route path='/resource/:resource_id' element={<ClassroomResource api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
         <Route path='/settings' element={<ClassroomSettings api={api} classroom={classroom} class_id={class_id} token={token}/>}/>

@@ -1,9 +1,11 @@
 .input-field_sec{
     display: flex;
     flex-direction: column;
-    max-width: 500px;
+    /* max-width: 500px; */
     margin-bottom: 20px;
+    width: 100%;
     position: relative;
+    min-width: 100px;
     height: 100%;
     /* overflow: hidden; */
 }

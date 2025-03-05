@@ -1,7 +1,6 @@
 import React from 'react'
 import "./index.css"
 const FileInput = ({label,onChange,files,setFiles}) => {
-    
   return (
     <div className='file_input'>
         <label htmlFor='file_input'>{label}</label>

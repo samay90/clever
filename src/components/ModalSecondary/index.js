@@ -4,7 +4,7 @@ const ModalSecondary = ({ heading, children ,open,setOpen}) => {
   const ref = React.useRef();
   const ref2 = React.useRef();
   React.useEffect(() => {
-    if (open) {
+    if (open && ref) {
       ref.current.style.display = "flex";
       setTimeout(() => {
         ref.current.style.background = "#00000060";
@@ -16,7 +16,9 @@ const ModalSecondary = ({ heading, children ,open,setOpen}) => {
       ref2.current.style.transform = "scale(0.9)";
       ref.current.style.background = "#00000000";
       setTimeout(() => {
-        ref.current.style.display = "none";
+        if (ref && ref.current){
+          ref.current.style.display = "none";
+        }
       }, 300);
     }
   }, [open]);

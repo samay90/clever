@@ -6,7 +6,7 @@ const Modal = ({children,title,isOpen,setIsOpen,onSubmit,loading}) => {
   const ref3 = useRef()
   useEffect(()=>{
     const ele = document.getElementsByClassName("modal_page_content")[0];
-    if (isOpen){
+    if (isOpen && ref){
       ref3.current.style.display = "flex";
       ele.style.transform = "scale(0.95)";
       setTimeout(()=>{

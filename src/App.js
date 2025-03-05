@@ -9,14 +9,18 @@ import Classroom from "./pages/Classroom"
 import Loading from './components/Loading'
 import CommandBox from './components/CommandBox'
 import Redirects from './pages/Redirects'
+import {UiContext} from './store/UiContext'
+import Settings from './pages/Settings'
+import SettingsProfile from './pages/SettingsProfile'
 const App = () => {
-  const url = "http://10.196.37.139:9920"
+  const url = "http://10.196.35.95:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()
   const [user,setUser] = React.useState({})
   const [classrooms,setClassroooms] = React.useState([])
   const [loading,setLoading] = React.useState(true)
+  const [side_open,setSide_Open] = React.useState(false)
   useEffect(() => {
     const navigateToLogin = () =>{
       if (location.pathname!=="/auth/signup" && location.pathname!=="/auth/signin"){
@@ -88,15 +92,20 @@ const App = () => {
       <Toaster/>
       <CommandBox classrooms={classrooms}/>
       <Loading loading={loading}/>
+      <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open}}>
       <Routes>
         <Route path='/auth/signin' element={<Signin api={url} token={token} setToken={setToken}/>}></Route>
         <Route path='/auth/signup' element={<Signup api={url} token={token} setToken={setToken}/>}></Route>
         <Route path="/app" element={<Navbar setLoading={setLoading} classrooms={classrooms} user={user} token={token} setToken={setToken} api={url}/>}>
           <Route path="/app/home" element={<Home classrooms={classrooms} user={user} token={token} api={url}/>}></Route>
           <Route path="/app/classroom/:class_id/*" element={<Classroom classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>
+          <Route path='/app/settings/*' element={<Settings api={url} token={token} user={user}/>}>
+            <Route path="" element={<SettingsProfile api={url} token={token} user={user}/>}></Route>
+          </Route>
         </Route>
         <Route path='/redirect/*' element={<Redirects api={url} token={token}/>}></Route>
       </Routes>
+      </UiContext.Provider>
     </>
   )
 }

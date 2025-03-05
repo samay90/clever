@@ -10,6 +10,7 @@ const ClassroomSettings = ({ token, api, classroom, class_id }) => {
     const [sensitive,setSensitive] = React.useState({})
     const [reset,setReset] = React.useState(0)
     const navigate = useNavigate()
+    const [buttonDisabled,setButtonDisabled] = React.useState(false)
     const [banner,setBanner] = React.useState(null)
     React.useEffect(()=>{
         setReset(0)
@@ -53,6 +54,7 @@ const ClassroomSettings = ({ token, api, classroom, class_id }) => {
     },[api,class_id,token])
     const saveChanges = async () => {
         if (token && api && class_id){
+            setButtonDisabled(true)
             const req =await fetch(api+"/classroom/"+class_id+"/edit", {
                 method:"POST",
                 headers:{
@@ -90,10 +92,11 @@ const ClassroomSettings = ({ token, api, classroom, class_id }) => {
                     }
                 })
             }
+            setButtonDisabled(false)
         }
     }
   return (
-    <div className="settings_page page">
+    <div className="classroom_settings_page page">
       <div className="navbar">
         <h2 onClick={()=>{navigate("/app/classroom/"+class_id+"/")}}><i className="fa-regular fa-arrow-left"></i>Settings</h2>
       </div>
@@ -123,7 +126,7 @@ const ClassroomSettings = ({ token, api, classroom, class_id }) => {
             </div>
             <div className="submit_area">
                 <button className="reset" onClick={()=>{setReset(prev=>prev+1)}}>Reset</button>
-                <button className="save" onClick={saveChanges}>Save</button>
+                <button className="save" onClick={saveChanges} disabled={buttonDisabled}>{buttonDisabled?<span className="btn_loading"></span>:"Save"}</button>
             </div>
         </div>
       </div>

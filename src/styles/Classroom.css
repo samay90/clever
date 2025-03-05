@@ -18,21 +18,22 @@
     z-index: 100;
     left: 0;
 }
-.classroom_page .navigation ul{
+.classroom_page .navigation .tabs{
     list-style-type: none;
     margin: 0;
     padding: 0;
     display: flex;
+    display: flex;
     padding-left: 15px;
     align-items: center;
-    justify-content: start;
+    
     height: 100%;
-    /* overflow-x: scroll; */
+    overflow: scroll;
 }
-.classroom_page .navigation ul::-webkit-scrollbar{
+.classroom_page .navigation .tabs::-webkit-scrollbar{
     display: none;
 }
-.classroom_page .navigation ul li{
+.classroom_page .navigation .tabs .tab{
     height: 30px;
     margin-right: 5px;
     padding: 0px 10px;
@@ -48,7 +49,7 @@
     position: relative;
 }
 
-.classroom_page .navigation ul li::after{
+.classroom_page .navigation .tabs .tab::after{
     content: "";
     height:3px;
     width: 20px;
@@ -60,10 +61,11 @@
     transition: .2s ease;
     transform: scale(0);
 }
-.classroom_page .navigation ul li i{
+.classroom_page .navigation .tabs .tab i{
     margin-right: 5px;
 }
-.classroom_page .navigation ul li .tab_link{
+
+.classroom_page .navigation .tabs .tab .tab_link{
     color: var(--tertiary-color);
     height: 100%;
     display: flex;
@@ -71,21 +73,24 @@
     justify-content: center;
     text-decoration: none;
 }
-.classroom_page .navigation ul li.active::after{
+.classroom_page .navigation .tabs .tab.active::after{
     transform: scale(1);
     width: calc(100% - 20px);
 }
-.classroom_page .navigation ul li.active{
+.classroom_page .navigation .tabs .tab.active{
     background: #ebecff;
 }
-.classroom_page .navigation ul li.active .tab_link{
+.classroom_page .navigation .tabs .tab.active span{
+    display: block;
+} 
+.classroom_page .navigation .tabs .tab.active .tab_link{
     color: var(--primary-color);
     font-weight: 600;
 }
-.classroom_page .navigation ul li:hover::after{
+.classroom_page .navigation .tabs .tab:hover::after{
     transform: scale(1);
 }
-.classroom_page .navigation ul li .tab_link:hover{
+.classroom_page .navigation .tabs .tab .tab_link:hover{
     color: var(--primary-color);
 }
 .classroom_page .main_content{
@@ -104,22 +109,26 @@
     background-position: center;
     position: relative;
 }
-.classroom_page .main_content .banner .banner_settings{
+.classroom_page .main_content .banner .banner_info{
     position: absolute;
-    cursor: pointer ;
-    bottom:10px;
-    color: white;
-    right: 10px;
-}
-.classroom_page .main_content .banner .banner_settings i{
-    transition: .3s ease;
-    padding: 5px;
+    right:15px;
+    fill: white;
     border-radius: 50%;
+    font-size: 12px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    bottom: 10px;
+    padding: 3px;
 }
-.classroom_page .main_content .banner .banner_settings i:hover{
-    transform: rotate(45deg);
-    color: black;
-    background: white;
+
+.classroom_page .main_content .banner .banner_info:hover{
+    background: #0000064f;
+
+}
+.classroom_page .main_content .banner.banner_active{
+    border-radius: 10px 10px 0 0;
 }
 .classroom_page .main_content .banner h1{
     padding: 20px;
@@ -143,8 +152,46 @@
         justify-content: center;
     }
 }
+.classroom_page .main_content .classroom_info{
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+    border-radius: 0 0 10px 10px;
+    padding: 5px 20px 5px 20px;
+    display: none;
+    font-size: .875rem;
+}
+.classroom_page .main_content .classroom_info.active{
+    display: block;
+}
+
+.classroom_page .main_content .announcement_section{
+    height: auto;
+    width: calc(100% - 20px);
+    padding: 10px;
+    box-shadow: 0 1px 2px 0 rgba(60,64,67,.3),0 2px 6px 2px rgba(60,64,67,.15);
+    border-radius: 10px;
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.classroom_page .main_content .announcement_section .announcement_btn_settings{
+  padding: 5px 10px !important;
+  font-size: 15px;
+  font-weight: 500;
+  background: transparent;
+  color: #3C4043;   
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  border: 1px solid #3C4043;
+}
+.classroom_page .main_content .announcement_section .announcement_btn_settings:hover{
+    background: #e4e4e4;
+}
 .classroom_page .main_content .classroom_cards{
-    margin-top: 30px;
+    margin-top: 15px;
 }
 .classroom_page .main_content .classroom_cards .classroom_card{
     width: calc(100% - 2px);
@@ -563,7 +610,7 @@
 }
 
 /*** Settings Page ***/
-.settings_page{
+.classroom_settings_page{
     width: 100%;
     position: relative;
     flex-direction: column;
@@ -571,15 +618,15 @@
     align-items: center;
     height: 100vh;
 }
-.settings_page .main_content{
+.classroom_settings_page .main_content{
     width: calc(100% - 30px);
     max-width: 54.5rem;
     display: flex;
     flex-direction: column;
     margin-top: 20px;
-    height: 100px;
+    position: relative;
 }
-.settings_page .navbar {
+.classroom_settings_page .navbar {
     width: 100%;
     height: 50px;
     position: sticky;
@@ -594,7 +641,7 @@
     background: white;
     align-items: center;
 }
-.settings_page .navbar h2{
+.classroom_settings_page .navbar h2{
     font-weight: 600;
     margin: 0;
     display: flex;
@@ -602,26 +649,26 @@
     color: var(--tertiary-color);
     cursor: pointer;
 }
-.settings_page .navbar h2:hover i{
+.classroom_settings_page .navbar h2:hover i{
     margin-left: -5px;
     margin-right: 15px;
 }
-.settings_page .navbar h2 i{
+.classroom_settings_page .navbar h2 i{
     margin-right:10px;
     font-size: 18px;
     transition: .3s ease;
 }
-.settings_page .main_content .header p{
+.classroom_settings_page .main_content .header p{
     margin: 0;
     color: #5F6368;
     font-size: 0.675rem;
     font-weight: 500;
     margin-top: -10px;
 }
-.settings_page .main_content .settings_content .input{
-    max-width: 400px;
+.classroom_settings_page .main_content .settings_content .input{
+    width: 100%;
 }
-.settings_page .main_content .settings_content .input p{
+.classroom_settings_page .main_content .settings_content .input p{
     font-size: 10px;
     color: #5F6368;
     margin-top:-15px;
@@ -629,12 +676,12 @@
     width: 100%;
     font-weight: 500;
 }
-.settings_page .main_content .settings_content .submit_area{
+.classroom_settings_page .main_content .settings_content .submit_area{
     margin-top: 15px;
     display: flex;
     justify-content: start;
 }
-.settings_page .main_content .settings_content .submit_area button{
+.classroom_settings_page .main_content .settings_content .submit_area button{
     font-size: 0.875rem;
     font-weight: 500;
     padding: 8px 15px;
@@ -644,11 +691,21 @@
     text-transform: capitalize;
     margin-right: 5px;
 }
-.settings_page .main_content .settings_content .submit_area button:first-child{
+.classroom_settings_page .main_content .settings_content .submit_area button:first-child{
     background: #dfe0ff;
     color: #5C60F5;
 }
-.settings_page .main_content .settings_content .submit_area button:last-child{
+.classroom_settings_page .main_content .settings_content .submit_area button:last-child{
+    width: 60px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
     background: #5C60F5;
     color: white;
+}
+.add_content_page{
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    background: red;
+    height: 50px;
 }

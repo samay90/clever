@@ -1,54 +1,55 @@
-.text-area{
+.option_selector{
     display: flex;
     flex-direction: column;
-    /* max-width: 500px; */
+    max-width: 500px;
     margin-bottom: 20px;
     position: relative;
+    /* min-width: 100px; */
     height: 100%;
-    border-radius: 5px;
-    /* overflow: hidden; */
 }
-
-.text-area textarea{
+.option_selector select{
+    font-family: "Manrope", sans-serif;
     position: relative;
-    font-weight: 500 !important;
+    font-weight: 400 !important;
     border: none;
     background: transparent;
-    resize: none;   
     font-size: 14px;
-    font-family: inherit;
-    /* height: auto; */
-    min-height: 15px;
-    padding: 20px 12px 5px 15px;
+    border-radius: 5px;
+    padding: 20px 12px 10px 15px;
     outline: none;
     z-index: 1;
-    border-radius: 5px;
     border: 1px solid #e2e2e2; 
     border-bottom: 2px solid #e2e2e2; 
     transition: .2s ease;
 }
-
-.text-area textarea:focus ~ label{
+.option_selector option{
+    font-family: "Manrope", sans-serif;
+    font-weight: 500;
+}
+.option_selector select:focus ~ label{
     top: 10px !important;
     font-size: 10px !important;
     z-index: 0 !important;
     color: var(--primary-color);
 }
-.text-area textarea:focus{
+.option_selector select option{
+    border: 1px solid #e2e2e2;
+}
+.option_selector select:focus{
     border-bottom:2px solid var(--primary-color);
 }
-.text-area textarea:placeholder-shown::placeholder{
+.option_selector select:placeholder-shown::placeholder{
     opacity: 0;
 }
-.text-area textarea:focus::placeholder{
+.option_selector select:focus::placeholder{
     opacity: 1;
 }
-.text-area textarea:placeholder-shown ~ label{
-    top: 20px;
+.option_selector select:placeholder-shown ~ label{
+    top: 50%;
     z-index: 0;
     font-size: 14px;
 }
-.text-area label{
+.option_selector label{
     font-size: 10px;
     font-weight: 500;
     position: absolute;
@@ -58,7 +59,7 @@
     z-index: 0;
     height: fit-content;
     transition: .2s ease;
-    bottom: 20px;
+    bottom: 50%;
     color: #707070;
     transform: translate(0%,-50%);
 }
