@@ -13,7 +13,7 @@ import {UiContext} from './store/UiContext'
 import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 const App = () => {
-  const url = "http://10.196.35.95:9920"
+  const url = "http://10.196.36.190:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()

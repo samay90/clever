@@ -143,6 +143,15 @@
     z-index: 90;
     color: #e4e4e4;
 }
+.settings_page .settings_content .settings_form .form .input .container .edit_profile .file_input{
+    position: absolute;
+    top: 0;
+    height: 80px;
+    width: 80px;
+    background: red;
+    border-radius: 50%;
+    opacity: 0;
+}
 .settings_page .settings_content .settings_form .form .input .image_view{
     width: 80px;
     height: 80px;

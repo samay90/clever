@@ -6,6 +6,7 @@ import ClassroomStream from './ClassroomStream'
 import ClassroomAssignment from './ClassroomAssignment'
 import ClassroomResource from './ClassroomResource'
 import ClassroomSettings from './ClassroomSettings'
+import ClassroomClass from './ClassroomClass'
 const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const {class_id} = useParams()
   const [data,setData] = React.useState([])
@@ -77,6 +78,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
         <Route path='/assignment/:assignment_id' element={<ClassroomAssignment api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
         <Route path='/resource/:resource_id' element={<ClassroomResource api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
         <Route path='/settings' element={<ClassroomSettings api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
+        <Route path='/myclass' element={<ClassroomClass api={api} classroom={classroom} class_id={class_id} token={token}/>}></Route>
       </Routes>
     </div>
     </>

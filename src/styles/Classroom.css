@@ -471,7 +471,7 @@
 }
 
 .ra_page .main_content.skeleton .header .info .title{
-    width: 60vw;
+    width: calc(60vw - 40px);
     max-width: 60vw;
     animation: var(--skeleton-animation);
     border-radius: 20px;
@@ -633,12 +633,14 @@
     top: 45.9px;
     margin-top: 30px;
     width: calc(100% - 30px);
+    padding: 0 15px;
     max-width: 54.5rem;
     border: none;
     right:0;
     display: flex;
     justify-content: start;
     background: white;
+    border-bottom: 1px solid #c0c0c0;
     align-items: center;
 }
 .classroom_settings_page .navbar h2{
@@ -708,4 +710,136 @@
     max-width: 54.5rem;
     background: red;
     height: 50px;
+}
+.classroom_class_content{
+    
+    width: calc(100% - 30px);
+    max-width: 54.5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: start;
+    margin-top: 30px;
+    position: relative;
+}
+.classroom_class_content .class_division{
+    width: 100%;
+    margin-bottom: 30px;
+}
+.classroom_class_content .class_division h2{
+    width: inherit;
+    border-bottom: .0625rem solid #e0e0e0;
+    padding-bottom: 10px;
+    margin: 0;
+}
+.classroom_class_content .class_division .persons{
+    width: inherit;
+}
+.classroom_class_content .class_division .persons .card{
+    width: calc(inherit - 10px);
+    display: flex;
+    align-items: center;
+    border-bottom: .0625rem solid #e0e0e0;
+    line-height: 50px;
+    padding: 0 10px;
+    cursor: pointer;
+    justify-content: space-between;
+}
+.classroom_class_content .class_division .persons .card .part{
+    display: flex;
+    height: 100%;
+    align-items: center;
+}
+.classroom_class_content .class_division .persons .card:hover{
+    background: #f3f3f3;
+}
+.classroom_class_content .class_division .persons .card .profile_icon{
+    height: 30px;
+    width: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+.classroom_class_content .class_division .persons .card .name{
+    color: #3C4043;
+    font-weight: 500;
+    text-transform: capitalize;
+}
+.classroom_class_content .class_division .persons .card .view_button{
+    height: 40px;
+    width: 40px;
+    font-size: 20px;
+    color: #3C4043;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.classroom_class_content .class_division .persons .card .view_button:hover{
+    background: #e2e2e2;
+}
+.class_division.skeleton .persons .card .part .profile_icon{
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation);
+    border-radius: 50%;
+}
+.class_division.skeleton .persons .card .part .name{
+    background: var(--skeleton-background);
+    animation: var(--skeleton-animation);
+    width: 100px;
+    height: 18px;
+    border-radius: 20px;
+}
+.classroom_class_content .user_profile_modal{
+    display: flex;
+    position: relative;
+    flex-direction: column;
+    padding:10px 20px;
+}
+.classroom_class_content .user_profile_modal .user_icon{
+    height: 60px;
+    width: 60px;
+    position: relative;
+}
+
+.classroom_class_content .user_profile_modal .user_avatar{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 10px;
+}
+.classroom_class_content .user_profile_modal .user_info_content{
+    border-top: 1px solid #e0e0e0;
+    margin-top: 5px;
+    padding-top: 5px;
+}
+.classroom_class_content .user_profile_modal .user_info_content p{
+    color: #5F6368;
+    font-weight: 500;
+    font-size: 0.825rem;
+    margin: 0;
+    display: flex;
+    margin-bottom:3px;
+    align-items: center;
+}
+.classroom_class_content .user_profile_modal .user_info_content p.tag{
+    text-transform: capitalize;
+    color: #3C4043;
+    font-weight: 600;
+}
+.classroom_class_content .user_profile_modal .user_info_content p i{
+    color: #3C4043;
+    width: 30px;
+    margin-left: -5px;
+    display: flex;
+    justify-content: center;
+}
+.classroom_class_content .user_profile_modal .user_info_content p span{
+    color: #5F6368;
+    font-weight: 500;
+    font-size: 0.825rem;
+    margin: 0;
+    width: calc(100% - 20px);
+    display: flex;
 }

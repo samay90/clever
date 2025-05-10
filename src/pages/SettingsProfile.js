@@ -12,7 +12,8 @@ const SettingsProfile = ({user,api,token}) => {
     const [countries,setCountries] = React.useState([]);
     const [states,setStates] = React.useState([]);
     const [cities,setCities] = React.useState([]);
-    const [loading,setLoading] = React.useState(false)
+    const [loading,setLoading] = React.useState(false);
+    const [profile,setProfile] = React.useState(null);
     React.useEffect(()=>{
         if (user){
             setForm(user)
@@ -88,6 +89,8 @@ const SettingsProfile = ({user,api,token}) => {
         formData.append("city",form.city)
         formData.append("date_of_birth",form.date_of_birth)
         formData.append("bio",form.bio)
+        formData.append("dob",dateConverter(form.dob))
+        formData.append("profile",profile);
         await axios.post(api+"/user/profile/update",formData,{headers:{authorization:"Bearer "+token}}).then((res)=>{setLoading(false);toast.success(res.data.message,{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})}).catch(res=>{
             setLoading(false)
             if (res.response.data.error){
@@ -96,17 +99,33 @@ const SettingsProfile = ({user,api,token}) => {
         })
         
     }
+    const handleProfileImage = (e) =>{
+        const profile_img = e.target.files[0];
+        if (!(profile_img.type=="image/png" || profile_img.type=="image/jpeg")){
+            toast.error("Image be of type png or jpg",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+        }else if(profile_img.size>1000000){
+            toast.error("Size of image should be less that 1MB",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+        }else{
+            setProfile(profile_img);
+        }
+    }
+    const reverseDate = (date) => {
+        const d = new Date(date);
+        return d.getTime()
+    }
   return (
     <div className='settings_form page'>
         <div className='form'>
             {form?.email?<>
-            <div className='input'>
+                <div className='input'>
                 <h4 className='label'>Profile Image</h4>
                 <div className='container'>
                     <div className='image_view'>
                         <Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={80} chr={user?.first_name?.charAt(0)}></Icon>
                     </div>
-                    <span className='edit_profile'><i class="fa-regular fa-pen"></i></span>
+                    <span className='edit_profile'><i className="fa-regular fa-pen"></i>
+                        <input onChange={handleProfileImage} className='file_input' type="file"></input>
+                    </span>
                 </div>
                 <div className='text'>Your profile image will be visible to other users.</div>
             </div>
@@ -115,7 +134,7 @@ const SettingsProfile = ({user,api,token}) => {
             <InputSecondary placeholder="Last Name" secondary_placeholder="Paul" type="text" onChange={(e)=>{setForm({...form,last_name:e.target.value})}} value={form.last_name} maxLength={50}/>
             </div>
             <div className='date_input'>
-            <InputSecondary placeholder="Date of Birth" secondary_placeholder="05/10/2006" value={dateConverter(form.dob)} type="date" onChange={(e)=>{setForm({...form,dob:e.target.value})}} />
+            <InputSecondary placeholder="Date of Birth" secondary_placeholder="05/10/2006" value={dateConverter(form.dob)} type="date" onChange={(e)=>{setForm({...form,dob:reverseDate(e.target.value)})}} />
             </div>
             <TextArea placeholder="Biography" maxLength={200} secondary_placeholder="I do everything that i don't meant." onChange={(e)=>{setForm({...form,bio:e.target.value})}} value={form?.bio??""}></TextArea>
             <div className='location_selector'>

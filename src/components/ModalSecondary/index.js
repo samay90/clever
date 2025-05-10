@@ -30,7 +30,7 @@ const ModalSecondary = ({ heading, children ,open,setOpen}) => {
     });
   }, [setOpen]);
   return (
-    <div className="image_selector modal_secondary">
+    <div className="modal_secondary">
       <div className="overlay" ref={ref}>
         <div className="close_area" onClick={() => setOpen(false)}></div>
         <div className="selector" ref={ref2}>
@@ -45,7 +45,7 @@ const ModalSecondary = ({ heading, children ,open,setOpen}) => {
               <i className="fa-regular fa-xmark"></i>
             </div>
           </div>
-          <div className="content">
+          <div className="content+@">
             {children}
           </div>
           </div>

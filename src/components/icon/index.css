@@ -26,6 +26,8 @@
     height: 100%;
     font-size: 100%;
     width: 100%;
+    padding: 0 !important;
+    margin: 0 !important;
     display: flex;
     color: white;
     font-weight: 500;

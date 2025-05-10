@@ -149,7 +149,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
         </div>:<div className='main_content skeleton'>
             <div className='top_content'>
                 <div className='header'>
-                    <div className='icon'></div>
+                    <div className='icon'><span></span></div>
                     <div className='info'><div className='title'></div></div></div>
                 <div className='header'>
                     <div className='icon'><span></span></div>
