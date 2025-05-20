@@ -68,6 +68,12 @@ hr{
 .btn_secondary:disabled{
   background: #7075ff;
 }
+.text_secondary{
+  color: #4D4D4D;
+  font-size: 15px;
+  margin: 0;
+  font-weight: 500;
+}
 .btn_tertiary{
   padding: 8px 15px;
   font-size: 15px;

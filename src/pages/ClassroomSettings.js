@@ -1,17 +1,22 @@
-import React from "react";
+import React, { useEffect } from "react";
 import InputSecondary from "../components/InputSecondary";
 import TextArea from "../components/TextArea";
 import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ImageSelector from "../components/ImageSelector";
 import banners from "../static/banner.json"
-const ClassroomSettings = ({ token, api, classroom, class_id }) => {
+const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
     const [changes,setChanges] = React.useState({})
     const [sensitive,setSensitive] = React.useState({})
     const [reset,setReset] = React.useState(0)
     const navigate = useNavigate()
     const [buttonDisabled,setButtonDisabled] = React.useState(false)
     const [banner,setBanner] = React.useState(null)
+    useEffect(()=>{
+        if (!classroom&&classroom?.role==="creator"){
+            navigate("/app/classroom/"+class_id);
+        }
+    },[class_id,classroom,navigate])
     React.useEffect(()=>{
         setReset(0)
         if (classroom){
@@ -122,7 +127,7 @@ const ClassroomSettings = ({ token, api, classroom, class_id }) => {
             <InputSecondary disabled={true} placeholder="Classroom Code" secondary_placeholder="I won't say it" type="text" value={sensitive.join_code??""}/>
             </div>
             <div className="input">
-            <ImageSelector heading="Select Banner" value={changes?.banner_id} current={banner} setCurrent={setBanner} data={Object.keys(banners).map((i)=>{return {key:i,url:`${api}/banners/${banners[i]}`}})}  placeholder="Customise Banner"/>
+            {classroom&&classroom.class_id?<ImageSelector heading="Select Banner" value={changes?.banner_id} current={banner} setCurrent={setBanner} data={Object.keys(banners).map((i)=>{return {key:i,url:`${api}/banners/${banners[i]}`}})}  placeholder="Customise Banner"/>:""}
             </div>
             <div className="submit_area">
                 <button className="reset" onClick={()=>{setReset(prev=>prev+1)}}>Reset</button>

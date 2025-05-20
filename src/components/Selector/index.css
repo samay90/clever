@@ -6,6 +6,7 @@
     position: relative;
     /* min-width: 100px; */
     height: 100%;
+    font-weight: 500;
 }
 .option_selector select{
     font-family: "Manrope", sans-serif;
@@ -21,6 +22,7 @@
     border: 1px solid #e2e2e2; 
     border-bottom: 2px solid #e2e2e2; 
     transition: .2s ease;
+    font-weight: 500;
 }
 .option_selector option{
     font-family: "Manrope", sans-serif;

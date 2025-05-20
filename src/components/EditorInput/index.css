@@ -1,0 +1,23 @@
+.editor_input{
+    width: inherit;
+}
+.editor_input input{
+    font-weight: 500;
+    box-sizing: border-box;
+    padding: 0px 2px;
+    margin: 0px;
+    margin-left: -4px;
+    outline: none;
+    border: none;
+    position: absolute;
+    top: 50%;
+    transform: translate(0,-50%);
+    font-family: inherit;
+    border: 2px solid #fff;
+    width: inherit;
+    margin-bottom: -2px;
+}
+.editor_input input:focus{
+    border: 2px dotted grey;
+    border-radius: 5px;
+}

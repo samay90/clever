@@ -7,6 +7,7 @@ import TextArea from '../components/TextArea'
 import InputSecondary from '../components/InputSecondary'
 import Modal from '../components/Modal'
 import toast from 'react-hot-toast'
+import ModalSecondary from '../components/ModalSecondary'
 const ClassroomResource = ({api,class_id,token,classroom}) => {
     const {resource_id} = useParams() 
     const [resource,setResource] = React.useState(null)
@@ -15,6 +16,8 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
     const [queries,setQueries] = React.useState([])
     const navigate = useNavigate()
     const [submitLoading,setSubmitLoading] = React.useState(false)
+    const [deleteOpen,setDeleteOpen] = React.useState(false)
+    const [deleteLoading,setDeleteLoading] = React.useState(false)
     React.useEffect(()=>{
         const getResource =async ()=>{
             if (token && api){
@@ -96,16 +99,58 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
         }
         getQuerys()
     },[resource_id,api,class_id,token,navigate])
+    const deleteResource =async ()=>{
+        setDeleteLoading(true)
+        const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/delete`,{
+            method:"POST",
+            headers:{
+                "Content-type":"application/json",
+                "Accept":"application/json",
+                "authorization":"Bearer "+token
+            }
+        })
+        const parsed = await raw.json()
+        if (parsed.error){
+            toast.error(parsed.message,{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+              })
+              setDeleteLoading(false)
+        }else{
+            setDeleteOpen(false)
+            navigate(`/app/classroom/${class_id}`)
+        }
+    }
   return (
     <>
-        <Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
+        {classroom?.role==="student"?<Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
             <div className='input_box'>
                 <InputSecondary placeholder={"Query title"} value={query.query_title} onChange={(e)=>setQuery({...query,query_title:e.target.value})} secondary_placeholder={"Ex. Doubt related to astronomy."}/>
                 <TextArea maxLength={200} placeholder={"Query body"} secondary_placeholder={"Ex. Why don't aliens eat clowns? "} value={query.query_body} onChange={(e)=>setQuery({...query,query_body:e.target.value})}/>
             </div>
-        </Modal>
+        </Modal>:""}
+        <ModalSecondary open={deleteOpen} setOpen={setDeleteOpen} heading={"Delete resource"}>
+        <div className='nav_form'>
+          <p className='text_secondary'>Are you sure you want to delete this resource. Once deleted it can't be recovered.</p>
+          <br/>
+          <div className='button_group'>
+              <button className='btn_tertiary' onClick={()=>{setDeleteOpen(false)}}>Cancel</button>
+              <button className='btn_secondary' style={{width:"80px"}} disabled={deleteLoading} onClick={deleteResource}>{deleteLoading?<span className='btn_loading'/>:"Delete"}</button>
+          </div>
+        </div>
+    </ModalSecondary>
     <div className='page classroom_page ra_page modal_page_content'>
         {resource?<div className='main_content'>
+            {classroom?.role!=="student"?<div className='ra_navbar'>
+                <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
+                <button className='btn_secondary' onClick={()=>{navigate("/app/classroom/"+class_id+"/resource/"+resource_id+"/edit")}}><i className="fa-regular fa-pen"></i> &nbsp;Edit</button>
+            </div>:""}
             <div className='top_content'>
                 <div className='header'>
                     {classroom?<div className='icon'>
@@ -145,7 +190,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
                 </div>:""}
                 
             </div>
-            <div className='bottom_content'>
+            {classroom?.role==="student"?<div className='bottom_content'>
                 <div className='title'>
                     <h4><i className="fa-regular fa-clipboard-question"></i> &nbsp;Your previous queries.</h4>
                 </div>
@@ -161,7 +206,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
                             </div>
                         })}
                 </div>
-            </div>
+            </div>:""}
         </div>:<div className='main_content skeleton'>
             <div className='top_content'>
                 <div className='header'>

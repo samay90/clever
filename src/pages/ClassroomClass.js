@@ -2,7 +2,9 @@ import React, { useEffect } from 'react'
 import Icon from "../components/icon"
 import ModalSecondary from '../components/ModalSecondary';
 import moment from 'moment';
-const ClassroomClass = ({api,class_id,token}) => {
+import Dropdown from '../components/Dropdown';
+import toast from 'react-hot-toast';
+const ClassroomClass = ({api,class_id,token,classroom,user}) => {
     const [classmates,setClassmates] = React.useState([]);
     const [open,setOpen] = React.useState(false);
     const [crrUser,setCrrUser] = React.useState({});
@@ -38,6 +40,46 @@ const ClassroomClass = ({api,class_id,token}) => {
     useEffect(()=>{
         if (!open){setTimeout(()=>{setCrrUser({})},300)}
     },[open])
+    const manageUser = async (action,user_id,action_type) =>{
+        const raw = await fetch(api+`/classroom/${class_id}/manage`,{
+            method:"POST",
+            headers:{
+                "Content-Type": "application/json",
+                "Accept":"application/json",
+                "Authorization":"Bearer "+token
+            },
+            body:JSON.stringify({
+                action:action,
+                action_type:action_type,
+                user_id:user_id
+            })
+        })
+        const parsed = await raw.json();
+        if (!parsed.error){
+            getUserData(user_id);
+            toast.success("Class Updated",{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+              })
+        }else{
+            toast.error(parsed.message,{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+              })
+        }
+    }
   return (
     <div className='page classroom_page classroom_class_content'>
         <ModalSecondary heading={crrUser?.first_name?crrUser.first_name+" "+crrUser.last_name:"Loading..."} open={open} setOpen={setOpen}>
@@ -85,14 +127,22 @@ const ClassroomClass = ({api,class_id,token}) => {
             <h2>Teachers</h2>
             <div className='persons'>
                     {classmates.filter(i=>i.role==="teacher").map((i,k)=>{
-                        return <div key={k} className='card'  onClick={()=>{getUserData(i.user_id);setOpen(true)}}>
+                        return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
                                     <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]} height={30}></Icon>
                                 </div>
                                 <div className='name'>{i.first_name} {i.last_name}</div>
                             </div>
-                            <div className='view_button'><i className="fa-regular fa-eye"></i></div>
+                            <div className='buttons'>
+                                <div className='view_button' onClick={()=>{getUserData(i.user_id);setOpen(true)}}><i className="fa-regular fa-eye"></i></div>
+                                {classroom&&classroom.role==="creator"?<Dropdown opener={<div className='view_button'><i className="fa-regular fa-ellipsis-vertical"></i></div>}>
+                                    <div className='profile_dropdown'>
+                                        <div className='dropdown_item' onClick={()=>{manageUser("S",i.user_id,"M")}}><i className="fa-regular fa-arrow-down"></i> Make Student</div>
+                                        <div className='dropdown_item' onClick={()=>{manageUser("S",i.user_id,"R")}}><i className="fa-regular fa-trash-can"></i> Remove</div>
+                                    </div>
+                                </Dropdown>:""}
+                            </div>
                         </div>
                     })}
             </div>
@@ -101,14 +151,22 @@ const ClassroomClass = ({api,class_id,token}) => {
             <h2>Classmates</h2>
             <div className='persons'>
                     {classmates.filter(i=>i.role==="student").map((i,k)=>{
-                        return <div key={k} className='card'  onClick={()=>{getUserData(i.user_id);setOpen(true)}}>
+                        return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
                                     <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]} height={30}></Icon>
                                 </div>
                                 <div className='name'>{i.first_name} {i.last_name}</div>
                             </div>
-                            <div className='view_button'><i className="fa-regular fa-eye"></i></div>
+                            <div className='buttons'>
+                                <div className='view_button' onClick={()=>{getUserData(i.user_id);setOpen(true)}}><i className="fa-regular fa-eye"></i></div>
+                                {classroom&&classroom.role==="creator"?<Dropdown opener={<div className='view_button'><i className="fa-regular fa-ellipsis-vertical"></i></div>}>
+                                    <div className='profile_dropdown'>
+                                        <div className='dropdown_item' onClick={()=>{manageUser("T",i.user_id,"M")}}><i className="fa-regular fa-arrow-up"></i> Make Teacher</div>
+                                        <div className='dropdown_item' onClick={()=>{manageUser("S",i.user_id,"R")}}><i className="fa-regular fa-trash-can"></i> Remove</div>
+                                    </div>
+                                </Dropdown>:""}
+                            </div>
                         </div>
                     })}
             </div>

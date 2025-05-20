@@ -14,7 +14,7 @@ const Home = ({ token, api, user ,classrooms}) => {
       <div className="header">
         <div className="emoji">👋</div>
         <div className="text">
-          <h1> Hello {user?.first_name}.</h1>
+          <h1> Hey {user?.first_name}.</h1>
           <p>Happy Learning!</p>{" "}
         </div>
       </div>
