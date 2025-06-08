@@ -1,4 +1,3 @@
-import React from 'react'
 import "./index.css"
 const Icon = ({url,chr,height,className}) => {
   if (!chr){chr=" "}

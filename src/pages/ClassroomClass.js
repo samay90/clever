@@ -86,7 +86,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
             {crrUser?.first_name?<div className='user_profile_modal'>
                 <div className='user_avatar'>
                     <div className='user_icon'>
-                        <Icon url={crrUser.file_name?api+"/profile/"+crrUser.file_name:""} chr={crrUser.first_name[0]} height={60}></Icon>
+                        <Icon url={crrUser.file_name?api+"/profile/"+crrUser.file_name:""} chr={crrUser.first_name[0]+crrUser.last_name[0]} height={60}></Icon>
                     </div>
                 </div>
                 {crrUser.bio?<div className='user_info_content'>
@@ -114,7 +114,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                         return <div key={k} className='card' onClick={()=>{getUserData(i.user_id);setOpen(true)}}>
                             <div className='part'>
                                 <div className='profile_icon'>
-                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]} height={30}></Icon>
+                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]+i.last_name[0]} height={35}></Icon>
                                 </div>
                                 <div className='name'>{i.first_name} {i.last_name}</div>
                             </div>
@@ -130,7 +130,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                         return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
-                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]} height={30}></Icon>
+                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]+i.last_name[0]} height={35}></Icon>
                                 </div>
                                 <div className='name'>{i.first_name} {i.last_name}</div>
                             </div>
@@ -154,7 +154,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                         return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
-                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]} height={30}></Icon>
+                                    <Icon url={i.file_name?api+"/profile/"+i.file_name:""} chr={i.first_name[0]+i.last_name[0]} height={35}></Icon>
                                 </div>
                                 <div className='name'>{i.first_name} {i.last_name}</div>
                             </div>

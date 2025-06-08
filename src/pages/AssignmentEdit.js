@@ -87,7 +87,7 @@ const AssignmentEdit = ({ api, class_id, token, classroom }) => {
         {assignment ? (
           <div className="main_content">
             {classroom?.role !== "student" ? (
-              <div className="ra_navbar">
+              <div className="ra_bottom_bar">
                 <button
                   className="btn_tertiary"
                   onClick={() => {

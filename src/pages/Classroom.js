@@ -3,12 +3,11 @@ import toast from 'react-hot-toast'
 import { Link, Outlet, Route, Routes, useLocation, useParams } from 'react-router-dom'
 import "../styles/Classroom.css"
 import ClassroomStream from './ClassroomStream'
-import ClassroomAssignment from './ClassroomAssignment'
 import ClassroomResource from './ClassroomResource'
 import ClassroomSettings from './ClassroomSettings'
 import ClassroomClass from './ClassroomClass'
 import ResourceEdit from './ResourceEdit'
-import AssignmentEdit from './AssignmentEdit'
+import AssignmentRouter from '../components/AssignmentRouting'
 const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const {class_id} = useParams()
   const [data,setData] = React.useState([])
@@ -77,8 +76,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       <Outlet/>
       <Routes>
         <Route path='/' element={<ClassroomStream token={token} classroom={classroom} data={data} api={api}/>}/>
-        <Route path='/assignment/:assignment_id' element={<ClassroomAssignment api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
-        <Route path='/assignment/:assignment_id/edit' element={<AssignmentEdit api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
+        <Route path='/assignment/:assignment_id/*' element={<AssignmentRouter api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
         <Route path='/resource/:resource_id' element={<ClassroomResource api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
         <Route path='/resource/:resource_id/edit' element={<ResourceEdit api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
         <Route path='/settings' element={<ClassroomSettings user={user} api={api} classroom={classroom} class_id={class_id} token={token}/>}/>

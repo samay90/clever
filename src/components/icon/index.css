@@ -1,6 +1,6 @@
 .icon_image{
     height: 100%;
-    background: var(--primary-color);
+    background: linear-gradient(135deg, #a0aec0, #718096);
     width: 100%;
     padding: 0;
     margin: 0;
@@ -29,8 +29,9 @@
     padding: 0 !important;
     margin: 0 !important;
     display: flex;
-    color: white;
+    color: rgb(245, 245, 245);
     font-weight: 500;
+    user-select: none;
     align-items: center;
     justify-content: center;
     position: absolute;

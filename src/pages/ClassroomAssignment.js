@@ -8,9 +8,9 @@ import FileInput from '../components/FileInput'
 import toast from 'react-hot-toast'
 import axios from 'axios'
 import ModalSecondary from '../components/ModalSecondary'
-const ClassroomAssignement = ({api,class_id,token,classroom}) => {
+import FileView from '../components/FileView';
+const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
     const {assignment_id} = useParams() 
-    const [assignment,setAssignment] = React.useState(null)
     const [isOpen,setIsOpen] = React.useState(false)
     const navigate = useNavigate()
     const [files,setFiles] = React.useState([]);
@@ -20,27 +20,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     const handleFiles = (e)=>{
         setFiles([...e.target.files])
     }
-    React.useEffect(()=>{
-        const getAssignment =async ()=>{
-            if (token && api){
-                const data = await fetch(api+`/classroom/${class_id}/assignment/${assignment_id}`,{
-                    method:"GET",
-                    headers:{
-                        "Content-Type":"multipart/form-data",
-                        "Accept":'multipart/form-data',
-                        "Authorization":"Bearer "+token
-                    }
-                })
-                const parsed =await data.json()
-                if (!parsed.error){
-                    setAssignment(parsed.data)
-                }else{
-                    navigate("/app/home")
-                }
-            }
-        }
-        getAssignment()
-    },[assignment_id,api,class_id,token,navigate])
+
     
     const handleAssignmentSubmit =async ()=>{
         setLoading(true)
@@ -122,11 +102,11 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
     </ModalSecondary>
     <div className='page classroom_page ra_page modal_page_content'>
         {assignment?<div className='main_content'>
-            {classroom?.role!=="student"?<div className='ra_navbar'>
+            {classroom?.role!=="student"?<div className='ra_bottom_bar'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
                 <button className='btn_secondary' onClick={()=>{navigate("/app/classroom/"+class_id+"/assignment/"+assignment_id+"/edit")}}><i className="fa-regular fa-pen"></i> &nbsp;Edit</button>
             </div>:""}
-            <div className='top_content'>
+            <div className={'top_content '+(classroom?.role!=="student"?"top__bar":"")}>
                 <div className='header'>
                     {classroom?<div className='icon'>
                         {classroom.banner_id?<i className="fa-regular fa-book " style={{backgroundImage:`url(${api}/banners/${conv[classroom.banner_id]})`}}></i>:""}
@@ -137,13 +117,13 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
                 </div>
                 <div className='header'>
                     <div className='icon'>
-                        <Icon url={assignment?.creator_profile_image?api+"/profile/"+assignment.creator_profile_image:null} height={35} chr={assignment?.creator_first_name}/>
+                        <Icon url={assignment?.creator_profile_image?api+"/profile/"+assignment.creator_profile_image:null} height={35} chr={assignment?.creator_first_name[0]+assignment?.creator_last_name[0]}/>
                     </div>
                     <div className='info'>
                         {assignment?<div className='creator_info'>
                             <div className='info'>
                                     <h3>{assignment.creator_first_name} {assignment.creator_last_name}</h3>
-                                    <p>{moment(parseInt(assignment?.created_at)).format("ll")} {assignment?.created_at!==assignment?.updated_at?`(Edited on ${moment(parseInt(assignment?.updated_at)).format("ll")})`:""}</p>
+                                    <p>{moment(parseInt(assignment?.created_at)).format("ll")} {assignment?.created_at!==assignment?.updated_at?`(Edited ${moment(parseInt(assignment?.updated_at)).fromNow()})`:""}</p>
                                 </div>
                             </div>:""}
                     </div>
@@ -167,10 +147,8 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
                     <h3><i className="fa-regular fa-paperclip"></i> Attachments</h3>
                     <div className='data'>
                         {assignment.attachments.map((item,key)=>{
-                            return <div className='attachment'  onClick={()=>{window.open(`${api}/classrooms/${class_id}/assignments/${item.file_name}`,"","height:auto;width:auto")}} key={key}>
-                                <div className='icon'></div>
-                                <div className='filename'><i className="fa-regular fa-file"></i>{item.file_name}</div>
-                            </div>
+                            return <FileView files={assignment.attachments.map((item)=>`${api}/classrooms/${class_id}/assignments/${item.file_name}`)} key={key} path={api+"/classrooms/"+class_id+"/assignments/"+item.file_name} fileName={item.file_name}/>
+
                         })}
                     </div>
                 </div>:""}
@@ -192,7 +170,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom}) => {
                 </div>:""}
             </div>:""}
         </div>:<div className='main_content skeleton'>
-            <div className='top_content'>
+            <div className={'top_content '+(classroom?.role!=="student"?"top__bar":"")}>
                 <div className='header'>
                     <div className='icon'><span></span></div>
                     <div className='info'><div className='title'></div></div></div>

@@ -59,11 +59,11 @@ const ClassroomStream = ({classroom,data,api,token}) => {
             </div>
             <div className='creator_info'>
               <div className='icon_image'>
-              <Icon url={item.creator_profile_image?api+"/profile/"+item.creator_profile_image:null} height={35} chr={item.creator_first_name[0]}/>
+              <Icon url={item.creator_profile_image?api+"/profile/"+item.creator_profile_image:null} height={35} chr={item.creator_first_name[0]+item.creator_last_name[0]}/>
               </div>
               <div className='info'>
                 <h3>{item.creator_first_name} {item.creator_last_name}</h3>
-                <p>{moment(parseInt(item.created_at)).format("ll")} {item.created_at!==item.updated_at?`(Edited on ${moment(parseInt(item.updated_at)).format("ll")})`:""}</p>
+                <p>{moment(parseInt(item.created_at)).format("ll")} {item.created_at!==item.updated_at?`(Edited ${moment(parseInt(item.updated_at)).fromNow()})`:""}</p>
               </div>
             </div>
             {item.due_date_time?<p className='due_date'>Due on {moment(parseInt(item.due_date_time)).format("lll")}</p>:""}

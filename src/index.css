@@ -130,3 +130,19 @@ input::datetime-local::datetime-picker{
   font-optical-sizing: auto;
   font-style: normal;
 }
+*{
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+input{
+  font-family: "Manrope", sans-serif;
+  font-optical-sizing: auto;
+  font-style: normal;
+}
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}

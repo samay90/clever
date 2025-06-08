@@ -1,0 +1,43 @@
+.marks_input{
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    align-items: center;
+    justify-content: center;
+    width: fit-content;
+    padding: 5px 10px;
+    transition: .3s ease;
+    margin-top: 15px;
+    height: 55px;
+    overflow: hidden;
+}
+.marks_input.enable{
+    height: 100px;
+}
+.marks_input:focus-within{
+    box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
+}
+.marks_input input{
+    border: none;
+    width: 70px;
+    font-size: 25px;
+    outline: none;
+    /* text-align: center; */
+}
+.marks_input input::placeholder{
+    color: #e0e0e0;
+}
+.marks_input div h3{
+    margin: 0;
+    color: #5f6368;
+    font-weight: 500;
+    font-size: 0.825rem;
+}
+.marks_input div span{
+    color: #5f6368;
+    font-weight: 500;
+    font-size: 0.825rem;
+}
+.marks_input div button{
+    margin-top: 10px;
+    width: 100%;
+}

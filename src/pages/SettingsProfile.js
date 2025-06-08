@@ -101,7 +101,7 @@ const SettingsProfile = ({user,api,token}) => {
     }
     const handleProfileImage = (e) =>{
         const profile_img = e.target.files[0];
-        if (!(profile_img.type=="image/png" || profile_img.type=="image/jpeg")){
+        if (!(profile_img.type==="image/png" || profile_img.type==="image/jpeg")){
             toast.error("Image be of type png or jpg",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
         }else if(profile_img.size>1000000){
             toast.error("Size of image should be less that 1MB",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
@@ -121,7 +121,7 @@ const SettingsProfile = ({user,api,token}) => {
                 <h4 className='label'>Profile Image</h4>
                 <div className='container'>
                     <div className='image_view'>
-                        <Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={80} chr={user?.first_name?.charAt(0)}></Icon>
+                        <Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={80} chr={user?.first_name?.charAt(0)+user?.last_name?.charAt(0)}></Icon>
                     </div>
                     <span className='edit_profile'><i className="fa-regular fa-pen"></i>
                         <input onChange={handleProfileImage} className='file_input' type="file"></input>

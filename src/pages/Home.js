@@ -28,7 +28,7 @@ const Home = ({ token, api, user ,classrooms}) => {
               </div>
               <div className="creator_info">
                 <div className="creator_icon">
-                  <Icon url={classroom.creator_profile_image?api+"/profile/"+classroom.creator_profile_image:null} height={30} chr={classroom.creator_first_name.charAt(0)}></Icon>                
+                  <Icon url={classroom.creator_profile_image?api+"/profile/"+classroom.creator_profile_image:null} height={30} chr={classroom.creator_first_name.charAt(0)+classroom.creator_last_name.charAt(0)}></Icon>                
                 </div>
                 <div>
                 <div className="creator_name">

@@ -1,0 +1,27 @@
+.search_input{
+    border: 1px solid #c0c0c0;
+    border-radius:5px;
+    padding: 5px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    width: calc(100% - 20px);
+    display: flex;  
+}
+.search_input i{
+    color: #c0c0c0;
+}
+.search_input input{
+    border: none;
+    margin-left: 5px;
+    outline: none;
+    font-family: inherit;
+    width: calc(100%);
+    font-size: 15px;
+    background: transparent;
+    color: #3c4043;
+}
+.search_input:focus-within{
+    border: 1px solid #838383;
+}
