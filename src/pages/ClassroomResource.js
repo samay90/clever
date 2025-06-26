@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
 import conv from "../static/banner.json"
+import colors from '../static/colors.json'
 import Icon from "../components/icon"
 import moment from 'moment'
 import TextArea from '../components/TextArea'
@@ -9,9 +10,9 @@ import Modal from '../components/Modal'
 import toast from 'react-hot-toast'
 import ModalSecondary from '../components/ModalSecondary'
 import FileView from '../components/FileView'
-const ClassroomResource = ({api,class_id,token,classroom}) => {
+import Radio from '../components/Radio'
+const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
     const {resource_id} = useParams() 
-    const [resource,setResource] = React.useState(null)
     const [query,setQuery] = React.useState({query_title:'',query_body:''})
     const [isOpen,setIsOpen] = React.useState(false)
     const [queries,setQueries] = React.useState([])
@@ -22,27 +23,9 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
     const [queryDelete,setQueryDelete] = React.useState(false)
     const [queryEdit,setQueryEdit] = React.useState(false);
     const [editQuery,setEditQuery] = React.useState({query_title:'',query_body:''})
-    React.useEffect(()=>{
-        const getResource =async ()=>{
-            if (token && api){
-                const data = await fetch(api+`/classroom/${class_id}/resource/${resource_id}`,{
-                    method:"GET",
-                    headers:{
-                        "Content-Type":"application/json",
-                        "Accept":'application/json',
-                        "Authorization":"Bearer "+token
-                    }
-                })
-                const parsed =await data.json()
-                if (!parsed.error){
-                    setResource(parsed.data)
-                }else{
-                    navigate("/app/home")
-                }
-            }
-        }
-        getResource()
-    },[resource_id,api,class_id,token,navigate])
+    const [attendanceOpen,setAttendanceOpen] = React.useState(false);
+    const [attendance,setAttendance] = React.useState([]);
+    const [manageAttendance,setManageAttendance] = React.useState({});
     const onSubmit =async ()=>{
         setSubmitLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/query/ask`,{
@@ -84,7 +67,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
     }
     React.useEffect(()=>{
         const getQuerys =async ()=>{
-            if (token && api){
+            if (token && api && classroom && classroom?.role==="student"){
                 const data = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/queries`,{
                     method:"GET",
                     headers:{
@@ -102,7 +85,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
             }
         }
         getQuerys()
-    },[resource_id,api,class_id,token,navigate])
+    },[resource_id,api,class_id,token,navigate,classroom])
     const deleteResource =async ()=>{
         setDeleteLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/delete`,{
@@ -209,6 +192,71 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
               })
         }
     }
+    useEffect(()=>{
+        if (token && api && classroom && class_id && classroom.role!=="student"){
+            const getClassroom = async () =>{
+                const req =await fetch(api+"/classroom/"+class_id+"/resource/"+resource_id+"/attendances", {
+                    method:"GET",
+                    headers:{
+                        "Content-Type":"application/json",
+                        "Accept":"application/json",
+                        "Authorization":"Bearer "+token
+                    }
+                })
+                const data =await req.json()
+                if (data.error){
+                    navigate("/app/home")
+                }else{
+                    setAttendance(data.data)
+                    const att = {};
+                    for (let i=0;i<data.data.length;i++){
+                        att[data.data[i].user_id]=data.data[i].has_attended!==1?0:1;
+                    }
+                    setManageAttendance(att);
+                }
+            }
+            getClassroom();
+        }
+    },[classroom,api,token,class_id,navigate,setAttendance,resource_id])
+    const submitAttendance = async () => {
+        setSubmitLoading(true)
+        const raw = await fetch(api+"/classroom/"+class_id+"/resource/"+resource_id+"/attendance/mark", {
+            method:"POST",
+            headers:{
+                "Content-Type":"application/json",
+                "Accept":"application/json",
+                "Authorization":"Bearer "+token
+            },
+            body:JSON.stringify({attendance:manageAttendance})
+        })
+        const data =await raw.json()
+        if (data.error){
+            toast.error(data.message,{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+            })
+        }else{
+            setAttendanceOpen(false)
+            toast.success(data.message,{
+                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                style:{
+                  borderRadius:"30px",
+                  background:"#5C60F5",
+                  color:"white",
+                  fontWeight:"100",
+                  fontSize:"12px"
+                }
+            })
+        }
+        setSubmitLoading(false)
+    }
+
   return (
     <>
         {classroom?.role==="student"?<Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
@@ -247,7 +295,33 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
           </div>
         </div>
     </ModalSecondary>
-    <div className='page classroom_page ra_page modal_page_content'>
+    {classroom?.role!=="student"?<ModalSecondary open={attendanceOpen} setOpen={setAttendanceOpen} heading={"Mark Attendance"}>
+            {attendance.length>0?<div className='attendance_list'>
+                {attendance.map((item,index)=>{
+                    return(
+                        <div key={index} className='attendance_box' onClick={()=>{setManageAttendance(prev=>({...prev,[item.user_id]:prev[item.user_id]===1?0:1}))}}>
+                            <div className='left'>
+                                <div className='icon'>
+                                    <Icon url={item.file_name?api+"/profile/"+item.file_name:""} chr={item?.first_name.charAt(0)+item?.last_name.charAt(0)} height={35}></Icon>
+                                </div>
+                                <div className='info'>
+                                    <h3>{item.first_name} {item.last_name}</h3>
+                                    <p>{item.email}</p>
+                                </div>
+                            </div>
+                            <div className='right'>
+                                <Radio value={manageAttendance[item.user_id]}></Radio>
+                            </div>
+                        </div>
+                    )
+                })}
+                <div className='button_group'>
+                    <button className='btn_tertiary' onClick={()=>{setAttendanceOpen(false)}}>Cancel</button>
+                    <button className='btn_secondary' onClick={submitAttendance} disabled={submitLoading} style={{width:"80px"}}>{submitLoading?<span className='btn_loading'/>:"Submit"}</button>
+                </div>
+            </div>:<div className='text_secondary'>No attendance found</div>}
+    </ModalSecondary>:""}
+    <div className='page classroom_page ra_page modal_page_content' style={{"--bg":colors[conv[classroom?.banner_id]]}}>
         {resource?<div className='main_content'>
             {classroom?.role!=="student"?<div className='ra_bottom_bar'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
@@ -256,7 +330,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
             <div className='top_content'>
                 <div className='header'>
                     {classroom?<div className='icon'>
-                        {classroom.banner_id?<i className="fa-regular fa-book " style={{backgroundImage:`url(${api}/banners/${conv[classroom.banner_id]})`}}></i>:""}
+                        {classroom.banner_id?<i className="fa-regular fa-book " style={{"--bg":colors[conv[classroom?.banner_id]]}}></i>:""}
                     </div>:""}
                     <div className='info'>
                         <div className='title'>{resource?.title}</div>
@@ -275,8 +349,15 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
                             </div>:""}
                     </div>
                 </div>
+                <div className='tags'>
+                    {resource?.has_attended!==-1?<div className='tag'><i className="fa-regular fa-ballot-check"></i> {resource?.has_attended===1?"Present":"Absent"}</div>:""}
+                </div>
             </div>
+            {classroom?.role!=="student"?<div className='attendance_button'>
+                <button className='btn_secondary' style={{"--bg":colors[conv[classroom.banner_id]]}} onClick={()=>{setAttendanceOpen(true)}}>Manage attendance</button>
+            </div>:""}
             <hr/>
+
             <div className='mid_content'>
                 <div className='body'><p>{resource?.body}</p></div>
                 {resource?.attachments.length>0?<div className='attachments'>
@@ -284,7 +365,7 @@ const ClassroomResource = ({api,class_id,token,classroom}) => {
                     <div className='data'>
                         {resource.attachments.map((item,key)=>{
                             return <>
-                            <FileView path={item.file_path} fileName={item.file_name} key={key}/>
+                            <FileView files={resource.attachments.map((item)=>`${api}/classrooms/${class_id}/resources/${item.file_name}`)} path={api+"/classrooms/"+class_id+"/resources/"+item.file_name} fileName={item.file_name} key={key}/>
                             </>
                         })}
                     </div>

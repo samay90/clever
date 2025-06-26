@@ -74,7 +74,7 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
           <div className='submission_file'>
             <h3>Attachments</h3>
             <div className='files'>
-              {JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return <FileView key={index} path={api+"/classrooms/"+class_id+"/assignments/submissions/"+file} fileName={file}/>})}
+              {JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return <FileView files={JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return api+"/classrooms/"+class_id+"/assignments/submissions/"+file})  } key={index} path={api+"/classrooms/"+class_id+"/assignments/submissions/"+file} fileName={file}/>})}
             </div>
           </div>
         </div>

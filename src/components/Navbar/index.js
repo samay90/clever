@@ -3,6 +3,8 @@ import { Link, Outlet, useNavigate } from 'react-router-dom'
 import full_logo from "../../static/images/full_logo.png"
 import './style.css'
 import Dropdown from '../Dropdown'
+import colors from '../../static/colors.json'
+import conv from '../../static/banner.json'
 import Icon from '../icon'
 import ModalSecondary from '../ModalSecondary'
 import InputSecondary from '../InputSecondary'
@@ -156,8 +158,8 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
             </div>
             {
               classrooms.map((classroom,key)=>{
-                return <div key={key} onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`)}} className='class_placeholder'>
-                <div className='icon'><h1>{classroom.class_name[0]}</h1></div>
+                return <div key={key} onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`)}} className='class_placeholder' style={{"--bg":colors[conv[classroom.banner_id]]}}>
+                <div className='icon' ><h1>{classroom.class_name[0]}</h1></div>
                 <div className='class_name'>
                   <h2>{classroom.class_name}</h2>
                   <p>{classroom.class_description}</p>

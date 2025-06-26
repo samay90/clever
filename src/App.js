@@ -14,7 +14,7 @@ import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 import FileViewer from './components/FileViewer'
 const App = () => {
-  const url = "http://192.168.0.102:9920"
+  const url = "http://192.168.0.106:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()
@@ -22,7 +22,7 @@ const App = () => {
   const [classrooms,setClassroooms] = React.useState([])
   const [loading,setLoading] = React.useState(true)
   const [side_open,setSide_Open] = React.useState(false)
-  const [filePath,setFilePath] = React.useState(null);
+  const [crr,setCrr] = React.useState(-1);
   const [files,setFiles] = React.useState([]);
   useEffect(() => {
     const navigateToLogin = () =>{
@@ -95,7 +95,7 @@ const App = () => {
       <Toaster/>
       <CommandBox classrooms={classrooms}/>
       <Loading loading={loading}/>
-      <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open,filePath:filePath,setFilePath:setFilePath,files:files,setFiles:setFiles}}>
+      <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open,crr:crr,setCrr:setCrr,files:files,setFiles:setFiles}}>
       <FileViewer/>
       <Routes>
         <Route path='/auth/signin' element={<Signin api={url} token={token} setToken={setToken}/>}></Route>

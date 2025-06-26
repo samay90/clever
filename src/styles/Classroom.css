@@ -175,6 +175,9 @@
   align-items: center;
   justify-content: space-between;
 }
+.classroom_page .main_content .announcement_section button{
+  background-color: rgb(var(--bg));
+}
 .classroom_page .main_content .announcement_section .announcement_btn_settings {
   padding: 5px 10px !important;
   font-size: 15px;
@@ -215,6 +218,7 @@
   padding: 0px 5px;
   border-radius: 10px;
   margin: 0;
+  background: rgb(var(--bg));
 }
 .classroom_page .main_content .classroom_cards .classroom_card .tags {
   display: flex;
@@ -389,6 +393,95 @@
 .ra_page .main_content{
   padding-bottom: 80px;
 }
+.attendance_list{
+  padding-bottom: 57px;
+  overflow-y: scroll;
+  height: calc(100% - 20px);
+}
+.attendance_list .attendance_box:last-child{
+  border-bottom: none;
+}
+.attendance_list .attendance_box{
+  display: flex;
+  border-bottom: 1px solid #e7e7e7;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+.attendance_list .attendance_box:hover{
+  background: #f3f3f3;
+}
+.attendance_list .attendance_box .left{
+  display: flex;
+  position: relative;
+  width: calc(100% - 50px);
+  align-items: center;
+}
+.attendance_list .attendance_box:hover .left::after{
+  background: linear-gradient(to left, #f3f3f3 , transparent);
+}
+.attendance_list .attendance_box .left::after{
+  content: '';
+  width: 10px;
+  height: 100%;
+  background: linear-gradient(to left, white , transparent);
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+.attendance_list .attendance_box .left .icon{
+  width: 35px;
+  height: 35px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 20px;
+  margin-right: 10px;
+}
+.attendance_list .attendance_box .left .info{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  overflow: hidden;
+  width: calc(100% - 45px);
+  height: fit-content;
+}
+.attendance_list .attendance_box .left .info h3{
+  margin: 0;
+  margin: 0;
+  font-size: 0.9rem;
+  width: 1000px;
+  font-weight: 600;
+  color: #3c4043;
+}
+.attendance_list .attendance_box .left .info p{
+  margin: 0;
+  width: 1000px;
+    margin-top: 0px;
+  margin-top: -3px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  color: #5f6368;
+}
+.attendance_list .attendance_box .right{
+  display: flex;
+  width: 50px;
+  align-items: center;
+  margin-left: auto;
+  color: #5f6368;
+}
+.attendance_list .button_group{
+  padding: 10px 20px;
+  border-top: 1px solid #e7e7e7;
+  position: fixed;
+  bottom: 0;
+  background: white;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  display: flex;
+}
 .ra_page .main_content .ra_bottom_bar {
   position: fixed;
   width: 100vw;
@@ -399,7 +492,7 @@
   border-top: 1px solid #c0c0c0;
   display: flex;
   padding: 10px 0;
-  z-index: 10000;
+  z-index: 999;
   justify-content: flex-end;
 }
 .ra_page .main_content .ra_bottom_bar button.btn_border_left {
@@ -501,16 +594,37 @@
 .ra_page .main_content .mid_content .attachments .attachment i {
   margin-right: 5px;
 }
+.ra_page .main_content .header .icon i{
+  background-color: rgb(var(--bg));
+}
 .ra_page .main_content .header {
   display: flex;
-  margin-bottom: 20px;
+  margin-bottom: 15px;
   position: relative;
   align-items: center;
+}
+.ra_page .main_content .attendance_button button{
+  background-color: rgb(var(--bg));
+  border-radius: 20px;
 }
 .ra_page .main_content .mid_content .inputs {
   display: flex;
   gap: 15px;
   margin-bottom: -20px;
+}
+.ra_page .main_content .tags{
+  display: flex;
+}
+.ra_page .main_content .tags .tag{
+  background-color: rgb(var(--bg));
+  padding: 4px 10px;
+  font-weight: 500;
+  font-size: 12px;
+  border-radius: 20px;
+  color: white;
+}
+.ra_page .main_content .tags .tag i{
+  margin-right: 3px;
 }
 .ra_page .main_content .header .icon i {
   width: 30px;
@@ -1394,4 +1508,11 @@
   display: flex;
   flex-wrap: wrap;
   gap: 10px;
+}
+.resource_doubts{
+  width: calc(100% - 30px);
+  max-width: 54.5rem;
+}
+.resource_doubts .header h2{
+  color: #3c4043;
 }

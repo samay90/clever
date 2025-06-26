@@ -1,5 +1,6 @@
 import React, { useEffect } from 'react'
-import conv from "../static/banner.json" 
+import conv from "../static/banner.json"
+import colors from "../static/colors.json" 
 import Icon from "../components/icon"
 import moment from 'moment'
 import { useNavigate } from 'react-router-dom'
@@ -29,7 +30,7 @@ const ClassroomStream = ({classroom,data,api,token}) => {
           <p>{classroom?.class_description}</p>
         </div>
         <div className='announcement_section'>
-          <button onClick={()=>{setOpen(true)}} className='btn_secondary announcment_btn' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}><i className="fa-regular fa-plus"></i>&nbsp;Create</button>
+          <button onClick={()=>{setOpen(true)}} className='btn_secondary announcment_btn' style={{"--bg":colors[conv[classroom?.banner_id]]}}><i className="fa-regular fa-plus"></i>&nbsp;Create</button>
         </div>
         <div className='classroom_cards'>
           {data.length===0?<div className='skeleton_classroom_card classroom_card'>
@@ -54,8 +55,8 @@ const ClassroomStream = ({classroom,data,api,token}) => {
         {data.map((item,key)=>{
           return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
             <div className='tags'>
-            {classroom?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}
-            {item.assignment_id?<div className='tag' style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}><h3><i className="fa-regular fa-bullseye-arrow"></i> {item.total_marks} marks</h3></div>:""}
+            {classroom?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}
+            {item.assignment_id?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}><h3><i className="fa-regular fa-bullseye-arrow"></i> {item.total_marks} marks</h3></div>:""}
             </div>
             <div className='creator_info'>
               <div className='icon_image'>

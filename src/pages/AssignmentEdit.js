@@ -1,6 +1,7 @@
 import React from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import conv from "../static/banner.json";
+import colors from "../static/colors.json";
 import EditorTextArea from "../components/EditorTextArea";
 import EditorInput from "../components/EditorInput";
 import InputSecondary from "../components/InputSecondary";
@@ -127,9 +128,7 @@ const AssignmentEdit = ({ api, class_id, token, classroom }) => {
                       <i
                         className="fa-regular fa-book "
                         style={{
-                          backgroundImage: `url(${api}/banners/${
-                            conv[classroom.banner_id]
-                          })`,
+                          "--bg":colors[conv[classroom?.banner_id]]
                         }}
                       ></i>
                     ) : (

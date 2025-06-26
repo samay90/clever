@@ -45,7 +45,7 @@ const ModalSecondary = ({ heading, children ,open,setOpen}) => {
               <i className="fa-regular fa-xmark"></i>
             </div>
           </div>
-          <div className="content+@">
+          <div className="content_modal">
             {children}
           </div>
           </div>

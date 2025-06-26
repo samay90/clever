@@ -1,6 +1,7 @@
 import React from 'react'
 import { useNavigate, useParams } from 'react-router-dom'
-import conv from "../static/banner.json"
+import conv from "../static/banner.json";
+import colors from "../static/colors.json";
 import Icon from "../components/icon"
 import moment from 'moment';
 import Modal from '../components/Modal'
@@ -109,7 +110,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
             <div className={'top_content '+(classroom?.role!=="student"?"top__bar":"")}>
                 <div className='header'>
                     {classroom?<div className='icon'>
-                        {classroom.banner_id?<i className="fa-regular fa-book " style={{backgroundImage:`url(${api}/banners/${conv[classroom.banner_id]})`}}></i>:""}
+                        {classroom.banner_id?<i className="fa-regular fa-book " style={{"--bg":colors[conv[classroom?.banner_id]]}}></i>:""}
                     </div>:""}
                     <div className='info'>
                         <div className='title'>{assignment?.title}</div>
@@ -130,7 +131,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
                 </div>
                 <div className='header'>
                     {classroom?<div className='icon'>
-                        {classroom.banner_id?<i className="fa-regular fa-bullseye-arrow " style={{backgroundImage:`url(${api}/banners/${conv[classroom.banner_id]})`}}></i>:""}
+                        {classroom.banner_id?<i className="fa-regular fa-bullseye-arrow " style={{"--bg":colors[conv[classroom?.banner_id]]}}></i>:""}
                     </div>:""}
                     <div className='info'>
                         <div className='assignment_info'>

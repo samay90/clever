@@ -3,10 +3,9 @@ import iconsMap from "./iconsMap.json"
 import { UiContext } from "../../store/UiContext";
 import { useContext } from "react";
 const FileView = ({path,fileName,files}) => {
-  const {setFilePath,setFiles} = useContext(UiContext);
-
+  const {setCrr,setFiles} = useContext(UiContext);
   return (
-    <div className='file_view' onClick={()=>{setFilePath(path);setFiles(files);}}>
+    <div className='file_view' onClick={()=>{setCrr(files.indexOf(path));setFiles(files);}}>
         <div className='preview'>
             <i className={`fa-light ${iconsMap[fileName.split(".")[1]]}`}></i>
         </div>

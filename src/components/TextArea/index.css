@@ -58,6 +58,8 @@
     z-index: 0;
     height: fit-content;
     transition: .2s ease;
+    z-index: 1000;
+    
     bottom: 20px;
     color: #707070;
     transform: translate(0%,-50%);
