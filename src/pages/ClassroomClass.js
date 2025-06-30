@@ -4,10 +4,17 @@ import ModalSecondary from '../components/ModalSecondary';
 import moment from 'moment';
 import Dropdown from '../components/Dropdown';
 import toast from 'react-hot-toast';
+import {Empty} from '../components/Empty';
 const ClassroomClass = ({api,class_id,token,classroom,user}) => {
     const [classmates,setClassmates] = React.useState([]);
+    const [teachers,setTeachers] = React.useState([]);
+    const [students,setStudents] = React.useState([]);
     const [open,setOpen] = React.useState(false);
     const [crrUser,setCrrUser] = React.useState({});
+    useEffect(()=>{
+        setTeachers(classmates.filter((item)=>{return item.role === "teacher"}));
+        setStudents(classmates.filter((item)=>{return item.role === "student"}));
+    },[classmates])
     useEffect(()=>{
         const getClassMates = async () => {
             const raw =await fetch(api+`/classroom/${class_id}/class`,{
@@ -123,10 +130,10 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                     })}
             </div>
         </div>
-        <div className='class_division'>
+        {teachers.length>0?<div className='class_division'>
             <h2>Teachers</h2>
             <div className='persons'>
-                    {classmates.filter(i=>i.role==="teacher").map((i,k)=>{
+                    {teachers.map((i,k)=>{
                         return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
@@ -146,11 +153,12 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                         </div>
                     })}
             </div>
-        </div>
+        </div>:""}
+        
         <div className='class_division'>
             <h2>Classmates</h2>
             <div className='persons'>
-                    {classmates.filter(i=>i.role==="student").map((i,k)=>{
+                    {students.length>0?students.map((i,k)=>{
                         return <div key={k} className='card'  >
                             <div className='part'>
                                 <div className='profile_icon'>
@@ -168,7 +176,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
                                 </Dropdown>:""}
                             </div>
                         </div>
-                    })}
+                    }):<Empty head={"You have no classmates"}  body={"Add classmates to your classroom"} img={"empty_cat_book.svg"} size={"150px"} margin={"40px 0 10px 0"}></Empty>}
             </div>
         </div>
         </>:<>

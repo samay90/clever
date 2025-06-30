@@ -27,7 +27,7 @@
     right: 0;
     z-index: 1000;
     background: #00000080;
-    display: flex;
+    display: none;
     align-items: center;
     transition: .3s ease;
     justify-content: center;
@@ -41,7 +41,7 @@
     min-height: 400px;
     background: white;
     z-index: 1001;
-    transform: scale(1);
+    transform: scale(0);
     transition: .3s ease;
     border-radius: 10px;
 

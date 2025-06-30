@@ -75,7 +75,7 @@
 .home_page .navbar .nav_button{
     width: 40px;
     display: flex;
-    padding: 2px;
+    padding: 2.5px;
     align-items: center;
     justify-content: center;
     font-size: 22px;
@@ -88,6 +88,10 @@
     color: #4D4D4D;
     margin-right: 10px;
     overflow: hidden;
+}
+.home_page .navbar .nav_button > div{
+    height: 35px !important;
+    width: 35px !important;
 }
 .home_page .navbar .nav_button:hover{
     background: #00000018;

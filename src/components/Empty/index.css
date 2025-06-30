@@ -4,12 +4,12 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    margin-top: 100p
 }
 .empty img{
-    width: 120px;
+    pointer-events: none;
+    user-select: none;
     filter: grayscale(1);
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 .empty h3{
     margin: 0;

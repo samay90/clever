@@ -127,7 +127,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
                 </div>:""}
               </div>
             </div>
-          }):<Empty head={"No doubts yet!"} body={"Students haven't asked any doubts yet."} size={"150px"}/>:<>
+          }):<Empty head={"No doubts yet!"} img={"empty_laptop_dog.svg"}  body={"Students haven't asked any doubts yet."} size={"220px"} margin="50px 0 0px 0"/>:<>
             {Array.from({length: 3}).map((item,key)=>{
               return <div className='skeleton_doubt doubt' key={key}>
               <div className='student_info'>
@@ -139,7 +139,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
                 </div>
               </div>
               <div className='doubt_content'>
-                <h4></h4>
+                <h4>  </h4>
                 <p></p>
                 <p></p>
               </div>

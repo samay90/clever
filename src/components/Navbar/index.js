@@ -145,7 +145,7 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
             </ul>
           </Dropdown>
           
-          <Dropdown opener={<button className='nav_button'>{user?user.first_name?<Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={40} chr={user?.first_name[0]+user?.last_name[0]}/>:"":""}</button>}>
+          <Dropdown opener={<button className='nav_button'>{user?user.first_name?<div><Icon url={user?.file_name?api+"/profile/"+user.file_name:""} height={35} chr={user?.first_name[0]+user?.last_name[0]}/></div>:"":""}</button>}>
             <ul>
               <li><Link className='link' to="/app/profile"><i className="fa-regular fa-user"></i> My Profile</Link></li>
               <li><Link className='link' to="/app/settings"><i className="fa-regular fa-gear"></i> Settings</Link></li>

@@ -256,7 +256,6 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }
         setSubmitLoading(false)
     }
-    console.log(queries)
   return (
     <>
         {classroom?.role==="student"?<Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    

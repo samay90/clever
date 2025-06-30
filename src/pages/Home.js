@@ -3,6 +3,7 @@ import "../styles/Home.css";
 import { useNavigate } from "react-router-dom";
 import conv from "../static/banner.json"
 import Icon from "../components/icon";
+import {Empty} from "../components/Empty";
 const Home = ({ token, api, user ,classrooms}) => {
   const navigate = useNavigate()
   const handleClassroomClick = (ele) =>{
@@ -19,7 +20,7 @@ const Home = ({ token, api, user ,classrooms}) => {
         </div>
       </div>
       <div className="classrooms" >
-        {classrooms.map((classroom,key) => {
+        {classrooms.length===0?<Empty img="empty_states_home.svg" head="No classrooms found" body="Create or join a classroom" size="200px" margin="50px 0 15px 0"/>:classrooms.map((classroom,key) => {
           return <div className="classroom_card" style={{background:`url(${api}/banners/${conv[classroom.banner_id]})`}} key={key} onClick={()=>handleClassroomClick(key)}>
             <div className="content">
               <div className="classroom_info">

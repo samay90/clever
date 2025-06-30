@@ -52,7 +52,7 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
               <p></p>
               <p></p>
             </div>
-          </div>:data.length===0?<Empty head="No work todo!" body={"No notes or assignments found"} size={"140px"} />:data.map((item,key)=>{
+          </div>:data.length===0?<Empty head="No work todo!" body={"No notes or assignments found"} img="empty_geometry.svg" size={"200px"} margin="50px 0 15px 0"/>:data.map((item,key)=>{
           return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
             <div className='tags'>
             {classroom?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}

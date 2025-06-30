@@ -1126,6 +1126,8 @@
   background: var(--skeleton-background);
   animation: var(--skeleton-animation);
   border-radius: 50%;
+  height: 30px;
+  width: 30px;
 }
 .class_division.skeleton .persons .card .part .name {
   background: var(--skeleton-background);
