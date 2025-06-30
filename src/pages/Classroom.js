@@ -11,6 +11,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
   const {class_id} = useParams()
   const [data,setData] = React.useState([])
   const [classroom,setClassroom] = React.useState({})
+  const [loading2,setLoading2] = React.useState(false);
   const [current,setCurrent] = React.useState("stream")
   const location = useLocation()
   useEffect(()=>{
@@ -23,6 +24,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
   useEffect(()=>{
     if (token && api && class_id ){
       setLoading(false)
+      setLoading2(true)
       const getClassroom = async () =>{
         const req =await fetch(api+"/classroom/"+class_id, {
           method:"GET",
@@ -34,6 +36,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
         })
         const data =await req.json()
         if (data.error){
+          setLoading2(false)
           toast.error(data.message, {
             iconTheme:{primary:"#fff",secondary:"#5C60F5"},
             style:{
@@ -46,6 +49,7 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
           })
         }else{
           setLoading(false)
+          setLoading2(false)
           setData(data.data)
         }
       }
@@ -74,9 +78,9 @@ const Classroom = ({token,setLoading,user,classrooms,api}) => {
       </div>
       <Outlet/>
       <Routes>
-        <Route path='/' element={<ClassroomStream token={token} classroom={classroom} data={data} api={api}/>}/>
-        <Route path='/assignment/:assignment_id/*' element={<AssignmentRouter api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
-        <Route path='/resource/:resource_id/*' element={<ResourceRouter api={api} class_id={class_id} classroom={classroom} token={token}/>}/>
+        <Route path='/' element={<ClassroomStream loading={loading2} token={token} classroom={classroom} data={data} api={api}/>}/>
+        <Route path='/assignment/:assignment_id/*' element={<AssignmentRouter api={api} user={user} classroom={classroom} class_id={class_id} token={token}/>}/>
+        <Route path='/resource/:resource_id/*' element={<ResourceRouter api={api} user={user} class_id={class_id} classroom={classroom} token={token}/>}/>
         <Route path='/settings' element={<ClassroomSettings user={user} api={api} classroom={classroom} class_id={class_id} token={token}/>}/>
         <Route path='/myclass' element={<ClassroomClass api={api} user={user} classroom={classroom} class_id={class_id} token={token}/>}></Route>
       </Routes>

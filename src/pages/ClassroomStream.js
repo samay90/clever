@@ -3,9 +3,10 @@ import conv from "../static/banner.json"
 import colors from "../static/colors.json" 
 import Icon from "../components/icon"
 import moment from 'moment'
+import {Empty} from '../components/Empty'
 import { useNavigate } from 'react-router-dom'
 import AddWork from '../components/AddWork'
-const ClassroomStream = ({classroom,data,api,token}) => {  
+const ClassroomStream = ({classroom,data,api,token,loading}) => {  
   const navigate = useNavigate() 
   const [infoActive,setInfoActive] = React.useState(false)
   const [open,setOpen] = React.useState(false)
@@ -33,7 +34,7 @@ const ClassroomStream = ({classroom,data,api,token}) => {
           <button onClick={()=>{setOpen(true)}} className='btn_secondary announcment_btn' style={{"--bg":colors[conv[classroom?.banner_id]]}}><i className="fa-regular fa-plus"></i>&nbsp;Create</button>
         </div>
         <div className='classroom_cards'>
-          {data.length===0?<div className='skeleton_classroom_card classroom_card'>
+          {loading?<div className='skeleton_classroom_card classroom_card'>
             <div className='tags'>
               <div className='tag'></div>
               <div className='tag'></div>
@@ -51,8 +52,7 @@ const ClassroomStream = ({classroom,data,api,token}) => {
               <p></p>
               <p></p>
             </div>
-          </div>:""}
-        {data.map((item,key)=>{
+          </div>:data.length===0?<Empty head="No work todo!" body={"No notes or assignments found"} size={"140px"} />:data.map((item,key)=>{
           return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
             <div className='tags'>
             {classroom?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}

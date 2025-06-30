@@ -126,7 +126,12 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       <div className='navbar'>
         <div className='nav_left'>
           <button className='hamburger_button nav_button' onClick={()=>{setSide_Open(!side_open)}}>
-            <i className={"fa-regular fa-bars" + (side_open?" ham_open":"")}></i>
+            <div className={`hamburger ${side_open?"ham_open":""}`}>
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+            {/* <i className={"fa-regular fa-bars" + (side_open?" ham_open":"")}></i> */}
           </button>
           <div className='logo'>
             <Link to="/app/home"><img src={full_logo} alt='full_logo'/></Link>

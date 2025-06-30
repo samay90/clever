@@ -25,12 +25,52 @@
 
 .home_page .navbar .hamburger_button{
     margin-right: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.home_page .navbar .hamburger_button .hamburger{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 !important;
+    position: relative;
+    height: 40px;
+    margin: 0 !important;
+}
+.home_page .navbar .hamburger_button .hamburger span{
+    width: 20px;
+    height: 0.125rem !important;
+    background-color: #4D4D4D;
+    margin: 0;
+    transition: .3s ease;
+    border-radius: 1px;
+    position: absolute;
+}
+.home_page .navbar .hamburger_button .hamburger span:nth-child(1){
+    top: calc(100% / 3 - 0.125rem / 3);
+}
+.home_page .navbar .hamburger_button .hamburger span:nth-child(2){
+    top: calc(150% / 3 - 0.125rem / 3);
+}
+.home_page .navbar .hamburger_button .hamburger span:nth-child(3){
+    top: calc(200% / 3 - 0.125rem / 3);
 }
 .home_page .navbar .hamburger_button i{
     transition: .3s ease;
 }
-.home_page .navbar .hamburger_button .ham_open{
-    transform: rotate(180deg);
+.home_page .navbar .hamburger_button .ham_open span{
+    top: calc(100% / 2 - 0.125rem / 2) !important;
+}
+.home_page .navbar .hamburger_button .ham_open span:nth-child(1){
+    transform: rotate(45deg);
+}
+.home_page .navbar .hamburger_button .ham_open span:nth-child(2){
+    width: 0;
+}
+.home_page .navbar .hamburger_button .ham_open span:nth-child(3){
+    transform: rotate(-45deg);
 }
 .home_page .navbar .nav_button{
     width: 40px;
@@ -120,14 +160,15 @@
     height: 45px;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 10px;
+    margin-top: 0;
     overflow: hidden;
     padding: 0;
     cursor: pointer;
+    margin-bottom: 5px;
     border: 1px solid transparent;
     border-left: none;
     position: relative;
-    transition: 0.1s ease;
+    transition: 0.2s ease;
     width: 58px;
 }
 
@@ -141,7 +182,7 @@
     height: 45px;
     align-items: center;
     justify-content: flex-start;
-    margin-top: 10px;
+    /* margin-top: 10px; */
     overflow: hidden;
     padding: 0;
     cursor: pointer;
@@ -150,28 +191,11 @@
     border-left: none;
     position: relative;
 }
-.home_page .main .sidebar_open .class_placeholder::after{
-    content: "";
-    position: absolute;
-    right: 0;
-    z-index: 3;
-    top: 0;
-    bottom: 0;
-    border-radius: 30px;
-    width: 30px;
-    background: linear-gradient(to left, #fff 30%, transparent);
-    
-}
-
 .home_page .main .sidebar_open .class_placeholder:hover {
     filter: alpha(opacity=90);
     background-color: rgba(var(--bg),0.1);
     border: 1px solid rgb(var(--bg));
     border-left: none;
-}
-.home_page .main .sidebar_open .class_placeholder:hover::after{
-    z-index: 100;
-    background: linear-gradient(to left, rgba(var(--bg),0.1) 30%, transparent);
 }
 .home_page .main .side_bar .class_placeholder h1{
     width: 35px;
@@ -185,7 +209,7 @@
     padding: 0;
     border-radius: 50%;
     background: rgb(var(--bg));
-    transition: .15s ease-out;
+    transition: .1s ease-out;
 }
 .home_page .main .side_bar .class_placeholder:hover h1{
     border-radius: 12px;
@@ -198,11 +222,14 @@
 }
 .home_page .main .side_bar .class_placeholder h2{
     display: none;
+    mask-image: linear-gradient(to right,white 150px , transparent);
+
 }
 .home_page .main .side_bar .class_placeholder p{
     display: none;
     font-weight: 400;
     font-size: 12px;
+    mask-image: linear-gradient(to right,white 150px , transparent);
 }
 .home_page .main .sidebar_open .class_placeholder .class_name{
     height: 35px;

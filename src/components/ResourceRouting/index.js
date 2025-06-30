@@ -5,7 +5,7 @@ import ResourceEdit from "../../pages/ResourceEdit";
 import ResourceTopBar from "../ResourceTopBar";
 import React from "react";
 
-const ResourceRouter = ({ classroom, class_id, token, api }) => {
+const ResourceRouter = ({ classroom, class_id, token, api ,user}) => {
   const { resource_id } = useParams();
   const [resource, setResource] = React.useState(null);
   const navigate = useNavigate();
@@ -55,8 +55,10 @@ const ResourceRouter = ({ classroom, class_id, token, api }) => {
             <ResourceDoubts
               api={api}
               classroom={classroom}
+              user={user}
               class_id={class_id}
               token={token}
+              resource_id={resource_id}
               resource={resource}
             />
           }

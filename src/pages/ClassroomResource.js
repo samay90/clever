@@ -256,7 +256,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }
         setSubmitLoading(false)
     }
-
+    console.log(queries)
   return (
     <>
         {classroom?.role==="student"?<Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
@@ -400,9 +400,23 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                                             <h3>{item.query_title}</h3>
                                             <p>{item.query_body}</p>
                                         </div>
-                                        <p className='query_time'>Asked on {moment(parseInt(item?.created_at)).format("lll")} {item?.created_at!==item?.updated_at?`(Edited ${moment(parseInt(item?.updated_at)).fromNow()})`:""}</p>
+                                        <p className='query_time'>Asked {moment(parseInt(item?.updated_at)).fromNow()} {item?.created_at!==item?.updated_at?`(Edited ${moment(parseInt(item?.updated_at)).fromNow()})`:""}</p>
                                     </div>
-                                    <div>
+                                    <div className='query_solution'>
+                                        <div className='student_info'>
+                                            <div className='icon'>
+                                                <Icon url={item?.solver_profile_image?api+"/profile/"+item.solver_profile_image:null} height={22} chr={item?.solver_first_name[0]+item?.solver_last_name[0]}></Icon>
+                                            </div>
+                                            <div className='name'>
+                                                {item?.solver_first_name} {item?.solver_last_name}
+                                            </div>
+                                            <div className='date'>
+                                                {moment(parseInt(item?.updated_at)).fromNow()}
+                                            </div>
+                                        </div>
+                                        <div className='reply'>
+                                            <p>{item.solution}</p>
+                                            </div> 
                                     </div>
                                 </div>
                             </div>

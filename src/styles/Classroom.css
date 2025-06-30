@@ -389,6 +389,10 @@
 .skeleton_classroom_card .body p:nth-child(4) {
   width: calc(100% - 30px) !important;
 }
+.skeleton_classroom_card:hover{
+  background: none !important;
+  pointer-events: none !important;
+}
 /* Resource Page */
 .ra_page .main_content{
   padding-bottom: 80px;
@@ -739,6 +743,7 @@
   display: flex;
   flex-direction: column;
   align-items: start;
+  z-index: 10;
 }
 
 .ra_page .main_content .bottom_content .queries .query_options .query_option,
@@ -819,91 +824,42 @@
 }
 .ra_page .main_content .bottom_content .queries .query_card .query_solution {
   display: flex;
+  flex-direction: column;
   align-items: start;
   margin-top: 5px;
-  padding: 10px;
+  padding:5px 10px;
   border-radius: 10px;
   background: #f3f3f3;
   border: 1px solid #e4e4e4;
 }
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solver_logo
-  .icon_image {
-  height: 30px;
-  width: 30px;
-}
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solution_content {
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info{
   display: flex;
-  flex-direction: column;
+  align-items: center;
+  margin-left: -39px;
+  /* margin-top: -11px; */
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info .icon{
+  height: 24px;
+  width: 24px;
+  margin-right: 5px;
+}
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info .name{
+  font-size: 0.925rem;
+  font-weight: 500;
+  color: #3c4043;
   margin-left: 10px;
 }
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solution_content
-  .solver_info {
-  display: flex;
-  height: fit-content;
-  align-items: center;
-}
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solution_content
-  .solver_info
-  h3 {
-  margin: 0;
-  font-size: 0.875rem;
-  color: #3c4043;
-  margin-top: -2px;
-}
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solution_content
-  .solver_info
-  p {
-  margin: 0;
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info .date{
   color: #5f6368;
   font-weight: 500;
+  font-size: 0.725rem;
   margin-left: 5px;
-  font-size: 0.75rem;
 }
-
-.ra_page
-  .main_content
-  .bottom_content
-  .queries
-  .query_card
-  .query_solution
-  .solution_content
-  .solution
-  p {
-  color: rgba(0, 0, 0, 0.87);
-  font-size: 0.825rem;
-  margin: 0px;
-  white-space: pre-wrap;
+.ra_page .main_content .bottom_content .queries .query_card .query_solution .reply p{
+  margin: 0;
+    color: #5f6368;
   font-weight: 500;
+  font-size: 0.825rem;
 }
 .ra_page .main_content .bottom_content .attachments h3 {
   color: #3c4043;
@@ -1513,6 +1469,213 @@
   width: calc(100% - 30px);
   max-width: 54.5rem;
 }
-.resource_doubts .header h2{
+.resource_doubts .header h3{
   color: #3c4043;
+}
+.resource_doubts .doubts{
+  width: 100%;
+}
+.resource_doubts .doubts .doubt{
+  width: calc(100% - 30px);
+  margin-bottom: 10px;
+  border: 1px solid #e0e0e0;
+  border-radius: 5px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+.resource_doubts .doubts .doubt:hover{
+  background: #f7f7f7;
+}
+.resource_doubts .doubts .doubt .student_info{
+  display: flex;
+  align-items: center;
+}
+.resource_doubts .doubts .doubt .student_info .student_icon{
+  height: 20px;
+  width: 20px;
+  margin-right: 5px;
+}
+.resource_doubts .doubts .doubt .student_info .student_name{
+  font-size: 0.825rem;
+  font-weight: 500;
+  color: #3c4043;
+}
+.resource_doubts .doubts .doubt .student_info .doubt_date{
+  color: #5f6368;
+  font-weight: 500;
+  font-size: 0.625rem;
+  margin-left: 5px;
+}
+.resource_doubts .doubts .doubt .student_info .add_text{
+  margin: 0;
+  color: #5f6368;
+  font-size: 0.625rem;
+  margin-right: 3px;
+}
+.resource_doubts .doubts .doubt .doubt_content{
+  margin: 0;
+  margin-top: 5px;
+}
+.resource_doubts .doubts .doubt .doubt_content h4{
+  margin: 0;
+  font-weight: 500;
+  color: #3c4043;
+  font-size: 0.925rem;
+}
+.resource_doubts .doubts .doubt .doubt_content p{
+  color: #5f6368;
+  font-weight: 500;
+  font-size: 0.725rem;
+  margin: 0;
+}
+.resource_doubts .doubts .doubt .doubt_reply{
+  margin-top: 5px;
+  display: flex;
+}
+.resource_doubts .doubts .doubt .doubt_reply .tag{
+  display: flex;
+}
+.resource_doubts .doubts .doubt .doubt_reply .tag p{
+  background-color: rgba(255, 0, 0, 0.11);
+  color: red;
+  border: 1px solid red;
+  padding: 2px 5px;
+  font-size: 10px;
+  border-radius: 20px;
+  margin: 0;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.resource_doubts .doubts .doubt .doubt_reply .tag p.active{
+  color: rgb(0, 161, 0);
+  border-color: rgb(0, 161, 0);
+  background-color: rgba(0, 255, 0, 0.11);
+}
+.resource_doubts .doubts .doubt .doubt_reply .solver_info{
+  margin-left: 5px;
+}
+.resource_doubts .doubts .doubt .doubt_reply .solver_info .student_icon{
+  height: 18px;
+  width: 18px;
+}
+.resource_doubts .doubts .doubt .doubt_reply .solver_info .student_name{
+  font-size: 0.725rem;
+  font-weight: 500;
+  color: #3c4043;
+}
+.doubt_modal .doubt_content{
+  padding:5px 20px;
+  font-size: 0.825rem;
+  color: #5f6368;
+  font-weight: 500;
+}
+.doubt_modal .student_info{
+  padding: 0 20px ;
+  display: flex;
+  margin-bottom: 5px;
+  align-items: center;
+  border-bottom: 1px solid #e0e0e0;
+  padding-bottom: 5px;
+}
+.doubt_modal .student_info .icon{
+  height: 18px;
+  width: 18px;
+}
+.doubt_modal .student_info .student_name{
+  margin: 0;
+  margin-left: 5px;
+  display: flex;
+  flex-direction: column;
+  font-weight: 500;
+  color: #3c4043;
+  font-size:  0.725rem;
+}
+.doubt_modal .student_info .date{
+  color: #5f6368;
+  font-size: 0.625rem;
+  font-weight: 500;
+  margin: 0;
+  margin-left: 5px;
+}
+.doubt_modal .doubt_reply{
+  padding: 0 20px;
+  height: max-content;
+}
+.doubt_modal .doubt_reply textarea{
+  color: #3c4043;
+}
+.doubt_modal .button_group{
+  display: flex;
+  padding: 20px;
+  margin-top: -25px;
+}
+.skeleton_doubt{
+  height: 90px;
+  pointer-events: none;
+}
+.skeleton_doubt .student_icon{
+  height: 18px;
+  width: 18px;
+  border-radius: 50%;
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+}
+.skeleton_doubt .student_info{
+  display: flex;
+  align-items: center;
+  margin-top: 5px;
+}
+.skeleton_doubt .student_info .student_name{
+  height: 0.825rem;
+  width: 80px;
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+  border-radius: 10px;
+}
+.skeleton_doubt .student_info .doubt_date{
+  height: 0.625rem;
+  width: 60px;
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+  border-radius: 5px;
+}
+.skeleton_doubt .doubt_content h4{
+  height: 0.825rem;
+  width: calc(100% - 50px);
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+  border-radius: 10px;
+  margin-bottom: 5px !important;
+}
+.skeleton_doubt .doubt_content p{
+  height: 0.625rem;
+  width: calc(100% - 80px);
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+  border-radius: 5px;
+  margin-bottom: 2px !important;
+}
+.skeleton_doubt .doubt_content p:nth-child(2){
+  width: calc(100% - 60px);
+}
+.skeleton_doubt .doubt_reply{
+  height: 20px !important;
+}
+.skeleton_doubt .doubt_reply .tag{
+    background: var(--skeleton-background);
+  animation: var(--skeleton-animation);
+  padding: 2px 5px;
+  height: 10px;
+  border-radius: 20px;
+  margin: 0;
+  width: 50px;
+  font-weight: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.skeleton_doubt:hover{
+  background: none !important;
 }
