@@ -118,7 +118,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
                 </div>
                 <div className='header'>
                     <div className='icon'>
-                        <Icon url={assignment?.creator_profile_image?api+"/profile/"+assignment.creator_profile_image:null} height={35} chr={assignment?.creator_first_name[0]+assignment?.creator_last_name[0]}/>
+                        <Icon url={assignment?.creator_profile_image} height={30} chr={assignment?.creator_first_name[0]+assignment?.creator_last_name[0]}/>
                     </div>
                     <div className='info'>
                         {assignment?<div className='creator_info'>
@@ -148,7 +148,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
                     <h3><i className="fa-regular fa-paperclip"></i> Attachments</h3>
                     <div className='data'>
                         {assignment.attachments.map((item,key)=>{
-                            return <FileView files={assignment.attachments.map((item)=>`${api}/classrooms/${class_id}/assignments/${item.file_name}`)} key={key} path={api+"/classrooms/"+class_id+"/assignments/"+item.file_name} fileName={item.file_name}/>
+                            return <FileView files={assignment.attachments.map((item)=>item.url)} key={key} path={item.url} fileName={item.url}/>
 
                         })}
                     </div>
@@ -160,12 +160,9 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
                     <h4><i className="fa-regular fa-memo-pad"></i>&nbsp;Your last submission</h4>
                 </div>
                 {assignment?.attachments.length>0?<div className='attachments'>
-                    <div className='data'>
-                        {assignment?.submissions?.file_name.map((item,key)=>{
-                            return <div className='attachment'  onClick={()=>{window.open(`${api}/classrooms/${class_id}/assignments/submissions/${item}`,"","height:auto;width:auto")}} key={key}>
-                                <div className='icon'></div>
-                                <div className='filename'><i className="fa-regular fa-file"></i>{item}</div>
-                            </div>
+                    <div className='data' style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
+                        {assignment?.submissions?.url.map((item,key)=>{
+                            return <FileView files={assignment?.submissions?.url} key={key} path={item} fileName={item}/>
                         })}
                     </div>
                 </div>:""}

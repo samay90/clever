@@ -127,7 +127,7 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
             <InputSecondary disabled={true} placeholder="Classroom Code" secondary_placeholder="I won't say it" type="text" value={sensitive.join_code??""}/>
             </div>
             <div className="input">
-            {classroom&&classroom.class_id?<ImageSelector heading="Select Banner" value={changes?.banner_id} current={banner} setCurrent={setBanner} data={Object.keys(banners).map((i)=>{return {key:i,url:`${api}/banners/${banners[i]}`}})}  placeholder="Customise Banner"/>:""}
+            {classroom&&classroom.class_id?<ImageSelector heading="Select Banner" value={changes?.banner_id} current={banner} setCurrent={setBanner} data={Object.keys(banners).map((i)=>{return {key:i,url:`/banners/${banners[i]}`}})}  placeholder="Customise Banner"/>:""}
             </div>
             <div className="submit_area">
                 <button className="reset" onClick={()=>{setReset(prev=>prev+1)}}>Reset</button>

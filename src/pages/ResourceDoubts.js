@@ -69,7 +69,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
         </div>
         <div className='student_info'>
           <div className='icon'>
-            <Icon url={crrQuery.user_profile_image?api+"/profile/"+crrQuery.user_profile_image:null} height={18} chr={crrQuery.user_first_name.charAt(0)+crrQuery.user_last_name.charAt(0)}></Icon>
+            <Icon url={crrQuery.user_profile_image} height={18} chr={crrQuery.user_first_name.charAt(0)+crrQuery.user_last_name.charAt(0)}></Icon>
           </div>
           <div className='student_name'>
             {crrQuery.user_first_name+" "+crrQuery.user_last_name}
@@ -97,7 +97,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
             return <div className='doubt' onClick={()=>{setCrrQuery(item);setQueryModal(true);setValue(item.solution??"")}} key={key}>
               <div className='student_info'>
                 <div className='student_icon'>
-                  <Icon url={item.user_profile_image?api+"/profile/"+item.user_profile_image:null} height={20} chr={item.user_first_name.charAt(0)+item.user_last_name.charAt(0)}></Icon>
+                  <Icon url={item.user_profile_image} height={20} chr={item.user_first_name.charAt(0)+item.user_last_name.charAt(0)}></Icon>
                 </div>
                 <div className='student_name'>
                   {item.user_first_name+" "+item.user_last_name}
@@ -116,7 +116,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
                 </div>
                 {item.solution?<div className='student_info solver_info'>
                   <div className='student_icon'>
-                    <Icon url={item.solver_profile_image?api+"/profile/"+item.solver_profile_image:null} height={18} chr={item.solver_first_name.charAt(0)+item.solver_last_name.charAt(0)}></Icon>
+                    <Icon url={item.solver_profile_image} height={18} chr={item.solver_first_name.charAt(0)+item.solver_last_name.charAt(0)}></Icon>
                   </div>
                   <div className='student_name'>
                     {item.solution_by===user.user_id?"You":item.solver_first_name+" "+item.solver_last_name}

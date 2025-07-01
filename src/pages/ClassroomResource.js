@@ -256,6 +256,8 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }
         setSubmitLoading(false)
     }
+    console.log(queries);
+    
   return (
     <>
         {classroom?.role==="student"?<Modal loading={submitLoading} onSubmit={onSubmit} title={<>Raise Query</>} isOpen={isOpen} setIsOpen={setIsOpen}>                    
@@ -301,7 +303,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                         <div key={index} className='attendance_box' onClick={()=>{setManageAttendance(prev=>({...prev,[item.user_id]:prev[item.user_id]===1?0:1}))}}>
                             <div className='left'>
                                 <div className='icon'>
-                                    <Icon url={item.file_name?api+"/profile/"+item.file_name:""} chr={item?.first_name.charAt(0)+item?.last_name.charAt(0)} height={35}></Icon>
+                                    <Icon url={item.url} chr={item?.first_name.charAt(0)+item?.last_name.charAt(0)} height={35}></Icon>
                                 </div>
                                 <div className='info'>
                                     <h3>{item.first_name} {item.last_name}</h3>
@@ -329,7 +331,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             <div className='top_content'>
                 <div className='header'>
                     {classroom?<div className='icon'>
-                        {classroom.banner_id?<i className="fa-regular fa-book " style={{"--bg":colors[conv[classroom?.banner_id]]}}></i>:""}
+                        {classroom?.banner_id?<i className="fa-regular fa-book " style={{"--bg":colors[conv[classroom?.banner_id]]}}></i>:""}
                     </div>:""}
                     <div className='info'>
                         <div className='title'>{resource?.title}</div>
@@ -337,7 +339,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                 </div>
                 <div className='header'>
                     <div className='icon'>
-                        <Icon url={resource?.creator_profile_image?api+"/profile/"+resource.creator_profile_image:null} height={35} chr={resource?.creator_first_name[0]+resource?.creator_last_name[0]}/>
+                        <Icon url={resource?.creator_profile_image} height={30} chr={resource?.creator_first_name[0]+resource?.creator_last_name[0]}/>
                     </div>
                     <div className='info'>
                         {resource?<div className='creator_info'>
@@ -353,7 +355,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                 </div>
             </div>
             {classroom?.role!=="student"?<div className='attendance_button'>
-                <button className='btn_secondary' style={{"--bg":colors[conv[classroom.banner_id]]}} onClick={()=>{setAttendanceOpen(true)}}>Manage attendance</button>
+                <button className='btn_secondary' style={{"--bg":colors[conv[classroom?.banner_id]]}} onClick={()=>{setAttendanceOpen(true)}}>Manage attendance</button>
             </div>:""}
             <hr/>
 
@@ -364,7 +366,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                     <div className='data'>
                         {resource.attachments.map((item,key)=>{
                             return <>
-                            <FileView files={resource.attachments.map((item)=>`${api}/classrooms/${class_id}/resources/${item.file_name}`)} path={api+"/classrooms/"+class_id+"/resources/"+item.file_name} fileName={item.file_name} key={key}/>
+                            <FileView files={resource.attachments.map((item)=>item.url)} path={item.url} fileName={item.url} key={key}/>
                             </>
                         })}
                     </div>
@@ -401,10 +403,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                                         </div>
                                         <p className='query_time'>Asked {moment(parseInt(item?.updated_at)).fromNow()} {item?.created_at!==item?.updated_at?`(Edited ${moment(parseInt(item?.updated_at)).fromNow()})`:""}</p>
                                     </div>
-                                    <div className='query_solution'>
+                                    {item.solution?<div className='query_solution'>
                                         <div className='student_info'>
                                             <div className='icon'>
-                                                <Icon url={item?.solver_profile_image?api+"/profile/"+item.solver_profile_image:null} height={22} chr={item?.solver_first_name[0]+item?.solver_last_name[0]}></Icon>
+                                                <Icon url={item?.solver_profile_image} height={22} chr={item?.solver_first_name[0]+item?.solver_last_name[0]}></Icon>
                                             </div>
                                             <div className='name'>
                                                 {item?.solver_first_name} {item?.solver_last_name}
@@ -416,7 +418,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                                         <div className='reply'>
                                             <p>{item.solution}</p>
                                             </div> 
-                                    </div>
+                                    </div>:""}
                                 </div>
                             </div>
                         })}

@@ -21,7 +21,7 @@ const Home = ({ token, api, user ,classrooms}) => {
       </div>
       <div className="classrooms" >
         {classrooms.length===0?<Empty img="empty_states_home.svg" head="No classrooms found" body="Create or join a classroom" size="200px" margin="50px 0 15px 0"/>:classrooms.map((classroom,key) => {
-          return <div className="classroom_card" style={{background:`url(${api}/banners/${conv[classroom.banner_id]})`}} key={key} onClick={()=>handleClassroomClick(key)}>
+          return <div className="classroom_card" style={{background:`url(/banners/${conv[classroom.banner_id]})`}} key={key} onClick={()=>handleClassroomClick(key)}>
             <div className="content">
               <div className="classroom_info">
                 <h2>{classroom.class_name.length>20?classroom.class_name.slice(0,20)+"...":classroom.class_name}</h2>
@@ -29,7 +29,7 @@ const Home = ({ token, api, user ,classrooms}) => {
               </div>
               <div className="creator_info">
                 <div className="creator_icon">
-                  <Icon url={classroom.creator_profile_image?api+"/profile/"+classroom.creator_profile_image:null} height={30} chr={classroom.creator_first_name.charAt(0)+classroom.creator_last_name.charAt(0)}></Icon>                
+                  <Icon url={classroom.creator_profile_image} height={30} chr={classroom.creator_first_name.charAt(0)+classroom.creator_last_name.charAt(0)}></Icon>                
                 </div>
                 <div>
                 <div className="creator_name">

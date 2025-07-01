@@ -14,7 +14,7 @@ import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 import FileViewer from './components/FileViewer'
 const App = () => {
-  const url = "http://192.168.0.106:9920"
+  const url = "http://192.168.0.102:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()

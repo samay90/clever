@@ -52,7 +52,7 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
               <i className="fa-regular fa-arrow-left" onClick={()=>{navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions`)}}></i>
             </div>
             <div className='user_icon'>
-              <Icon url={submission?.profile_image?api+"/profile/"+submission?.profile_image:""} chr={submission?.first_name.charAt(0)+submission?.last_name.charAt(0)} height={35}/>
+              <Icon url={submission?.profile_image} chr={submission?.first_name.charAt(0)+submission?.last_name.charAt(0)} height={35}/>
             </div>
             <div className='user_info'>
               <h3>{submission?.first_name+" "+submission?.last_name}</h3>
@@ -74,7 +74,7 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
           <div className='submission_file'>
             <h3>Attachments</h3>
             <div className='files'>
-              {JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return <FileView files={JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return api+"/classrooms/"+class_id+"/assignments/submissions/"+file})  } key={index} path={api+"/classrooms/"+class_id+"/assignments/submissions/"+file} fileName={file}/>})}
+              {JSON.parse(submission&&submission.submission?submission.submission:'[]').map((file,index)=>{return <FileView files={JSON.parse(submission&&submission.submission?submission.submission:'[]')} key={index} path={file} fileName={file}/>})}
             </div>
           </div>
         </div>

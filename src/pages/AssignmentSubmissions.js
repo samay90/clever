@@ -48,7 +48,7 @@ const AssignmentSubmissions = ({ api, class_id, token,assignment, classroom }) =
               return <div className="student_card" onClick={()=>{setSubmission(i);navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions/${i.submission_id}`);navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions/${i.submission_id}`)}} key={key}>
                 <div className="student_info">
                   <div className="icon">
-                    <Icon url={i.profile_image?api+"/profile/"+i.profile_image:""} height={35} chr={i.first_name.charAt(0)+i.last_name.charAt(0)}></Icon>
+                    <Icon url={i.profile_image} height={35} chr={i.first_name.charAt(0)+i.last_name.charAt(0)}></Icon>
                     <span className={`status ${i.submission_id===null?"orange":(i.marks===null?"red":"green")}`}></span>
                   </div>
                   <div className="name">

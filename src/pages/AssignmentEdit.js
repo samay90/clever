@@ -215,7 +215,7 @@ const AssignmentEdit = ({ api, class_id, token, classroom }) => {
                             className="attachment"
                             onClick={() => {
                               window.open(
-                                `${api}/classrooms/${class_id}/assignments/${item.file_name}`,
+                                item.url,
                                 "",
                                 "height:auto;width:auto"
                               );
@@ -225,7 +225,7 @@ const AssignmentEdit = ({ api, class_id, token, classroom }) => {
                             <div className="icon"></div>
                             <div className="filename">
                               <i className="fa-regular fa-file"></i>
-                              {item.file_name}
+                              {item.url.split("/").pop()}
                             </div>
                           </div>
                           <div

@@ -22,7 +22,7 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
     <>
     <AddWork heading="Create work" open={open} class_id={classroom?.class_id} token={token} api={api} setOpen={setOpen}></AddWork>
     <div className='main_content page'>
-        {classroom?classroom.banner_id?<div className={`banner ${infoActive?"banner_active":""} `}style={{backgroundImage:`url(${api}/banners/${conv[classroom?.banner_id]})`}}>
+        {classroom?classroom.banner_id?<div className={`banner ${infoActive?"banner_active":""} `} style={{backgroundImage:`url(/banners/${conv[classroom?.banner_id]})`}}>
           <h1>{classroom?.class_name}</h1>
           <span className='banner_info' onClick={()=>setInfoActive(!infoActive)} >{!infoActive?<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"></path></svg>:<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>}</span>
         </div>:"":""}
@@ -60,7 +60,7 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
             </div>
             <div className='creator_info'>
               <div className='icon_image'>
-              <Icon url={item.creator_profile_image?api+"/profile/"+item.creator_profile_image:null} height={35} chr={item.creator_first_name[0]+item.creator_last_name[0]}/>
+              <Icon url={item.creator_profile_image} height={35} chr={item.creator_first_name[0]+item.creator_last_name[0]}/>
               </div>
               <div className='info'>
                 <h3>{item.creator_first_name} {item.creator_last_name}</h3>
