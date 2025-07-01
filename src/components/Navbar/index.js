@@ -38,8 +38,9 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       body:JSON.stringify(createClass)
     })
     const parsed = await raw.json()
-    setCreateLoading(false)
     if (parsed.error){
+      setCreateLoading(false)
+      setOpen(false);
       toast.error(parsed.message, {
         iconTheme:{primary:"#fff",secondary:"#5C60F5"},
         style:{
@@ -51,6 +52,8 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
         }
       })
     }else{
+      setCreateLoading(false)
+      setOpen(false)
       toast.success(parsed.message, {
         iconTheme:{primary:"#fff",secondary:"#5C60F5"},
         style:{
@@ -75,8 +78,9 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       body:JSON.stringify({join_code})
     })
     const parsed = await raw.json()
-    setJoinLoading(false)
     if (parsed.error){
+      setJoinLoading(false)
+      setJoinOpen(false);
       toast.error(parsed.message, {
         iconTheme:{primary:"#fff",secondary:"#5C60F5"},
         style:{
@@ -88,6 +92,8 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
         }
       })
     }else{
+        setJoinLoading(false)
+      setJoinOpen(false);
       toast.success(parsed.message, {
         iconTheme:{primary:"#fff",secondary:"#5C60F5"},
         style:{
