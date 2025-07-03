@@ -6,7 +6,8 @@ import moment from 'moment'
 import {Empty} from '../components/Empty'
 import { useNavigate } from 'react-router-dom'
 import AddWork from '../components/AddWork'
-const ClassroomStream = ({classroom,data,api,token,loading}) => {  
+import ModalSecondary from '../components/ModalSecondary';
+const ClassroomStream = ({classroom,data,api,token,loading,loadingStream,hasMore}) => {  
   const navigate = useNavigate() 
   const [infoActive,setInfoActive] = React.useState(false)
   const [open,setOpen] = React.useState(false)
@@ -18,23 +19,54 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
       }
     })
 },[])
+  
   return (
     <>
+    <ModalSecondary heading="Classroom information" open={infoActive} setOpen={setInfoActive}>
+      <div className='classroom_about'>
+        <div className='head'>
+            <h2>About classroom</h2>
+            <h3>{classroom?.class_name}</h3>
+        </div>
+        <div className='about_content'>
+            <div>
+                <h3>Description</h3>
+                <p>{classroom?.class_description}</p>
+            </div>
+            <div className='creator_info'>
+                <div className='title'>
+                    <h3>Creator Info</h3>
+                </div>
+                <div>
+                    <div className='icon'>
+                        <Icon url={classroom?.creator_profile_image} height={30} chr={classroom?.creator_first_name?.charAt(0)+classroom?.creator_last_name?.charAt(0)}></Icon>
+                    </div>
+                    <div className='info'>
+                        <h3>{classroom?.creator_first_name+" "+classroom?.creator_last_name}</h3>
+                        <p>{classroom?.creator_email}</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div className='bottom_content'>
+            <p>• created {moment(parseInt(classroom?.created_at)).fromNow()}</p>
+            {classroom?.updated_at!==classroom?.created_at?<p>• updated {moment(parseInt(classroom?.updated_at)).fromNow()}</p>:null}
+        </div>
+    </div>
+    </ModalSecondary>
     <AddWork heading="Create work" open={open} class_id={classroom?.class_id} token={token} api={api} setOpen={setOpen}></AddWork>
     <div className='main_content page'>
-        {classroom?classroom.banner_id?<div className={`banner ${infoActive?"banner_active":""} `} style={{backgroundImage:`url(/banners/${conv[classroom?.banner_id]})`}}>
+        {classroom?classroom.banner_id?<div className={`banner `} style={{backgroundImage:`url(/banners/${conv[classroom?.banner_id]})`}}>
           <h1>{classroom?.class_name}</h1>
           <span className='banner_info' onClick={()=>setInfoActive(!infoActive)} >{!infoActive?<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"></path></svg>:<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>}</span>
         </div>:"":""}
       <div>
-        <div className={`classroom_info ${infoActive?"active":""}`}>
-          <p>{classroom?.class_description}</p>
-        </div>
+
         <div className='announcement_section'>
           <button onClick={()=>{setOpen(true)}} className='btn_secondary announcment_btn' style={{"--bg":colors[conv[classroom?.banner_id]]}}><i className="fa-regular fa-plus"></i>&nbsp;Create</button>
         </div>
         <div className='classroom_cards'>
-          {loading?<div className='skeleton_classroom_card classroom_card'>
+          {loadingStream&&data.length===0?<div className='skeleton_classroom_card classroom_card'>
             <div className='tags'>
               <div className='tag'></div>
               <div className='tag'></div>
@@ -53,7 +85,7 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
               <p></p>
             </div>
           </div>:data.length===0?<Empty head="No work todo!" body={"No notes or assignments found"} img="empty_geometry.svg" size={"200px"} margin="50px 0 15px 0"/>:data.map((item,key)=>{
-          return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key}>
+          return <div className='classroom_card' onClick={()=>{navigate(item.resource_id?`resource/${item.resource_id}`:`assignment/${item.assignment_id}`)}}  key={key+parseInt(item.created_at)}>
             <div className='tags'>
             {classroom?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}>{item.resource_id?<h3><i className="fa-regular fa-book"></i> Resource</h3>:<h3><i className="fa-regular fa-ballot-check"></i> Assignment</h3>}</div>:""}
             {item.assignment_id?<div className='tag' style={{"--bg":colors[conv[classroom?.banner_id]]}}><h3><i className="fa-regular fa-bullseye-arrow"></i> {item.total_marks} marks</h3></div>:""}
@@ -79,6 +111,25 @@ const ClassroomStream = ({classroom,data,api,token,loading}) => {
             }
           </div>
         })}
+        {data.length>0&&loadingStream&&hasMore?<div className='skeleton_classroom_card classroom_card'>
+            <div className='tags'>
+              <div className='tag'></div>
+              <div className='tag'></div>
+            </div>
+            <div className='creator_info'>
+              <span className='ske_icon'></span>
+              <div className='ske_info'>
+                <h3>&nbsp;</h3>
+                <p></p>
+              </div>
+            </div>
+            <div className='body'>
+              <h4>&nbsp;</h4>
+              <p></p>
+              <p></p>
+              <p></p>
+            </div>
+          </div>:""}
         </div>
       </div>
       </div>

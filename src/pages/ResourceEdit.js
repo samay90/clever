@@ -77,7 +77,7 @@ const ResourceEdit = ({ api, class_id, token, classroom }) => {
     }
   return (
     <>
-      <div className="page classroom_page ra_page modal_page_content">
+      <div className="page ra_page modal_page_content">
         {resource ? (
           <div className="main_content">
             {classroom?.role !== "student" ? (

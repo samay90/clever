@@ -68,12 +68,14 @@ const ResourceRouter = ({ classroom, class_id, token, api ,user}) => {
       <Route
         path="/edit"
         element={
+          <div className="page classroom_page">
           <ResourceEdit
             api={api}
             classroom={classroom}
             class_id={class_id}
             token={token}
           />
+          </div>
         }
       ></Route>
     </Routes>

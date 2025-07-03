@@ -101,7 +101,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
           </div>
         </div>
     </ModalSecondary>
-    <div className='page classroom_page ra_page modal_page_content'>
+    <div className='page ra_page modal_page_content'>
         {assignment?<div className='main_content'>
             {classroom?.role!=="student"?<div className='ra_bottom_bar'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>

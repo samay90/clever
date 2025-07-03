@@ -34,17 +34,17 @@ const FileViewer = () => {
             document.removeEventListener("keydown",interval);
         }
     },[setFiles,files.length,setCrr])
-    useEffect(()=>{
-        if (scrollRef && scrollRef.current){
-            let interval = scrollRef.current.addEventListener("wheel",(e)=>{
-                e.preventDefault();
-                setZoom(prev=>Math.min(Math.max(prev+parseInt(e.deltaY/80),10),200));
-            })
-            return ()=>{
-                scrollRef.current?.removeEventListener("wheel",interval);
-            }
-        }
-    },[scrollRef,setZoom])
+    // useEffect(()=>{
+    //     if (scrollRef && scrollRef.current){
+    //         let interval = scrollRef.current.addEventListener("wheel",(e)=>{
+    //             e.preventDefault();
+    //             setZoom(prev=>Math.min(Math.max(prev+parseInt(e.deltaY/80),10),200));
+    //         })
+    //         return ()=>{
+    //             scrollRef.current?.removeEventListener("wheel",interval);
+    //         }
+    //     }
+    // },[scrollRef,setZoom])
 
   return (
     <div ref={ref} className={`file_viewer ${crr>=0?"active":""}`}>

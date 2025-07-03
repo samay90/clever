@@ -100,11 +100,11 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
             setButtonDisabled(false)
         }
     }
-  return (
-    <div className="classroom_settings_page page">
-      <div className="navbar">
+  return (<>
+      <div className="settings_navbar">
         <h2 onClick={()=>{navigate("/app/classroom/"+class_id+"/")}}><i className="fa-regular fa-arrow-left"></i>Settings</h2>
       </div>
+    <div className="classroom_settings_page page classroom_page">
       <div className="main_content">
         <div className="header">
           <p>
@@ -136,6 +136,7 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
         </div>
       </div>
     </div>
+    </>
   );
 };
 

@@ -4,10 +4,10 @@
 .add_work .overlay{
     position: fixed;
     top: 60px;
-    height: calc(100vh - 60px);
+    height: calc(100vh - 106px);
     width: calc(100%);
     right: 0;
-    z-index: 1000;
+    z-index: 1000000;
     display: none;
     background: #00000000;
     transition: .3s ease;

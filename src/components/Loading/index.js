@@ -1,6 +1,6 @@
 import React from 'react'
 import "./index.css"
-import logo from '../../static/images/logo.png'
+import logo from '../../static/images/logo3.png'
 const Loading = ({loading}) => {
     React.useEffect(()=>{
         const div = document.getElementById('loading')

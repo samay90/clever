@@ -66,7 +66,14 @@ hr{
   border: 2px solid #fff;
 }
 .btn_secondary:disabled{
-  background: #7075ff;
+  background: #9fa2ff;
+  cursor: not-allowed;
+  
+}
+.btn_secondary:disabled:focus{
+  background: #9fa2ff;
+  cursor: not-allowed;
+  opacity: 1;
 }
 .text_secondary{
   color: #4D4D4D;

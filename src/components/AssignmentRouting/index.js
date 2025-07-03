@@ -36,7 +36,10 @@ const AssignmentRouter = ({ classroom, class_id, token, api }) => {
   }, [assignment_id, api, class_id, token, navigate]);
   return (
     <Routes>
-      <Route path="/" element={<AssignmentTopBar class_id={class_id} classroom={classroom}/>}>
+      <Route
+        path="/"
+        element={<AssignmentTopBar class_id={class_id} classroom={classroom} />}
+      >
         <Route
           path="/"
           element={
@@ -60,18 +63,19 @@ const AssignmentRouter = ({ classroom, class_id, token, api }) => {
               assignment={assignment}
             />
           }
-        >
-        </Route>
+        ></Route>
       </Route>
       <Route
         path="/edit"
         element={
-          <AssignmentEdit
-            api={api}
-            classroom={classroom}
-            class_id={class_id}
-            token={token}
-          />
+          <div className="page classroom_page">
+            <AssignmentEdit
+              api={api}
+              classroom={classroom}
+              class_id={class_id}
+              token={token}
+            />
+          </div>
         }
       ></Route>
     </Routes>

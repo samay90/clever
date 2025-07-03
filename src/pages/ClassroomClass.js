@@ -88,7 +88,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
         }
     }
   return (
-    <div className='page classroom_page classroom_class_content'>
+    <div className='page classroom_class_content'>
         <ModalSecondary heading={crrUser?.first_name?crrUser.first_name+" "+crrUser.last_name:"Loading..."} open={open} setOpen={setOpen}>
             {crrUser?.first_name?<div className='user_profile_modal'>
                 <div className='user_avatar'>

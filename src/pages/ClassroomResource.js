@@ -8,6 +8,7 @@ import TextArea from '../components/TextArea'
 import InputSecondary from '../components/InputSecondary'
 import Modal from '../components/Modal'
 import toast from 'react-hot-toast'
+import {Empty} from '../components/Empty'
 import ModalSecondary from '../components/ModalSecondary'
 import FileView from '../components/FileView'
 import Radio from '../components/Radio'
@@ -115,7 +116,6 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }
     }
     const deleteQuery =async (query_id)=>{
-        console.log(query_id)
         setDeleteLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/query/${query_id}/delete`,{
             method:"DELETE",
@@ -256,7 +256,6 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }
         setSubmitLoading(false)
     }
-    console.log(queries);
     
   return (
     <>
@@ -320,9 +319,9 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                     <button className='btn_tertiary' onClick={()=>{setAttendanceOpen(false)}}>Cancel</button>
                     <button className='btn_secondary' onClick={submitAttendance} disabled={submitLoading} style={{width:"80px"}}>{submitLoading?<span className='btn_loading'/>:"Submit"}</button>
                 </div>
-            </div>:<div className='text_secondary'>No attendance found</div>}
+            </div>:<div className='text_secondary' style={{paddingBottom:"20px"}}><Empty head={"No students"} body={"No students found in this classroom"} size={"80px"} margin={"20px 0 10px 0"} img={"empty_calc.svg"}></Empty></div>}
     </ModalSecondary>:""}
-    <div className='page classroom_page ra_page modal_page_content' style={{"--bg":colors[conv[classroom?.banner_id]]}}>
+    <div className='page ra_page modal_page_content' style={{"--bg":colors[conv[classroom?.banner_id]]}}>
         {resource?<div className='main_content'>
             {classroom?.role!=="student"?<div className='ra_bottom_bar'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
