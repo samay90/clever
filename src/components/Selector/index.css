@@ -5,18 +5,39 @@
     margin-bottom: 20px;
     position: relative;
     /* min-width: 100px; */
+    background: #fafafa;
     height: 100%;
+    border-radius: 5px;
+    /* overflow: hidden; */
     font-weight: 500;
+}
+.option_selector span{
+position: absolute;
+  right: 10px;
+  top: 50%;
+  /* z-index: ;/ */
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #5f6368;
+  bottom: 50%;
+  height: 100%;
+  transform: translate(-50%,-50%);
 }
 .option_selector select{
     font-family: "Manrope", sans-serif;
     position: relative;
     font-weight: 400 !important;
+    appearance: none; /* Hide native arrow */
+    -webkit-appearance: none;
+    -moz-appearance: none;
     border: none;
     background: transparent;
     font-size: 14px;
     border-radius: 5px;
-    padding: 20px 12px 10px 15px;
+    padding: 22px 12px 10px 15px;
     outline: none;
     z-index: 1;
     border: 1px solid #e2e2e2; 
@@ -29,7 +50,7 @@
     font-weight: 500;
 }
 .option_selector select:focus ~ label{
-    top: 10px !important;
+    top: 15px !important;
     font-size: 10px !important;
     z-index: 0 !important;
     color: var(--primary-color);
@@ -55,7 +76,7 @@
     font-size: 10px;
     font-weight: 500;
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 10px;
     padding: 0 5px;
     z-index: 0;

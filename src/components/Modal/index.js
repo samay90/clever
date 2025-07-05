@@ -40,7 +40,7 @@ const Modal = ({children,title,isOpen,setIsOpen,onSubmit,loading}) => {
           </div>
 
           <div className='content'>{children}</div>
-          <div className='bottom_content'>
+          <div className='bottom_content btn_group'>
             <button className='btn_tertiary' onClick={()=>{setIsOpen(false)}}>Cancel</button>
             <button className='btn_secondary' style={{width:"80px"}} onClick={onSubmit} disabled={loading}>{loading?<span className='btn_loading'/>:"Submit"}</button>
           </div>

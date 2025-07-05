@@ -81,7 +81,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
         <div className='doubt_reply'>
           <TextArea key={crrQuery.query_id} secondary_placeholder={"Clever it."} maxLength={500} value={value} onChange={(e)=>setValue(e.target.value)} placeholder='Solution' ></TextArea>
         </div>
-        <div className='button_group'>
+        <div className='button_group btn_group' style={{width:"calc(100% - 40px)"}}>
           <button onClick={()=>{setQueryModal(false)}} className='btn_tertiary'>Cancel</button>
           <button style={{width:"80px"}} onClick={onSubmit} disabled={value===""||value===crrQuery.solution||submitLoading} className='btn_secondary'>{submitLoading?<span className='btn_loading'></span>:"Submit"}</button>
         </div>

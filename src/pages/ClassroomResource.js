@@ -269,7 +269,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             <div className='nav_form'>
           <InputSecondary placeholder="Query title" value={editQuery.query_title} type="text" secondary_placeholder="Doubt related to astronomy" onChange={(e)=>{setEditQuery(prev=>({...prev,query_title:e.target.value}))}} maxLength={50} disabled={false} />
           <TextArea placeholder="Query body" type="text" value={editQuery.query_body} secondary_placeholder="Ex. Why don't aliens eat clowns?" onChange={(e)=>{setEditQuery(prev=>({...prev,query_body:e.target.value}))}} maxLength={200} disabled={false} />
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setQueryEdit(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"85px"}} disabled={submitLoading} onClick={handleEditQuery}>{submitLoading?<span className='btn_loading'/>: <><i className="fa-regular fa-pen"></i> &nbsp; Edit</>}</button>
           </div>
@@ -279,7 +279,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         <div className='nav_form'>
           <p className='text_secondary'>Are you sure you want to delete this resource. Once deleted it can't be recovered.</p>
           <br/>
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setDeleteOpen(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"80px"}} disabled={deleteLoading} onClick={deleteResource}>{deleteLoading?<span className='btn_loading'/>:"Delete"}</button>
           </div>
@@ -289,7 +289,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         <div className='nav_form'>
           <p className='text_secondary'>Are you sure you want to delete this query. Once deleted it can't be recovered.</p>
           <br/>
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setQueryDelete(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"80px"}} disabled={deleteLoading} onClick={()=>{deleteQuery(queryDelete)}}>{deleteLoading?<span className='btn_loading'/>:"Delete"}</button>
           </div>
@@ -315,7 +315,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                         </div>
                     )
                 })}
-                <div className='button_group'>
+                <div style={{width:"calc(100% - 40px)"}} className='button_group btn_group'>
                     <button className='btn_tertiary' onClick={()=>{setAttendanceOpen(false)}}>Cancel</button>
                     <button className='btn_secondary' onClick={submitAttendance} disabled={submitLoading} style={{width:"80px"}}>{submitLoading?<span className='btn_loading'/>:"Submit"}</button>
                 </div>
@@ -323,7 +323,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
     </ModalSecondary>:""}
     <div className='page ra_page modal_page_content' style={{"--bg":colors[conv[classroom?.banner_id]]}}>
         {resource?<div className='main_content'>
-            {classroom?.role!=="student"?<div className='ra_bottom_bar'>
+            {classroom?.role!=="student"?<div className='ra_bottom_bar btn_group'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
                 <button className='btn_secondary' onClick={()=>{navigate("/app/classroom/"+class_id+"/resource/"+resource_id+"/edit")}}><i className="fa-regular fa-pen"></i> &nbsp;Edit</button>
             </div>:""}

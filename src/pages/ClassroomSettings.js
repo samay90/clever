@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ImageSelector from "../components/ImageSelector";
 import banners from "../static/banner.json"
-const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
+const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) => {
     const [changes,setChanges] = React.useState({})
     const [sensitive,setSensitive] = React.useState({})
     const [reset,setReset] = React.useState(0)
@@ -30,6 +30,7 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
         }
     },[classroom,reset])
     React.useEffect(()=>{
+        setVisible(true)
         const getSensitive = async () => {
             const req =await fetch(api+"/classroom/"+class_id+"/sensitive", {
                 method:"GET",
@@ -56,7 +57,7 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id }) => {
             }
         }
         if (token && api && class_id){getSensitive()}
-    },[api,class_id,token])
+    },[api,class_id,token,setVisible])
     const saveChanges = async () => {
         if (token && api && class_id){
             setButtonDisabled(true)

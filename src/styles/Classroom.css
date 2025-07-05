@@ -6,6 +6,9 @@
   overflow-y: auto;
   /* position: relative; */
 }
+ .navigation.visible{
+  display: block;
+ }
  .navigation {
   height: 46px !important;
   position: sticky;
@@ -17,6 +20,7 @@
   z-index: 100000;
   width: calc(100vw - 0px);
   left: 0;
+  display: none;
   transition: .3s ease;
   /* right: 0; */
 }
@@ -184,31 +188,51 @@
 .classroom_page .main_content .announcement_section {
   height: auto;
   width: calc(100% - 20px);
+  margin-top: 15px;
   padding: 10px;
   box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
     0 2px 6px 2px rgba(60, 64, 67, 0.15);
   border-radius: 10px;
-  margin-top: 15px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
 }
-.classroom_page .main_content .announcement_section button{
-  background-color: rgb(var(--bg));
-}
-.classroom_page .main_content .announcement_section .announcement_btn_settings {
-  padding: 5px 10px !important;
-  font-size: 15px;
-  font-weight: 500;
-  background: transparent;
-  color: #3c4043;
-  border-radius: 20px;
+.classroom_page .main_content .announcement_section .announce_button{
   display: flex;
-  align-items: center;
-  justify-content: center;
   cursor: pointer;
-  border: 1px solid #3c4043;
+  width: 100%;
+  align-items: center;
+  padding: 6px;
 }
+.classroom_page .main_content .announcement_section .announce_button:hover .text{
+  color: #3c4043;
+}
+.classroom_page .main_content .announcement_section .announce_button .text{
+  margin-left: 15px;
+  color: #5f6368;
+  font-size: 0.775rem;
+  font-weight: 500;
+}
+.classroom_page .main_content .announcement_section .announce_button .icon{
+  height: 2.5rem;
+  width: 2.5rem;
+}
+ .announce_form{
+  width: calc(100% - 40px);
+  padding: 20px;
+}
+ .announce_form .title{
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #3c4043;
+  margin-bottom: 10px;
+}
+ .announce_form .btn_group{
+  display: flex;
+  justify-content: flex-end;
+}
+
 .classroom_page
   .main_content
   .announcement_section
@@ -224,28 +248,16 @@
 .classroom_page .main_content .classroom_cards .classroom_card {
   width: calc(100% - 2px);
   border-radius: 10px;
-  border: 1px solid #c0c0c0;
+  border: 1px solid rgba(var(--bg),0.3);
   cursor: pointer;
+  background-color: rgba(var(--bg),0.02);
+  /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
+  /* background-color: #ececec; */
 }
-.classroom_page .main_content .classroom_cards .classroom_card .tag {
-  width: fit-content;
-  color: white;
-  height: 20px;
-  font-size: 10px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  padding: 0px 5px;
-  border-radius: 10px;
-  margin: 0;
-  background: rgb(var(--bg));
-}
-.classroom_page .main_content .classroom_cards .classroom_card .tags {
-  display: flex;
-  padding: 10px 20px 0 20px;
-}
+
 .classroom_page .main_content .classroom_cards .classroom_card:hover {
-  background: rgb(245, 245, 245);
+  /* background: rgb(245, 245, 245); */
+  background: rgba(var(--bg),0.05);
 }
 .classroom_page .main_content .classroom_cards .classroom_card .tag {
   margin-right: 5px;
@@ -255,9 +267,12 @@
 }
 .classroom_page .main_content .classroom_cards .classroom_card .creator_info {
   display: flex;
-  align-items: start;
   margin-top: 10px;
-  padding: 0 20px;
+  padding: 5px 15px 0px 15px;
+}
+.classroom_page .main_content .classroom_cards .classroom_card .creator_info.ra{
+  padding: 15px;
+  margin-top: 0;
 }
 .classroom_page
   .main_content
@@ -265,8 +280,8 @@
   .classroom_card
   .creator_info
   .icon_image {
-  height: 35px;
-  width: 35px;
+  height: 2.5rem;
+  width: 2.5rem;
 }
 .classroom_page
   .main_content
@@ -274,6 +289,7 @@
   .classroom_card
   .creator_info
   .info {
+    width: calc(100% - 50px);
   margin-left: 10px;
 }
 .classroom_page
@@ -286,6 +302,7 @@
   margin: 0;
   font-size: 0.875rem;
   color: #3c4043;
+
 }
 .classroom_page
   .main_content
@@ -301,7 +318,7 @@
 }
 .classroom_page .main_content .classroom_cards .classroom_card .body {
   position: relative;
-  padding: 0 20px 10px 20px;
+  padding: 0 15px 10px 15px;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .body h4 {
   color: black;
@@ -544,7 +561,7 @@
   border: none;
 }
 .ra_page .main_content .ra_bottom_bar button:last-child {
-  margin-right: 20px;
+  margin-right: 20px !important;
 }
 .ra_page .main_content .top_content {
   width: 100%;
@@ -632,7 +649,7 @@
   display: flex;
   margin-bottom: 15px;
   position: relative;
-  align-items: center;
+  align-items: flex-start;
 }
 .ra_page .main_content .attendance_button button{
   background-color: rgb(var(--bg));
@@ -673,6 +690,7 @@
   display: flex;
   align-items: start;
   width: 100%;
+  margin-top: -5px;
   margin-left: 10px;
 }
 .ra_page .main_content .header .info .creator_info {
@@ -1811,3 +1829,190 @@
   font-size: 0.85rem;
   margin-right: 10px;
 }
+.new_nav{
+  display: flex;
+  position: sticky;
+  width: calc(100% - 20px);
+  background: white;
+  padding: 0 10px;
+  left: 0;
+  top: 0;
+  border-bottom: 1px solid rgb(218,220,224);
+  height: 50px;
+  align-items: center;
+  justify-content: space-between;
+}
+.new_nav .title{
+  display: flex;
+  align-items: center;
+
+}
+.new_nav .title .close{
+  font-size: 1.3rem;
+  color: #5f6368;
+  width: 40px;
+  display: flex;
+  align-items: center;
+  border-radius: 50%;
+  cursor: pointer;
+  justify-content: center;
+  height: 40px;
+}
+.new_nav .title .close:hover{
+  background-color: #e2e2e2;
+}
+.new_nav .title .icon{
+  height: 30px;
+  margin-left: 5px;
+  width: 30px;
+}
+.new_nav .title .icon i{
+  font-size: 16px;
+  color: rgb(var(--bg));
+}
+.new_nav .title span{
+  font-size: 1.2rem;
+  color: #5f6368;
+  font-weight: 500;
+  margin-left: 5px;
+}
+.new_work{
+  background-color: rgb(248,249,250);
+  display: flex;
+  /* flex-wrap: wrap; */
+  width: 100%;
+  height: calc(100vh - 111px);
+}
+.new_work .form{
+  margin: 0 auto;
+  display: flex;
+  overflow-x: hidden;
+  flex-direction: column;
+  flex-grow: 1;
+  background: transparent;
+  height: calc(100vh - 111px);
+  overflow-y: scroll;
+  position: relative;
+  align-items: center;
+}
+.new_work .options{
+  /* width: 100%; */
+  min-width: 300px;
+  border-left: 1px solid rgb(218,220,224);
+  height: calc(100vh - 151px);
+  padding: 20px;
+  background: white;
+}
+@media screen and (max-width: 800px){
+  .new_work .options{
+    width: 200px;
+    min-width: 0;
+  }
+  
+}
+.new_work .form .inner_form{
+  display: flex;
+  flex-direction: column;
+  width: calc(100% - 80px);
+  margin: 20px;
+  padding: 20px;
+  margin-bottom: 0;
+  background-color: white;
+  border-radius: 5px;
+  border: 1px solid rgb(218,220,224);
+  /* max-width: 900px; */
+}
+.new_work .form .inner_form .input-field_sec{
+  margin-bottom: 5px;
+}
+.new_work .form .inner_form >span{
+  font-size: 0.725rem;
+  margin-left: 5px;
+  color: #5f6368;
+  margin-bottom: 20px;
+}
+.new_work .form .inner_form .text-area{
+  margin-bottom: 0px;
+}
+.new_work .form .inner_form h3{
+  margin: 0;
+  color: #3c4043;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+.new_work .form .inner_form .attachments{
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 10px;
+}
+.new_work .form .inner_form .file_input_label{
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  padding: 0;
+  font-size: 15px;
+  margin: 0 auto;
+  position: relative;
+  color: #3c4043;
+  margin-bottom: 40px;
+}
+.new_work .form .inner_form .file_input_label::after{
+  content: "Upload";
+  position: absolute;
+  bottom: -25px;
+}
+.new_work .options .input-field_sec{
+  height: 53px;
+}
+.new_work .options .custom_topic{
+  position: relative;
+  display: flex;
+  height: 53px;
+}
+.new_work .options .custom_topic span{
+  position: absolute;
+  right: 10px;
+  top: 50%;
+  z-index: 1000;
+  display: flex;
+  cursor: pointer;
+  align-items: center;
+  font-size: 18px;
+  font-weight: 500;
+  color: #5f6368;
+  bottom: 50%;
+  height: 100%;
+  transform: translate(-50%,-50%);
+}
+.new_work .options h3{
+  margin: 0;
+  color: #3c4043;
+  font-size: 15px;
+  font-weight: 500;
+  margin-bottom: 10px;
+}
+@media screen and (max-width: 650px){
+  .new_work{
+    justify-content: flex-start;
+    flex-direction: column;
+    overflow-y: scroll;
+    overflow-x: hidden;
+  }
+  .new_work .form{
+    width: 100%;
+    height: max-content;
+    overflow: visible;
+  }
+  .new_work .options{
+    width: calc(100% - 41px);
+    height: 100%;
+    min-height: 200px;
+  }
+  .new_work .form .inner_form{
+    margin: 0;
+    width: calc(100% - 40px);
+  }
+}
+

@@ -15,6 +15,8 @@ import ClassroomClass from "./ClassroomClass";
 import ResourceRouter from "../components/ResourceRouting";
 import AssignmentRouter from "../components/AssignmentRouting";
 import { UiContext } from "../store/UiContext";
+import NewResource from "./NewResource";
+import NewAssignment from "./NewAssignment";
 const Classroom = ({ token, setLoading, user, classrooms, api }) => {
   const { class_id } = useParams();
   const [data, setData] = React.useState([]);
@@ -23,11 +25,14 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
   const [current, setCurrent] = React.useState("stream");
   const location = useLocation();
   const { side_open } = React.useContext(UiContext);
+  
   const loadingRef = useRef(false);
   const hasMore = useRef(true);
   const [loading2, setLoading2] = React.useState(false);
   const pageRef = useRef(1);
   const [initialLoaded, setInitialLoaded] = React.useState(false);
+  const [visible, setVisible] = React.useState(true);
+  const [topics, setTopics] = React.useState([]);
   const fetchPage = async (pageNumber) => {
     if (loadingRef.current) return;
     loadingRef.current = true;
@@ -67,7 +72,27 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
       setInitialLoaded(true);
     }
   };
-
+    useEffect(() => {
+      if (token && api && class_id) {
+        const getTopic = async () => {
+          const raw = await fetch(api + `/classroom/${class_id}/topics`, {
+            method: "GET",
+            headers: {
+              "Content-Type": "application/json",
+              Accept: "application/json",
+              Authorization: "Bearer " + token,
+            },
+          });
+          const parsed = await raw.json();
+          if (!parsed.error) {
+            setTopics(
+              parsed.data
+            );
+          } 
+        };
+        getTopic();
+      }
+    }, [class_id, token, api]);
   useEffect(() => {
     setData([]);
     pageRef.current = 1;
@@ -115,7 +140,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
 
   return (
     <>
-        <div className={`navigation ${side_open ? "open" : ""}`}>
+        <div className={`navigation page ${visible?"visible":""} ${side_open ? "open" : ""}`}>
           <div className="tabs">
             <div className={`tab ${current === "stream" ? "active" : ""}`}>
               <Link to="" className="tab_link">
@@ -156,7 +181,9 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 token={token}
                 classroom={classroom}
                 data={data}
+                user={user}
                 api={api}
+                setVisible={setVisible}
               />
               </div>
             }
@@ -165,10 +192,12 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
             path="/assignment/:assignment_id/*"
             element={
               <AssignmentRouter
+                setVisible={setVisible}
                 api={api}
                 user={user}
                 classroom={classroom}
                 class_id={class_id}
+                topics={topics}
                 token={token}
               />
             }
@@ -178,10 +207,12 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
             element={
             
               <ResourceRouter
+              setVisible={setVisible}
                 api={api}
                 user={user}
                 class_id={class_id}
                 classroom={classroom}
+                topics={topics}
                 token={token}
               />
             }
@@ -190,6 +221,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
             path="/settings"
             element={
               <ClassroomSettings
+                setVisible={setVisible}
                 user={user}
                 api={api}
                 classroom={classroom}
@@ -204,6 +236,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
               <div className="page classroom_page">
 
               <ClassroomClass
+                setVisible={setVisible}
                 api={api}
                 user={user}
                 classroom={classroom}
@@ -211,6 +244,36 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 token={token}
               /></div>
             }
+          ></Route>
+          <Route
+          path="/new/resource"
+          element={
+            <div className="page classroom_page">
+            <NewResource
+              setVisible={setVisible}
+              api={api}
+              topics={topics}
+              user={user}
+              classroom={classroom}
+              class_id={class_id}
+              token={token}
+            /></div>
+          }
+          ></Route>
+        <Route
+          path="/new/assignment"
+          element={
+            <div className="page classroom_page">
+            <NewAssignment
+              setVisible={setVisible}
+              api={api}
+              topics={topics}
+              user={user}
+              classroom={classroom}
+              class_id={class_id}
+              token={token}
+            /></div>
+          }
           ></Route>
         </Routes>
     </>

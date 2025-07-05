@@ -7,7 +7,7 @@ const ResourceTopBar = ({ classroom, class_id }) => {
   return (
     <>
       {classroom?.role !== "student" ? (
-        <div className="assignment_top_bar">
+        <div className="assignment_top_bar page">
           <div className="tabs">
             <Link
               to={"/app/classroom/" + class_id + "/resource/" + resource_id}

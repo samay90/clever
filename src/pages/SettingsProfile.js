@@ -142,7 +142,7 @@ const SettingsProfile = ({user,api,token}) => {
                 <Selector value={form.state??""} onChange={(e)=>{setForm({...form,state:e.target.value})}} placeholder='State' option={states??[]}/>
                 <Selector value={form.city??""} onChange={(e)=>{setForm({...form,city:e.target.value})}} placeholder='City' option={cities??[]}/>
             </div>
-            <div className='button_group2'>
+            <div className='button_group btn_group'>
                 <button className='btn_tertiary' onClick={(e)=>{setForm(user);}}>Reset</button>
                 <button className='btn_secondary' onClick={handleSubmit} disabled={loading}>{loading?<span className='btn_loading'></span>:"Save"}</button>
             </div>

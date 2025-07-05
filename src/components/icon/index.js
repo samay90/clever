@@ -1,10 +1,10 @@
 import "./index.css"
-const Icon = ({url,chr,height,className}) => {
+const Icon = ({url,chr,height,className,icon,background}) => {
   if (!chr){chr=" "}
   return (
-    <div className={'icon_image '+className}>
+    <div className={'icon_image '+className} style={{background:background}}>
         {url?<img src={url} alt='icon_img'/>:""}
-        <h2 style={{fontSize:((18/40)*height).toString()+"px"}}>{chr.toUpperCase()}</h2>
+        {icon?icon:<h2 style={{fontSize:((18/40)*height).toString()+"px"}}>{chr.toUpperCase()}</h2>}
     </div>
   )
 }

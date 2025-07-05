@@ -76,3 +76,12 @@
     overflow-y: scroll;
     height: 100%;
 }
+.btn_secondary:disabled{
+  background: #9fa2ff !important;
+  cursor: not-allowed !important;
+}
+.btn_secondary:disabled:focus{
+  background: #9fa2ff !important;
+  cursor: not-allowed !important;
+  opacity: 1 !important;
+}

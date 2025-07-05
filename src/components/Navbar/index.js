@@ -1,5 +1,5 @@
-import React, { useState } from 'react'
-import { Link, Outlet, useNavigate } from 'react-router-dom'
+import React, {  useEffect, useState } from 'react'
+import { Link, Outlet, useLocation, useNavigate } from 'react-router-dom'
 import full_logo from "../../static/images/full_logo.png"
 import './style.css'
 import Dropdown from '../Dropdown'
@@ -14,11 +14,21 @@ import { UiContext } from '../../store/UiContext'
 const Navbar = ({token,setToken,api,user,classrooms}) => {
   const {side_open,setSide_Open} = React.useContext(UiContext);
   const [open,setOpen] = useState(false)  
-  const [createLoading,setCreateLoading] = useState(false)
+  const [createLoading,setCreateLoading] = useState(false);
   const [createClass,setCreateClass] = useState({
     class_name:"",
     class_description:""
   })
+  const location = useLocation();
+  useEffect(()=>{
+    let path = location.pathname.split("/")[3];
+    if (path){
+      setActive(parseInt(path))
+    }else{setActive(-1)}
+    
+    
+  },[location.pathname])
+  const [active,setActive] = useState(-1)
   const [joinOpen,setJoinOpen] = useState(false)
   const [joinLoading,setJoinLoading] = useState(false)
   const [join_code,setJoinCode] = useState("")
@@ -106,14 +116,15 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       })
     }
   }
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+  // const 
   return (
     <>
     <ModalSecondary open={open} setOpen={setOpen} heading={"Create Classroom"}>
         <div className='nav_form'>
           <InputSecondary placeholder="Classroom Name" value={createClass.class_name} type="text" secondary_placeholder="The Nerd Herd" onChange={(e)=>{setCreateClass(prev=>({...prev,class_name:e.target.value}))}} maxLength={50} disabled={false} />
           <TextArea placeholder="Classroom Description" type="text" value={createClass.class_description} secondary_placeholder="Here we learn about all the things that is not realted to purpose for what it is made." onChange={(e)=>{setCreateClass(prev=>({...prev,class_description:e.target.value}))}} maxLength={200} disabled={false} />
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setOpen(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"80px"}} disabled={createLoading} onClick={createClassroom}>{createLoading?<span className='btn_loading'/>:"Create"}</button>
           </div>
@@ -122,7 +133,7 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
     <ModalSecondary open={joinOpen} setOpen={setJoinOpen} heading={"Join Classroom"}>
         <div className='nav_form'>
           <InputSecondary placeholder="Classroom Code" value={join_code} type="text" secondary_placeholder="Ask to teacher" onChange={(e)=>{setJoinCode(e.target.value)}} disabled={false} />
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setJoinOpen(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"80px"}} disabled={joinLoading} onClick={joinClassroom}>{joinLoading?<span className='btn_loading'/>:"Join"}</button>
           </div>
@@ -161,15 +172,26 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
           
         </div>
       </div>
+      <div onClick={()=>{setSide_Open(false)}} className={`overlay ${side_open?"overlay_open":""}`}></div>
       <div className='main'>
-        <div id='sidebar' className={`side_bar ${side_open?"sidebar_open":""}`}>
+        <div id='sidebar'  className={`side_bar ${side_open?"sidebar_open":""}`}>
+            <div className='app_title'>
+              <img alt='app_logo' src={full_logo} className='app_logo'></img>
+              <i onClick={()=>{setSide_Open(false)}} className="fa-regular fa-xmark"></i>
+            </div>
+            <div className='e_space'></div>
+            <div className={`class_title clickable ${active===-1?"active":""}`} onClick={()=>{navigate("/app/home")}}>
+              <div className='icon'><i className="fa-regular fa-home"></i></div>
+              <div className='title'>Home</div>
+            </div>
             <div className='class_title'>
               <div className='icon'><i className="fa-regular fa-screen-users"></i></div>
               <div className='title'>Classrooms</div>
             </div>
+            <div className='classes'>
             {
               classrooms.map((classroom,key)=>{
-                return <div key={key} onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`)}} className='class_placeholder' style={{"--bg":colors[conv[classroom.banner_id]]}}>
+                return <div key={key} onClick={()=>{navigate(`/app/classroom/${classroom.class_id}`)}} className={`class_placeholder ${classroom.class_id===active?"active":""}`} style={{"--bg":colors[conv[classroom.banner_id]]}}>
                 <div className='icon' ><h1>{classroom.class_name[0]}</h1></div>
                 <div className='class_name'>
                   <h2>{classroom.class_name}</h2>
@@ -178,6 +200,8 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
               </div>
               })
             }
+            </div>
+            
         </div>
         <div className={`content ${side_open?"content_shrink":""}`}>
           <Outlet/>

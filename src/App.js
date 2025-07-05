@@ -14,7 +14,7 @@ import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 import FileViewer from './components/FileViewer'
 const App = () => {
-  const url = "https://clever-alpha.vercel.app"
+  const url = "http://192.168.0.102:9920"
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()
@@ -92,7 +92,7 @@ const App = () => {
   },[token])
   useEffect(() => {
     if (location.pathname==="/"){navigate("/app/home")}
-  },[location.pathname])
+  },[location.pathname,navigate])
   return (
     <> 
       <Toaster/>

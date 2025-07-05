@@ -5,12 +5,13 @@ import AssignmentEdit from "../../pages/AssignmentEdit";
 import AssignmentTopBar from "../AssignmentTopBar";
 import React from "react";
 
-const AssignmentRouter = ({ classroom, class_id, token, api }) => {
+const AssignmentRouter = ({ classroom, class_id, token, api ,setVisible,topics}) => {
   const { assignment_id } = useParams();
   const [assignment, setAssignment] = React.useState(null);
   const navigate = useNavigate();
 
   React.useEffect(() => {
+    setVisible(false);
     const getAssignment = async () => {
       if (token && api) {
         const data = await fetch(
@@ -33,7 +34,7 @@ const AssignmentRouter = ({ classroom, class_id, token, api }) => {
       }
     };
     getAssignment();
-  }, [assignment_id, api, class_id, token, navigate]);
+  }, [assignment_id, api, class_id, token, navigate,setVisible]);
   return (
     <Routes>
       <Route
@@ -73,6 +74,7 @@ const AssignmentRouter = ({ classroom, class_id, token, api }) => {
               api={api}
               classroom={classroom}
               class_id={class_id}
+              topics={topics}
               token={token}
             />
           </div>

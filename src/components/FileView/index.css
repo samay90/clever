@@ -36,14 +36,5 @@
     border-radius:0 0 10px;
     margin-top: 0px;
     position: relative;
-}
-.file_view .file_name p::after{
-    content: "";
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    height: 25px;
-    border-radius:0 0 10px;
-    width: 20px;
-    background: linear-gradient(to left, #fff 30%, transparent);
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 1) 100px, transparent);
 }

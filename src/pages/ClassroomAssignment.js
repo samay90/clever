@@ -95,7 +95,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
         <div className='nav_form'>
           <p className='text_secondary'>Are you sure you want to delete this assignment. Once deleted it can't be recovered.</p>
           <br/>
-          <div className='button_group'>
+          <div className='button_group btn_group'>
               <button className='btn_tertiary' onClick={()=>{setDeleteOpen(false)}}>Cancel</button>
               <button className='btn_secondary' style={{width:"80px"}} disabled={deleteLoading} onClick={deleteAssignment}>{deleteLoading?<span className='btn_loading'/>:"Delete"}</button>
           </div>
@@ -103,7 +103,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
     </ModalSecondary>
     <div className='page ra_page modal_page_content'>
         {assignment?<div className='main_content'>
-            {classroom?.role!=="student"?<div className='ra_bottom_bar'>
+            {classroom?.role!=="student"?<div className='ra_bottom_bar btn_group'>
                 <button className='btn_tertiary' onClick={()=>{setDeleteOpen(true)}}><i className="fa-regular fa-trash"></i> &nbsp;Delete</button>
                 <button className='btn_secondary' onClick={()=>{navigate("/app/classroom/"+class_id+"/assignment/"+assignment_id+"/edit")}}><i className="fa-regular fa-pen"></i> &nbsp;Edit</button>
             </div>:""}

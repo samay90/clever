@@ -5,6 +5,7 @@
     margin-bottom: 20px;
     position: relative;
     height: 100%;
+    background-color: #fafafa;
     border-radius: 5px;
     /* overflow: hidden; */
 }
@@ -19,7 +20,7 @@
     font-family: inherit;
     /* height: auto; */
     min-height: 15px;
-    padding: 20px 12px 5px 15px;
+    padding: 22px 12px 5px 15px;
     outline: none;
     z-index: 1;
     border-radius: 5px;
@@ -29,7 +30,7 @@
 }
 
 .text-area textarea:focus ~ label{
-    top: 10px !important;
+    top: 15px !important;
     font-size: 10px !important;
     z-index: 0 !important;
     color: var(--primary-color);
@@ -52,7 +53,7 @@
     font-size: 10px;
     font-weight: 500;
     position: absolute;
-    top: 10px;
+    top: 15px;
     left: 10px;
     padding: 0 5px;
     z-index: 0;

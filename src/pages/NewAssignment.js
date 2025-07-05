@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import Icon from "../components/icon";
 import colors from "../static/colors.json";
 import conv from "../static/banner.json";
@@ -9,65 +9,36 @@ import FileInput from "../components/FileInput";
 import Selector from "../components/Selector";
 import axios from "axios";
 import toast from "react-hot-toast";
-import { useParams } from "react-router-dom";
-import iconsMap from "../static/iconsMap.json";
-const AssignmentEdit = ({
+const NewAssignment = ({
   api,
   token,
   class_id,
   classroom,
+  setVisible,
   topics,
 }) => {
-  const {assignment_id} = useParams();
+  useEffect(() => {
+    setVisible(false);
+  }, [setVisible]);
   const navigate = useNavigate();
   const [form, setForm] = React.useState({});
   const [files, setFiles] = React.useState([]);
   const [customTopic, setCustomTopic] = React.useState(false);
   const [loading, setLoading] = React.useState(false);
-  const [deleteIds, setDeleteIds] = React.useState([]);
-  
-    React.useEffect(() => {
-    const getAssignment = async () => {
-      if (token && api) {
-        const data = await fetch(
-          api + `/classroom/${class_id}/assignment/${assignment_id}`,
-          {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: "Bearer " + token,
-            },
-          }
-        );
-        const parsed = await data.json();
-        if (!parsed.error) {
-          const date = new Date(parseInt(parsed.data.due_date_time));
-          setForm({...parsed.data,due_date_time:date.toISOString().slice(0,16)});
-        } else {
-          navigate("/app/home");
-        }
-      }
-    };
-    getAssignment();
-}, [assignment_id, api, class_id, token, navigate]);
-  const editAssignment = async () => {
-    const formData = new FormData() ; 
+  const addWork = async () => {
+    const formData = new FormData();
     setLoading(true);
-    formData.append("title", form.title);
-    formData.append("body", form.body);
-    formData.append("topic", form.topic);
+    formData.append("title", form.title ?? "");
+    formData.append("body", form.body ?? "");
+    formData.append("topic", form.topic ?? "");
+    formData.append("due_date_time", form.due_date_time);
+    formData.append("total_marks", form.total_marks);
     files.forEach((file) => {
       formData.append("attachments", file);
     });
-    formData.append("due_date_time", new Date(form.due_date_time));
-    formData.append("total_marks", form.total_marks);
-    formData.append("delete_attachments", JSON.stringify(deleteIds));
-    console.log(formData);
-    
     try {
       const raw = await axios.post(
-        api + `/classroom/${class_id}/assignment/${assignment_id}/edit`,
+        api + `/classroom/${class_id}/assignment/new`,
         formData,
         { headers: { authorization: "Bearer " + token } }
       );
@@ -82,7 +53,7 @@ const AssignmentEdit = ({
           fontSize: "12px",
         },
       });
-      navigate("/app/classroom/" + class_id + "/assignment/" + assignment_id);
+      navigate(-1);
     } catch (e) {
       setLoading(false);
       toast.error(e.response.data.message, {
@@ -97,7 +68,6 @@ const AssignmentEdit = ({
       });
     }
   };
-  
   return (
     <>
       <div
@@ -124,12 +94,12 @@ const AssignmentEdit = ({
         </div>
         
           <button
-            onClick={editAssignment}
+            onClick={addWork}
             style={{ width: "80px" }}
             disabled={loading}
             className="btn_secondary"
           >
-            {loading ? <span className="btn_loading"></span> : "Save"}
+            {loading ? <span className="btn_loading"></span> : "Publish"}
           </button>
       </div>
       <div className="new_work page">
@@ -159,24 +129,6 @@ const AssignmentEdit = ({
             />
           </div>
           <div className="inner_form">
-            <h3>Previous attachments</h3>
-            <div className="attachments">
-              {form.attachments && form.attachments.map((attachment,i) => {
-                  return (
-                    (!deleteIds.includes(attachment.cd_id) && 
-                  <div className='file_view' key={i}>
-              <div className='preview'>
-                  <i className={`fa-light ${iconsMap[attachment.url.split("/")[attachment.url.split("/").length-1].split(".")[1]]}`}></i>
-              </div>
-              <div className='file_name'>
-                  <p>{attachment.url.split("/")[attachment.url.split("/").length-1]}</p>
-                  <i onClick={() => setDeleteIds([...deleteIds,attachment.cd_id])} className="fa-regular fa-xmark"></i>
-              </div>
-          </div>)
-                  );
-                })}
-            </div>
-              
             <h3>Attach</h3>
             <FileInput
               key={1}
@@ -250,4 +202,4 @@ const AssignmentEdit = ({
   );
 };
 
-export default AssignmentEdit;
+export default NewAssignment;

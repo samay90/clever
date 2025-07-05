@@ -17,6 +17,11 @@
     border: 1px solid #adadad;
     margin-bottom: 10px;
 }
+.file_input .files{
+    display: flex;
+    gap: 10px;
+    flex-wrap: wrap;
+}
 .file_input label:hover{
     background: #eeeeee;
     /* color: white; */
@@ -27,56 +32,30 @@
 .file_input input{
     display: none;
 }
-.file_input .preview{
-    display: flex;
-    flex-wrap: wrap;
-    margin-bottom: 10px;
+.file_input p{
+    width: 120px !important;
 }
-.file_input .preview .file{
+.file_input .file_view{
+    cursor: auto;
+}
+.file_view .file_name{
     display: flex;
-    border: 1px solid #c0c0c0;
-    font-size: 12px;
-    width: fit-content;
-    border-radius: 20px;
-    margin-right: 5px;
-    margin-bottom: 5px;
+    align-items: center;
+    position: relative;
+}
+.file_view .file_name i{
     cursor: pointer;
-    padding: 0;
-    text-decoration: none;
-    color: #3C4043;
-}
-.file_input .preview p{
-    margin: 0;
-    padding: 0;
-    font-size: 12px !important;
-    text-decoration: none;
-    color: #3C4043;
-    width: 100px;
-    font-weight: 600 !important;
-    overflow: hidden;
-    display: flex;
-    padding: 5px 10px;
-    word-wrap: break-word;
-    height: 15px;
-    /* background: red; */
-    white-space-collapse: collapse !important;
-    border: none;
-    margin: 0;
-}
-.file_input .preview .file:hover{
-    background: #f3f3f3;
-}
-.file_input .preview .file i{
-    background: #e4e4e4;
-    margin-left: 0px;
-    width: 30px;
-    border-radius: 0 20px 20px 0;
+    color: #504d4d;
+    position: absolute;
+    height: 25px;
+    right: 0px;
+    width: 25px;
     display: flex;
     align-items: center;
     justify-content: center;
-} 
-.file_input .preview p i{
-    background: transparent !important;
-    width: fit-content !important;
-    margin-right: 5px;
+    font-size: 15px;
+    border-radius: 50px;
+}
+.file_view .file_name i:hover{
+    background-color: #e2e2e2;
 }

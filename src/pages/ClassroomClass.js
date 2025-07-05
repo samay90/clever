@@ -5,7 +5,7 @@ import moment from 'moment';
 import Dropdown from '../components/Dropdown';
 import toast from 'react-hot-toast';
 import {Empty} from '../components/Empty';
-const ClassroomClass = ({api,class_id,token,classroom,user}) => {
+const ClassroomClass = ({api,class_id,token,classroom,user,setVisible}) => {
     const [classmates,setClassmates] = React.useState([]);
     const [teachers,setTeachers] = React.useState([]);
     const [students,setStudents] = React.useState([]);
@@ -16,6 +16,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
         setStudents(classmates.filter((item)=>{return item.role === "student"}));
     },[classmates])
     useEffect(()=>{
+        setVisible(true)
         const getClassMates = async () => {
             const raw =await fetch(api+`/classroom/${class_id}/class`,{
                 method:"GET",
@@ -31,7 +32,7 @@ const ClassroomClass = ({api,class_id,token,classroom,user}) => {
         if (token){
             getClassMates()
         }
-    },[token,api,class_id])
+    },[token,api,class_id,setVisible])
     const getUserData =async (user_id) =>{
         const raw = await fetch(api+`/classroom/${class_id}/class/${user_id}`,{
             method:"GET",
