@@ -1897,7 +1897,6 @@
 }
 .new_work .options{
   /* width: 100%; */
-  min-width: 300px;
   border-left: 1px solid rgb(218,220,224);
   height: calc(100vh - 151px);
   padding: 20px;
@@ -2008,7 +2007,6 @@
   .new_work .options{
     width: calc(100% - 41px);
     height: 100%;
-    min-height: 200px;
   }
   .new_work .form .inner_form{
     margin: 0;
