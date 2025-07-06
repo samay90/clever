@@ -110,7 +110,7 @@ const NewResource = ({ api, token, class_id, classroom, setVisible,topics }) => 
                       <InputSecondary autoFocus={true} placeholder={"Topic"} secondary_placeholder={"Week 11"} type={"text"} value={form.topic} onChange={(e) => setForm({...form,topic:e.target.value})}/>
                       <span onClick={() => setCustomTopic(false)}><i className="fa-solid fa-close"></i></span>
                   </div>:
-                  <Selector placeholder={"Topic"} option={[...topics.map((opt) => opt.topic),"Add Topic"]} value={form.topic} onChange={(e) => {
+                  <Selector placeholder={"Topic"} option={["",...topics.map((opt) => opt.topic),"Add Topic"]} value={form.topic} onChange={(e) => {
                     if (e.target.value==="Add Topic"){setForm({...form,topic:""});setCustomTopic(true);return;}
                     setForm({...form,topic:e.target.value});}}></Selector>}
                 </div>

@@ -17,6 +17,7 @@ import AssignmentRouter from "../components/AssignmentRouting";
 import { UiContext } from "../store/UiContext";
 import NewResource from "./NewResource";
 import NewAssignment from "./NewAssignment";
+import ClassroomWork from "./ClassroomWork";
 const Classroom = ({ token, setLoading, user, classrooms, api }) => {
   const { class_id } = useParams();
   const [data, setData] = React.useState([]);
@@ -148,10 +149,16 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 <span>Stream</span>
               </Link>
             </div>
+            <div className={`tab ${current === "classwork" ? "active" : ""}`}>
+              <Link to="classwork" className="tab_link">
+                <i className="fa-regular fa-memo"></i>
+                <span>Classwork</span>
+              </Link>
+            </div>
             <div className={`tab ${current === "myclass" ? "active" : ""}`}>
               <Link to="myclass" className="tab_link">
                 <i className="fa-regular fa-screen-users"></i>
-                <span>My</span> Class
+                <span>My</span>class
               </Link>
             </div>
             {classroom && classroom.role === "creator" ? (
@@ -184,6 +191,22 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 user={user}
                 api={api}
                 setVisible={setVisible}
+              />
+              </div>
+            }
+          />
+          <Route
+            path="/classwork"
+            element={
+              <div className="page classroom_page" ref={ref} style={{height:"100%"}}>
+              <ClassroomWork
+                token={token}
+                classroom={classroom}
+                user={user}
+                api={api}
+                class_id={class_id}
+                setVisible={setVisible}
+                topics={topics}
               />
               </div>
             }

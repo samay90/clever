@@ -135,6 +135,18 @@ hr{
   border-radius: 50px 0 0 50px !important;
   margin: 0 !important;
 }
+.btn_group-2{
+  display: flex;
+  gap: 0;
+}
+.btn_group-2 button:first-child{
+  border-radius: 50px 0 0 50px !important;
+  margin: 0 !important;
+}
+.btn_group-2 button:last-child{
+  border-radius: 0 50px 50px 0 !important;
+  margin: 0 !important;
+}
 @keyframes btn_loading {
   0%{
     transform: rotate(0deg);

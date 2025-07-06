@@ -63,7 +63,6 @@ const AssignmentEdit = ({
     formData.append("due_date_time", new Date(form.due_date_time));
     formData.append("total_marks", form.total_marks);
     formData.append("delete_attachments", JSON.stringify(deleteIds));
-    console.log(formData);
     
     try {
       const raw = await axios.post(
@@ -231,7 +230,7 @@ const AssignmentEdit = ({
             ) : (
               <Selector
                 placeholder={"Topic"}
-                option={[...topics.map((opt) => opt.topic), "Add Topic"]}
+                option={["",...topics.map((opt) => opt.topic), "Add Topic"]}
                 value={form.topic}
                 onChange={(e) => {
                   if (e.target.value === "Add Topic") {

@@ -203,7 +203,7 @@ const ResourceEdit = ({
             ) : (
               <Selector
                 placeholder={"Topic"}
-                option={[...topics.map((opt) => opt.topic), "Add Topic"]}
+                option={["",...topics.map((opt) => opt.topic), "Add Topic"]}
                 value={form.topic}
                 onChange={(e) => {
                   if (e.target.value === "Add Topic") {
