@@ -91,10 +91,10 @@ const SettingsProfile = ({user,api,token}) => {
         formData.append("bio",form.bio)
         formData.append("dob",dateConverter(form.dob))
         formData.append("profile",profile);
-        await axios.post(api+"/user/profile/update",formData,{headers:{authorization:"Bearer "+token}}).then((res)=>{setLoading(false);toast.success(res.data.message,{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})}).catch(res=>{
+        await axios.post(api+"/user/profile/update",formData,{headers:{authorization:"Bearer "+token}}).then((res)=>{setLoading(false);toast.success(res.data.message,{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})}).catch(res=>{
             setLoading(false)
             if (res.response.data.error){
-                toast.error(res.response.data.message,{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+                toast.error(res.response.data.message,{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})
             }
         })
         
@@ -102,9 +102,9 @@ const SettingsProfile = ({user,api,token}) => {
     const handleProfileImage = (e) =>{
         const profile_img = e.target.files[0];
         if (!(profile_img.type==="image/png" || profile_img.type==="image/jpeg")){
-            toast.error("Image be of type png or jpg",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+            toast.error("Image be of type png or jpg",{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})
         }else if(profile_img.size>1000000){
-            toast.error("Size of image should be less that 1MB",{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+            toast.error("Size of image should be less that 1MB",{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})
         }else{
             setProfile(profile_img);
         }
@@ -144,7 +144,7 @@ const SettingsProfile = ({user,api,token}) => {
             </div>
             <div className='button_group btn_group'>
                 <button className='btn_tertiary' onClick={(e)=>{setForm(user);}}>Reset</button>
-                <button className='btn_secondary' onClick={handleSubmit} disabled={loading}>{loading?<span className='btn_loading'></span>:"Save"}</button>
+                <button className='btn_secondary' style={{width:"60px"}} onClick={handleSubmit} disabled={loading}>{loading?<span className='btn_loading'></span>:"Save"}</button>
             </div>
             </>:<></>}
         </div>

@@ -9,6 +9,7 @@ import FileView from '../components/FileView';
 const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,submission}) => {
   const navigate = useNavigate();
   const [marks,setMarks] = React.useState("");
+  
   useEffect(()=>{
     if (submission && submission.marks!=null){
       setMarks(submission.marks);
@@ -33,10 +34,10 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
     }else{
       setIsLoading(false);
       toast.error(parsed.message,{
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -60,13 +61,13 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
             </div>
           </div>
           <div>
-            <span className={`status ${submission?.submission_id===null?"orange":(submission?.marks===null?"red":"green")}`}></span>
+            <span className={`status ${submission?.submission_id===null?"orange":(submission?.marks===null?"var(--error)":"green")}`}></span>
           </div>
         </div>
         <div className='submission_content'>
           <div className='submission_info'>
             <h3>Submitted on</h3>
-            <p>{moment(parseInt(submission?.created_at)).format("llll")}</p>  
+            <p>{submission?.created_at?moment(parseInt(submission?.created_at)).format("llll"):"Not submitted"}</p>  
           </div>
           <div className='submission_marks'>
             <MarksInput key={submission?.submission_id} isLoading={isLoading} onSubmit={updateMarks} init_value={submission?.marks??""} placeholder="Enter marks" value={marks} setValue={setMarks} totalMarks={assignment?.total_marks}/>

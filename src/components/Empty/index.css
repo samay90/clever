@@ -9,11 +9,12 @@
     pointer-events: none;
     user-select: none;
     filter: grayscale(1);
+    opacity: var(--empty-invert);
     /* opacity: 0.5; */
 }
 .empty h3{
     margin: 0;
-    color: #5f6368;
+    color: var(--text-muted);
     font-weight: 600;
     font-size: 1rem;
 }

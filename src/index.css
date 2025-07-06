@@ -4,18 +4,19 @@ body {
   font-family: "Manrope", sans-serif;
   font-optical-sizing: auto;
   font-style: normal;
+  background-color: var(--bg-lightest);
 }
 *{
   font-weight: 600;
 }
 :root{
-  --primary-color: #5C60F5;
+  --primary-color: var(--primary-color);
   --secondary-color: #FF8C00;
-  --tertiary-color: #4D4D4D;
+  --tertiary-color: var(--tertiary-color);
   --quaternary-color: #F4F4F4;
-  --faded-color:#e2e4ff;
-  --skeleton-background2: linear-gradient(120deg,#a8a8a8 ,#e4e4e4,#a8a8a8);
-  --skeleton-background:#a8a8a8;
+  --faded-color:var(--faded-color);
+  --skeleton-background2: linear-gradient(120deg,var(--skeleton-dark) ,var(--skeleton-light),var(--skeleton-dark));
+  --skeleton-background:var(--skeleton-dark);
   --skeleton-animation:skeleton_animation 0.5s ease 0s infinite alternate; 
 }
 code {
@@ -43,14 +44,14 @@ code {
 }
 @keyframes skeleton_animation {
   0%{
-    background-color: #a8a8a8;
+    background-color: var(--skeleton-dark);
   }
   100%{
-    background-color: #e4e4e4;
+    background-color: var(--skeleton-light);
   }
 }
 hr{
-  border: 1px solid #e4e4e4;
+  border: 1px solid var(--skeleton-light);
 }
 .btn_secondary{
   padding: 8px 15px !important;
@@ -66,17 +67,17 @@ hr{
   border: 2px solid var(--primary-color) !important;
 }
 .btn_secondary:disabled{
-  background: #9fa2ff !important;
+  background: var(--bg-blue-tint) !important;
   cursor: not-allowed !important;
-  border-color: #9fa2ff !important;
+  border-color: var(--gray-600) !important;
 }
 .btn_secondary:disabled:focus{
-  background: #9fa2ff !important;
+  background: var(--bg-blue-tint) !important;
   cursor: not-allowed !important;
   opacity: 1 !important;
 }
 .text_secondary{
-  color: #4D4D4D;
+  color: var(--tertiary-color);
   font-size: 15px;
   margin: 0;
   font-weight: 500;
@@ -85,14 +86,14 @@ hr{
   padding: 8px 15px;
   font-size: 15px;
   font-weight: 500;
-  background: var(--faded-color);
+  background: var(--bg-blue-tint);
   color: var(--primary-color);
   border-radius: 50px;
   cursor: pointer;
-  border: 2px solid var(--faded-color);
+  border: 2px solid var(--bg-blue-tint);
 }
 .key_shortcut{
-  background: #e4e4e4;
+  background: var(--skeleton-light);
   padding: 5px;
   display: flex;
   align-items: center;
@@ -101,11 +102,11 @@ hr{
   font-size: 12px;
   flex-direction: column;
   font-weight: 500;
-  color: #a8a8a8;
+  color: var(--skeleton-dark);
   letter-spacing: -0.5px;
 }
 .key_shortcut b{
-  color: #4D4D4D;
+  color: var(--tertiary-color);
   margin-left: 3px;
 }
 .key_shortcut  span:last-child{
@@ -119,7 +120,7 @@ hr{
   border: 2px solid white;
   border-top: 2px solid transparent;
   animation: btn_loading 1s linear 0s infinite;
-  /* background: red; */
+  /* background: var(--error); */
 }
 .btn_group{
   display: flex;

@@ -24,10 +24,10 @@ const Signin = ({api,setToken}) => {
     }).then((res)=>res.json()).then((data)=>{
       if (data.error){
         toast.error(data.message,{
-          iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+          iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
           style:{
             borderRadius:"30px",
-            background:"#5C60F5",
+            background:"var(--primary-color)",
             color:"white",
             fontWeight:"100",
             fontSize:"12px"
@@ -35,10 +35,10 @@ const Signin = ({api,setToken}) => {
         })
       }else{
         toast.success(data.message,{
-          iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+          iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
           style:{
             borderRadius:"30px",
-            background:"#5C60F5",
+            background:"var(--primary-color)",
             color:"white",
             fontWeight:"100",
             fontSize:"12px"

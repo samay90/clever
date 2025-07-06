@@ -52,10 +52,10 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       setCreateLoading(false)
       setOpen(false);
       toast.error(parsed.message, {
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -65,10 +65,10 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       setCreateLoading(false)
       setOpen(false)
       toast.success(parsed.message, {
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -92,10 +92,10 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
       setJoinLoading(false)
       setJoinOpen(false);
       toast.error(parsed.message, {
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -105,10 +105,10 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
         setJoinLoading(false)
       setJoinOpen(false);
       toast.success(parsed.message, {
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -201,7 +201,6 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
               })
             }
             </div>
-            
         </div>
         <div className={`content ${side_open?"content_shrink":""}`}>
           <Outlet/>

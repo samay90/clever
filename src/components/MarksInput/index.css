@@ -1,5 +1,5 @@
 .marks_input{
-    border: 1px solid #e0e0e0;
+    border: 1px solid var(--border-light);
     border-radius: 5px;
     align-items: center;
     justify-content: center;
@@ -21,19 +21,21 @@
     width: 70px;
     font-size: 25px;
     outline: none;
+    background: transparent;
+    color: var(--text-color);
     /* text-align: center; */
 }
 .marks_input input::placeholder{
-    color: #e0e0e0;
+    color: var(--border-light);
 }
 .marks_input div h3{
     margin: 0;
-    color: #5f6368;
+    color: var(--text-muted);
     font-weight: 500;
     font-size: 0.825rem;
 }
 .marks_input div span{
-    color: #5f6368;
+    color: var(--text-muted);
     font-weight: 500;
     font-size: 0.825rem;
 }

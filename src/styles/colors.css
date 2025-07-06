@@ -1,0 +1,154 @@
+:root {
+  /* Base Colors */
+  --white: #ffffff;
+  --black: #000000;
+  --black-weak: #0000001a;
+  --black-weaker: #00000028;
+  --black-weakest: #0000003d;
+  --black-bg: #00000048;
+  --transparent: #0000;
+  --pure-black: #000;
+
+  /* Primary & Theme Colors */
+  --primary-color: #5c60f5;
+  --faded-color: #e2e4ff;
+  --tertiary-color: #4d4d4d;
+  --accent-link: #53607e;
+
+  /* Text Colors */
+  --text-color: #3c4043;
+  --text-muted: #5f6368;
+  --text-light: #707070;
+  --text-gray: #504d4d;
+  --text-lightgray: #c9c9c9;
+  --text-darkgray: #3f3f3f;
+  --text-grayish: #7e7e7e;
+
+  /* Border & Background Shades */
+  --border-light: #e0e0e0;
+  --border-lighter: #e2e2e2;
+  --border-silver: silver;
+  --border-gray: #adadad;
+  --border-darkgray: #dbdbdb;
+
+  --bg-lightest: #f7f7f7;
+  --bg-lighter: #fafafa;
+  --bg-light: #f1f2ff;
+  --bg-faint: #fcfcfc;
+  --bg-blue-tint: #ebecff;
+  --bg-dull: #f3f3f3;
+  --bg-muted: #f1f1f1;
+  --bg-overlay: #ffffffb0;
+  --bg-shadow: #0000002f;
+
+  /* Status & Feedback */
+  --success: #0f0;
+  --error: red;
+  --warning: orange;
+  --info: #00a100;
+
+  /* Grayscale Utility */
+  --gray-100: #fafafa;
+  --gray-200: #e0e0e0;
+  --gray-300: #e2e2e2;
+  --gray-400: #dbdbdb;
+  --gray-500: #adadad;
+  --gray-600: #9fa2ff;
+  --gray-700: #838383;
+  --gray-800: #707070;
+
+  /* Misc Elements */
+  --disabled-btn: #9fa2ff;
+  --hover-shadow: #0003;
+  --skeleton-light: #e4e4e4;
+  --skeleton-dark: #a8a8a8;
+
+  /* Transperency */
+  --navbar:#ffffff;
+  --hover-shadow:#00000018;
+  --bg-opacity:0.2;
+  --logo-invert:0.7;
+  --empty-invert:1;
+  
+  /* Gradients */
+  --gradient-skeleton: linear-gradient(120deg, #a8a8a8, #e4e4e4, #a8a8a8);
+  --gradient-footer: linear-gradient(180deg, #0000, #00000050);
+  --gradient-overlay: linear-gradient(180deg, #00000028, #0000);
+  --gradient-icon: linear-gradient(135deg, #a0aec0, #718096);
+}
+[data-theme="dark"] {
+  --white: #0d0d0d;
+  --black: #ffffff;
+  --black-weak: #ffffff1a;
+  --black-weaker: #ffffff28;
+  --black-weakest: #8d83833d;
+  --black-bg: #ffffff48;
+  --transparent: #0000;
+  --pure-black: #000;
+
+  /* Primary & Theme Colors */
+  --primary-color:#8c91ff;         /* lighter version of #5c60f5 */
+  --faded-color: #878ddf;           /* desaturated version of #e2e4ff */
+  --tertiary-color: #c0c0c0;
+  --accent-link: #a0b3ff;
+
+  /* Text Colors */
+  --text-color: #f5f5f5;
+  --text-muted: #a0a0a0;
+  --text-light: #b5b5b5;
+  --text-gray: #aaaaaa;
+  --text-lightgray: #999999;
+  --text-darkgray: #cccccc;
+  --text-grayish: #888888;
+
+  /* Border & Background Shades */
+  --border-light: #444;
+  --border-lighter: #555;
+  --border-silver: #666;
+  --border-gray: #555;
+  --border-darkgray: #444;
+
+  --bg-lightest: #1c1c1c;
+  --bg-lighter: #1a1a1a;
+  --bg-light: #222;
+  --bg-faint: #2a2a2a;
+  --bg-blue-tint:#45475c;
+  --bg-dull: #2f2f2f;
+  --bg-muted: #303030;
+  --bg-overlay: #ffffff1a;
+  --bg-shadow: #0000005f;
+  --bg-card:#1e1f21;
+  /* Status & Feedback */
+  --success: #00ff88;
+  --error: #ff5c5c;
+  --warning: #ffc400;
+  --info: #00ffcc;
+
+  /* Grayscale Utility */
+  --gray-100: #1f1f1f;
+  --gray-200: #2a2a2a;
+  --gray-300: #333;
+  --gray-400: #444;
+  --gray-500: #555;
+  --gray-600: #666;
+  --gray-700: #777;
+  --gray-800: #888;
+
+  /* Misc Elements */
+  --disabled-btn: #6c70ff;
+  --hover-shadow: #ffffff10;
+  --skeleton-light: #333;
+  --skeleton-dark: #555;
+  /* Transperency */
+  --navbar:#272727;
+  --hover-shadow: #ffffff10;
+  --logo-invert:0.3;
+  --bg-opacity:1;
+  --bg-opacity:0.35;
+  --empty-invert:0.4;
+  /* Gradients */
+  --gradient-skeleton: linear-gradient(120deg, #444, #333, #444);
+  --gradient-footer: linear-gradient(180deg, #0000, #111);
+  --gradient-overlay: linear-gradient(180deg, #ffffff1a, #0000);
+  --gradient-icon: linear-gradient(135deg, #555, #777);
+}

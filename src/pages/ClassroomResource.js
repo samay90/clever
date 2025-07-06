@@ -42,10 +42,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         setSubmitLoading(false)
         if (parsed.error){
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -55,10 +55,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             setIsOpen(false)
             setQuery({query_title:'',query_body:''})
             toast.success(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px" 
@@ -100,10 +100,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         const parsed = await raw.json()
         if (parsed.error){
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -130,10 +130,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             setDeleteLoading(false)
             setQueryDelete(false)
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -143,10 +143,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             setDeleteLoading(false)
             setQueryDelete(false)
             toast.success(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -169,10 +169,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         setSubmitLoading(false)
         if (parsed.error){
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -181,10 +181,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }else{
             setQueryEdit(false)
             toast.success(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px" 
@@ -232,10 +232,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         const data =await raw.json()
         if (data.error){
             toast.error(data.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -244,10 +244,10 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
         }else{
             setAttendanceOpen(false)
             toast.success(data.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"

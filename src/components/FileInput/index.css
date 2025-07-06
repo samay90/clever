@@ -1,6 +1,6 @@
 .file_input{
     width: 100%;
-    /* background: red; */
+    /* background: var(--error); */
     height: 100%;
 } 
 .file_input label{
@@ -8,13 +8,13 @@
     display: flex;
     font-size: 15px;
     font-weight: 500;
-    background: white;
+    background: var(--bg-faint);
     color: var(--primary-color);
     align-items: center;
     justify-content: center;
     border-radius: 5px;
     cursor: pointer;
-    border: 1px solid #adadad;
+    border: 1px solid var(--border-light);
     margin-bottom: 10px;
 }
 .file_input .files{
@@ -23,7 +23,7 @@
     flex-wrap: wrap;
 }
 .file_input label:hover{
-    background: #eeeeee;
+    background: var(--bg-dull);
     /* color: white; */
 }
 .file_input input::file-selector-button{
@@ -45,7 +45,7 @@
 }
 .file_view .file_name i{
     cursor: pointer;
-    color: #504d4d;
+    color: var(--text-gray);
     position: absolute;
     height: 25px;
     right: 0px;
@@ -57,5 +57,5 @@
     border-radius: 50px;
 }
 .file_view .file_name i:hover{
-    background-color: #e2e2e2;
+    background-color: var(--border-lighter);
 }

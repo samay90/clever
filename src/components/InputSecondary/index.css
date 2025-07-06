@@ -6,7 +6,7 @@
     width: 100%;
     border-radius: 5px;
     position: relative;
-    background-color: #fafafa;
+    background-color: var(--bg-lighter);
     min-width: 100px;
     height: 100%;
     /* overflow: hidden; */
@@ -20,10 +20,11 @@
     font-size: 14px;
     border-radius: 5px;
     padding: 22px 12px 10px 15px;
+    color: var(--text-color);
     outline: none;
     z-index: 1;
-    border: 1px solid #e2e2e2; 
-    border-bottom: 2px solid #e2e2e2; 
+    border: 1px solid var(--border-lighter); 
+    border-bottom: 2px solid var(--border-lighter); 
     transition: .2s ease;
 }
 /* .input-field_sec::before{
@@ -34,7 +35,7 @@
     width: 100%;
     z-index: -1;
     height: 100%;
-    background-color: #f1f1f1;
+    background-color: var(--bg-muted);
 } */
 .input-field_sec input:focus ~ label{
     top: 15px !important;
@@ -67,6 +68,6 @@
     height: fit-content;
     transition: .2s ease;
     bottom: 50%;
-    color: #707070;
+    color: var(--text-light);
     transform: translate(0%,-50%);
 }

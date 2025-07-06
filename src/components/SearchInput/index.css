@@ -1,5 +1,5 @@
 .search_input{
-    border: 1px solid #c0c0c0;
+    border: 1px solid var(--border-gray);
     border-radius:5px;
     padding: 5px 10px;
     display: flex;
@@ -10,7 +10,7 @@
     display: flex;  
 }
 .search_input i{
-    color: #c0c0c0;
+    color: var(--text-muted);
 }
 .search_input input{
     border: none;
@@ -20,8 +20,8 @@
     width: calc(100%);
     font-size: 15px;
     background: transparent;
-    color: #3c4043;
+    color: var(--text-color);
 }
 .search_input:focus-within{
-    border: 1px solid #838383;
+    border: 1px solid var(--gray-700);
 }

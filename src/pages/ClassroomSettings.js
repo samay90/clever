@@ -43,10 +43,10 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) 
             const data =await req.json()
             if (data.error){
                 toast.error(data.message, {
-                    iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                    iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                     style:{
                         borderRadius:"30px",
-                        background:"#5C60F5",
+                        background:"var(--primary-color)",
                         color:"white",
                         fontWeight:"100",
                         fontSize:"12px"
@@ -77,10 +77,10 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) 
             const data =await req.json()
             if (data.error){
                 toast.error(data.message, {
-                    iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                    iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                     style:{
                         borderRadius:"30px",
-                        background:"#5C60F5",
+                        background:"var(--primary-color)",
                         color:"white",
                         fontWeight:"100",
                         fontSize:"12px"
@@ -88,10 +88,10 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) 
                 })
             }else{
                 toast.success(data.message, {
-                    iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                    iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                     style:{
                         borderRadius:"30px",
-                        background:"#5C60F5",
+                        background:"var(--primary-color)",
                         color:"white",
                         fontWeight:"100",
                         fontSize:"12px"

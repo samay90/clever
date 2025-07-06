@@ -72,10 +72,10 @@ const AssignmentEdit = ({
       );
       setLoading(false);
       toast.success(raw.data.message, {
-        iconTheme: { primary: "#fff", secondary: "#5C60F5" },
+        iconTheme: { primary: "#fff", secondary: "var(--primary-color)" },
         style: {
           borderRadius: "30px",
-          background: "#5C60F5",
+          background: "var(--primary-color)",
           color: "white",
           fontWeight: "100",
           fontSize: "12px",
@@ -85,10 +85,10 @@ const AssignmentEdit = ({
     } catch (e) {
       setLoading(false);
       toast.error(e.response.data.message, {
-        iconTheme: { primary: "#fff", secondary: "#5C60F5" },
+        iconTheme: { primary: "#fff", secondary: "var(--primary-color)" },
         style: {
           borderRadius: "30px",
-          background: "#5C60F5",
+          background: "var(--primary-color)",
           color: "white",
           fontWeight: "100",
           fontSize: "12px",

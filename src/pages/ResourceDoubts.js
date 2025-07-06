@@ -32,7 +32,7 @@ const ResourceDoubts = ({class_id,resource_id,token,api,classroom,user}) => {
                 setSubmitLoading(false);
                 setQueryModal(false);
             }else{
-                toast.error(data.message,{iconTheme:{primary:"#fff",secondary:"#5C60F5"},style:{borderRadius:"30px",background:"#5C60F5",color:"white",fontWeight:"100",fontSize:"12px"}})
+                toast.error(data.message,{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})
             }
         })
     })

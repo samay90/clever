@@ -14,9 +14,9 @@
   position: sticky;
   /* overflow-y: hidden; */
   top: 0px;
-  background-color: #ffffff;
+  background-color: var(--bg-dull);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid var(--border-gray);
   z-index: 100000;
   width: calc(100vw - 0px);
   left: 0;
@@ -91,7 +91,7 @@
   width: calc(100% - 20px);
 }
  .navigation .tabs .tab.active {
-  background: #ebecff;
+  background: var(--bg-blue-tint);
 }
  .navigation .tabs .tab.active span {
   display: block;
@@ -173,14 +173,7 @@
     left: 0;
   }
 }
-.classroom_page .main_content .classroom_info {
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
-    0 2px 6px 2px rgba(60, 64, 67, 0.15);
-  border-radius: 0 0 10px 10px;
-  padding: 5px 20px 5px 20px;
-  display: none;
-  font-size: 0.875rem;
-}
+
 .classroom_page .main_content .classroom_info.active {
   display: block;
 }
@@ -190,10 +183,9 @@
   width: calc(100% - 20px);
   margin-top: 15px;
   padding: 10px;
-  box-shadow: 0 1px 2px 0 rgba(60, 64, 67, 0.3),
-    0 2px 6px 2px rgba(60, 64, 67, 0.15);
+  box-shadow: 0px 0px 5px var(--bg-shadow);
   border-radius: 10px;
-
+  background: var(--bg-faint  );
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -206,11 +198,11 @@
   padding: 6px;
 }
 .classroom_page .main_content .announcement_section .announce_button:hover .text{
-  color: #3c4043;
+  color: var(--text-color);
 }
 .classroom_page .main_content .announcement_section .announce_button .text{
   margin-left: 15px;
-  color: #5f6368;
+  color: var(--text-muted);
   font-size: 0.775rem;
   font-weight: 500;
 }
@@ -225,7 +217,7 @@
  .announce_form .title{
   font-size: 1.125rem;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
   margin-bottom: 10px;
 }
  .announce_form .btn_group{
@@ -237,7 +229,7 @@
   .main_content
   .announcement_section
   .announcement_btn_settings:hover {
-  background: #e4e4e4;
+  background: var(--skeleton-light);
 }
 .classroom_page .main_content .classroom_cards {
   margin-top: 15px;
@@ -248,16 +240,16 @@
 .classroom_page .main_content .classroom_cards .classroom_card {
   width: calc(100% - 2px);
   border-radius: 10px;
-  border: 1px solid rgba(var(--bg),0.3);
+  border: 1px solid var(--border-light);
   cursor: pointer;
-  background-color: rgba(var(--bg),0.02);
+  background-color: var(--bg-faint);
   /* box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; */
   /* background-color: #ececec; */
 }
 
 .classroom_page .main_content .classroom_cards .classroom_card:hover {
   /* background: rgb(245, 245, 245); */
-  background: rgba(var(--bg),0.05);
+  background: var(--bg-muted);
 }
 .classroom_page .main_content .classroom_cards .classroom_card .tag {
   margin-right: 5px;
@@ -301,7 +293,7 @@
   h3 {
   margin: 0;
   font-size: 0.875rem;
-  color: #3c4043;
+  color: var(--text-color);
 
 }
 .classroom_page
@@ -312,7 +304,7 @@
   .info
   p {
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.75rem;
 }
@@ -334,7 +326,7 @@
   font-weight: 500;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .due_date {
-  color: #5f6368;
+  color: var(--text-muted);
   margin: 0px;
   font-size: 12px;
   margin-top: 10px;
@@ -355,7 +347,7 @@
 .classroom_page .main_content .classroom_cards .classroom_card .comment button {
   font-size: 15px;
   font-weight: 500;
-  color: #5f6368;
+  color: var(--text-muted);
   border: none;
   background: transparent;
 }
@@ -451,12 +443,12 @@
 }
 .attendance_list .attendance_box{
   display: flex;
-  border-bottom: 1px solid #e7e7e7;
+  border-bottom: 1px solid var(--border-gray);
   padding: 10px 20px;
   cursor: pointer;
 }
 .attendance_list .attendance_box:hover{
-  background: #f3f3f3;
+  background: var(--bg-light);
 }
 .attendance_list .attendance_box .left{
   display: flex;
@@ -465,13 +457,13 @@
   align-items: center;
 }
 .attendance_list .attendance_box:hover .left::after{
-  background: linear-gradient(to left, #f3f3f3 , transparent);
+  background: linear-gradient(to left, var(--bg-light) , transparent);
 }
 .attendance_list .attendance_box .left::after{
   content: '';
   width: 10px;
   height: 100%;
-  background: linear-gradient(to left, white , transparent);
+  background: linear-gradient(to left, var(--gray-100) , transparent);
   position: absolute;
   right: 0;
   top: 0;
@@ -501,7 +493,7 @@
   font-size: 0.9rem;
   width: 1000px;
   font-weight: 600;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .attendance_list .attendance_box .left .info p{
   margin: 0;
@@ -510,21 +502,21 @@
   margin-top: -3px;
   font-size: 0.8rem;
   font-weight: 500;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .attendance_list .attendance_box .right{
   display: flex;
   width: 50px;
   align-items: center;
   margin-left: auto;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .attendance_list .button_group{
   padding: 10px 20px;
-  border-top: 1px solid #e7e7e7;
+  border-top: 1px solid var(--border-gray);
   position: fixed;
   bottom: 0;
-  background: white;
+  background: var(--bg-lightest);
   left: 0;
   right: 0;
   z-index: 100;
@@ -535,9 +527,9 @@
   width: 100vw;
   right: 0;
   top: calc(100vh - 55px);
-  background-color: #ffffff6b;
+  background-color: var(--bg-dull);
   backdrop-filter: blur(20px);
-  border-top: 1px solid #c0c0c0;
+  border-top: 1px solid var(--border-gray);
   display: flex;
   padding: 10px 0;
   z-index: 999;
@@ -574,10 +566,10 @@
   white-space: pre-wrap;
   font-weight: 500;
   font-size: 0.9025rem;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .mid_content .attachments h3 {
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 15px;
 }
 .ra_page .main_content .mid_content .attachments .data {
@@ -587,7 +579,7 @@
 }
 .ra_page .main_content .mid_content .attachments .attachment_item {
   display: flex;
-  border: 1px solid #c0c0c0;
+  border: 1px solid var(--border-gray);
   font-size: 12px;
   width: fit-content;
   border-radius: 20px;
@@ -595,10 +587,10 @@
   margin-bottom: 5px;
   cursor: pointer;
   text-decoration: none;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .mid_content .attachments .attachment_item:hover {
-  background: #f3f3f3;
+  background: var(--bg-dull);
 }
 .ra_page .main_content .mid_content .attachments .attachment_item .attachment {
   display: flex;
@@ -634,10 +626,10 @@
   margin-bottom: 5px;
   cursor: pointer;
   text-decoration: none;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .mid_content .attachments .attachment:hover {
-  background: #f3f3f3;
+  background: var(--bg-dull);
 }
 .ra_page .main_content .mid_content .attachments .attachment i {
   margin-right: 5px;
@@ -688,6 +680,7 @@
   font-weight: 500;
   font-size: 25px;
   display: flex;
+  color: var(--text-color);
   align-items: start;
   width: 100%;
   margin-top: -5px;
@@ -705,11 +698,11 @@
 .ra_page .main_content .header .info .assignment_info h3 {
   margin: 0;
   font-size: 0.875rem;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .header .info .assignment_info p {
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.75rem;
 }
@@ -720,11 +713,11 @@
 .ra_page .main_content .header .info .creator_info .info h3 {
   margin: 0;
   font-size: 0.875rem;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .header .info .creator_info .info p {
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.75rem;
 }
@@ -790,7 +783,9 @@
   align-items: start;
   z-index: 10;
 }
-
+.ra_page .main_content .bottom_content .title{
+  color: var(--text-color);
+}
 .ra_page .main_content .bottom_content .queries .query_options .query_option,
 .query_icon {
   height: 22px;
@@ -800,12 +795,12 @@
   align-items: center;
   justify-content: center;
   border-radius: 50%;
-  background: #e4e4e4;
+  background: var(--skeleton-light);
   /* box-shadow: 10px 0px 20px #cccccccb; */
-  color: #3c4043;
+  color: var(--text-color);
   margin-bottom: 3px;
   cursor: default;
-  border: 1px solid #c0c0c0;
+  border: 1px solid var(--border-light);
 }
 .ra_page .main_content .bottom_content .queries .query_options .query_option {
   font-size: 12px;
@@ -825,7 +820,7 @@
   min-height: 75px !important;
   padding-bottom: 5px;
   width: 100%;
-  border-bottom: 1px solid #e4e4e4;
+  border-bottom: 1px solid var(--skeleton-light);
 }
 .ra_page
   .main_content
@@ -838,7 +833,7 @@
   margin: 0;
   padding: 0;
   font-size: 0.925rem;
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--text-color);
 }
 
 .ra_page
@@ -849,7 +844,7 @@
   .query_question
   div
   p {
-  color: rgba(0, 0, 0, 0.87);
+  color: var(--text-muted);
   font-size: 0.825rem;
   white-space: pre-wrap;
   margin: 0px;
@@ -863,7 +858,7 @@
   .query_question
   .query_time {
   font-size: 0.75rem;
-  color: #5f6368;
+  color: var(--text-muted);
   margin: 0;
   font-weight: 500;
 }
@@ -874,8 +869,8 @@
   margin-top: 5px;
   padding:5px 10px;
   border-radius: 10px;
-  background: #f3f3f3;
-  border: 1px solid #e4e4e4;
+  background: var(--bg-dull);
+  border: 1px solid var(--skeleton-light);
 }
 .ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info{
   display: flex;
@@ -891,23 +886,23 @@
 .ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info .name{
   font-size: 0.925rem;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
   margin-left: 10px;
 }
 .ra_page .main_content .bottom_content .queries .query_card .query_solution .student_info .date{
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.725rem;
   margin-left: 5px;
 }
 .ra_page .main_content .bottom_content .queries .query_card .query_solution .reply p{
   margin: 0;
-    color: #5f6368;
+    color: var(--text-muted);
   font-weight: 500;
   font-size: 0.825rem;
 }
 .ra_page .main_content .bottom_content .attachments h3 {
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 15px;
 }
 .ra_page .main_content .bottom_content .attachments .data {
@@ -916,7 +911,7 @@
 }
 .ra_page .main_content .bottom_content .attachments .attachment {
   display: flex;
-  border: 1px solid #c0c0c0;
+  border: 1px solid var(--border-gray);
   font-size: 12px;
   width: fit-content;
   padding: 5px 10px;
@@ -925,10 +920,10 @@
   margin-bottom: 5px;
   cursor: pointer;
   text-decoration: none;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .ra_page .main_content .bottom_content .attachments .attachment:hover {
-  background: #f3f3f3;
+  background: var(--bg-dull);
 }
 .ra_page .main_content .bottom_content .attachments .attachment i {
   margin-right: 5px;
@@ -969,8 +964,7 @@
   margin: 0 auto;
   justify-content: start;
   z-index: 1000;
-  background: white;
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid var(--border-gray);
   align-items: center;
 }
 .settings_navbar h2 {
@@ -992,7 +986,7 @@
 }
 .classroom_settings_page .main_content .header p {
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-size: 0.675rem;
   font-weight: 500;
   margin-top: 10px;
@@ -1002,7 +996,7 @@
 }
 .classroom_settings_page .main_content .settings_content .input p {
   font-size: 10px;
-  color: #5f6368;
+  color: var(--text-muted);
   margin-top: -15px;
   text-align: right;
   width: 100%;
@@ -1029,7 +1023,7 @@
   .submit_area
   button:first-child {
   background: #dfe0ff;
-  color: #5c60f5;
+  color: var(--primary-color);
 }
 .classroom_settings_page
   .main_content
@@ -1040,13 +1034,13 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  background: #5c60f5;
+  background: var(--primary-color);
   color: white;
 }
 .add_content_page {
   width: calc(100% - 30px);
   max-width: 54.5rem;
-  background: red;
+  background: var(--error);
   height: 50px;
 }
 .classroom_class_content {
@@ -1056,6 +1050,7 @@
   justify-content: flex-start;
   flex-direction: column;
   align-items: start;
+  padding-bottom: 100px;
   margin-top: 20px;
   position: relative;
 }
@@ -1065,8 +1060,9 @@
 }
 .classroom_class_content .class_division h2 {
   width: inherit;
-  border-bottom: 0.0625rem solid #e0e0e0;
+  border-bottom: 0.0625rem solid var(--border-light);
   padding-bottom: 10px;
+  color: var(--text-color);
   margin: 0;
 }
 .classroom_class_content .class_division .persons {
@@ -1076,7 +1072,7 @@
   width: calc(inherit - 10px);
   display: flex;
   align-items: center;
-  border-bottom: 0.0625rem solid #e0e0e0;
+  border-bottom: 0.0625rem solid var(--border-light);
   line-height: 50px;
   padding: 0 10px;
   cursor: pointer;
@@ -1088,7 +1084,7 @@
   align-items: center;
 }
 .classroom_class_content .class_division .persons .card:hover {
-  background: #f3f3f3;
+  background: var(--bg-dull);
 }
 .classroom_class_content .class_division .persons .card .profile_icon {
   height: 35px;
@@ -1099,7 +1095,7 @@
   margin-right: 15px;
 }
 .classroom_class_content .class_division .persons .card .name {
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 500;
   text-transform: capitalize;
 }
@@ -1110,7 +1106,7 @@
   height: 40px;
   width: 40px;
   font-size: 20px;
-  color: #3c4043;
+  color: var(--text-color);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1136,7 +1132,7 @@
   display: flex;
   align-items: center;
   height: 40px;
-  color: var(--tertiary-color);
+  color: var(--text-muted);
 }
 .classroom_class_content
   .class_division
@@ -1158,7 +1154,7 @@
   .buttons
   .profile_dropdown
   .dropdown_item:hover {
-  background: #f3f3f3;
+  background: var(--hover-shadow);
 }
 .stream_loader{
   width: 100%;
@@ -1179,11 +1175,11 @@
   .buttons
   .profile_dropdown
   .dropdown_item:last-child:hover {
-  background-color: rgb(255, 219, 219);
-  color: red;
+  /* background-color: ; */
+  color: var(--error);
 }
 .classroom_class_content .class_division .persons .card .view_button:hover {
-  background: #e2e2e2;
+  background: var(--border-lighter);
 }
 .class_division.skeleton .persons .card .part .profile_icon {
   background: var(--skeleton-background);
@@ -1219,12 +1215,12 @@
   margin-bottom: 10px;
 }
 .classroom_class_content .user_profile_modal .user_info_content {
-  border-top: 1px solid #e0e0e0;
+  border-top: 1px solid var(--border-light);
   margin-top: 5px;
   padding-top: 5px;
 }
 .classroom_class_content .user_profile_modal .user_info_content p {
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.825rem;
   margin: 0;
@@ -1234,18 +1230,18 @@
 }
 .classroom_class_content .user_profile_modal .user_info_content p.tag {
   text-transform: capitalize;
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 600;
 }
 .classroom_class_content .user_profile_modal .user_info_content p i {
-  color: #3c4043;
+  color: var(--text-color);
   width: 30px;
   margin-left: -5px;
   display: flex;
   justify-content: center;
 }
 .classroom_class_content .user_profile_modal .user_info_content p span {
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.825rem;
   margin: 0;
@@ -1254,19 +1250,19 @@
 }
 .assignment_submissions {
   width: calc(100%);
-  height: calc(100vh - 152px);
+  height: calc(100vh - 107px);
   overflow: hidden;
 }
 
 .assignment_submissions .as_content{
   display: flex;
   width: 100%;
-  height: calc(100vh - 152px);
+  height: calc(100vh - 107px);
 }
 .assignment_submissions .as_content .lists{
   display: flex;
   flex-direction: column;
-  border-right: 1px solid #e0e0e0;
+  border-right: 1px solid var(--border-light);
   width: 300px;
   height: 100%;
   overflow-y: scroll;
@@ -1275,7 +1271,7 @@
   padding: 10px 15px;
   width: calc(100% - 30px);
   display: flex;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-light);
   align-items: center;
   cursor: pointer;
 }
@@ -1284,7 +1280,7 @@
   align-items: center;
 }
 .assignment_submissions .as_content .lists .student_card:hover{
-  background: #f7f7f7;
+  background: var(--bg-dull);
 }
 .assignment_submissions .as_content .lists .student_card .student_info .icon{
   height: 35px;
@@ -1295,7 +1291,7 @@
 .assignment_submissions .as_content .lists .student_card .student_info .icon .status{
   position: absolute;
   height: 8px;
-  border: 2px solid #fff;
+  border: 2px solid var(--bg-light);
   width: 8px;
   top: -1px;
   right: -2px;
@@ -1303,7 +1299,7 @@
   border-radius: 50%;
 }
 .assignment_submissions .as_content .lists .student_card:hover .student_info .icon .status{
-  border: 2px solid #f7f7f7;
+  border: 2px solid var(--bg-dull);
 }
 .assignment_submissions .as_content .lists .student_card .student_info .icon .status.orange{
   background: orange;
@@ -1316,7 +1312,7 @@
 }
 .assignment_submissions .as_content .lists .student_card .student_info .name{
   display: flex;
-  color: #3c4043;
+  color: var(--text-color);
   flex-direction: column;
   justify-content: center;
 }
@@ -1329,7 +1325,7 @@
   margin-top: -3px;
   font-size: 0.825rem;
   font-weight: 500;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .assignment_submissions .as_content .lists .student_card.header{
   flex-direction: column;
@@ -1337,7 +1333,7 @@
   align-items: flex-start;
   cursor: default;
   padding-bottom: 20px;
-  background-color: #f7f7f7;
+  background-color: var(--bg-lightest);
   position: sticky;
   top: 0;
   z-index: 1000;
@@ -1346,10 +1342,10 @@
   margin: 0;
   margin-top: 0px;
   margin-bottom: 15px;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .assignment_submissions .as_content .lists .student_card.header:hover{
-  background: #f7f7f7;
+  background: var(--bg-lightest);
 }
 .assignment_submissions .as_content .submissions .default_page{
   padding: 20px;
@@ -1358,7 +1354,7 @@
   margin-top: -20px;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title h3{
-  color: #3c4043;
+  color: var(--text-color);
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title h3 i{
   margin-right: 5px;
@@ -1369,12 +1365,13 @@
   gap: 10px;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card{
-  background: #fafafa;
+  background: var(--bg-lighter);
   padding: 15px;
   display: flex;
   cursor: pointer;
   align-items: flex-start;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-light);
+  background-color: var(--bg-faint);
   border-radius: 8px;
   box-shadow: 0px 0px 10px 0px rgba(0, 0, 0, 0.1);
   transition: .3s ease;  
@@ -1384,27 +1381,27 @@
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card h3{
   text-align: left;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   margin: 0px;
   font-size: 1rem;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card h1{
   font-size: 2rem;
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 700;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card h1 span{
   font-size: 20px;
   font-weight: 500;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card h1 span.non_h1{
-  color: #3c4043;
+  color: var(--text-color);
 }
 .assignment_submissions .as_content .submissions .default_page .submission_statistics .card p{
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   margin-top: -5px;
   font-weight: 400;
   font-size: 0.825rem;
@@ -1414,18 +1411,23 @@
   font-size: 1.3rem;
   height: 50px;
   width: 50px;
-  background: #ebecff;
+  background: var(--bg-blue-tint);
   display: flex;
   align-items: center;
   justify-content: center;
-  color: #5c60f5;
+  color: var(--primary-color);
   border-radius: 50%;
+}
+.assignment_submissions .as_content .submissions .default_page .submission_title.instructions h4{
+  color: var(--text-color);
+  font-weight: 500;
+  /* margin: 0; */
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title.instructions{
   margin-top: 20px;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title.instructions p{
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 400;
   font-size: 0.825rem;
   margin: 0;
@@ -1433,7 +1435,7 @@
 .assignment_submissions .as_content .submissions .default_page .submission_title.instructions p span{
   height: 12px;
   width: 12px;
-  background: red;
+  background: var(--error);
   display: inline-block;
   border-radius: 50%;
   margin-right: 10px;
@@ -1442,7 +1444,7 @@
   background: orange;
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title.instructions p span.red{
-  background: red;
+  background: var(--error);
 }
 .assignment_submissions .as_content .submissions .default_page .submission_title.instructions p span.green{
   background: rgb(0, 255, 0);
@@ -1460,8 +1462,8 @@
   position: sticky;
   display: flex;
   top: 0;
-  background: #f7f7f7;
-  border-bottom: 1px solid #e0e0e0;
+  background: var(--bg-lightest);
+  border-bottom: 1px solid var(--border-light);
   align-items: center;
   width: 100%;
 }
@@ -1469,7 +1471,7 @@
   margin-left: 15px;
   cursor: pointer;
   font-size: 18px;
-  color: #3c4043;
+  color: var(--text-muted);
   transition: .3s ease;
 }
 .assignment_submissions .as_content .submissions .submission_page .submission_navbar .back:hover{
@@ -1494,13 +1496,13 @@
 .assignment_submissions .as_content .submissions .submission_page .submission_navbar .user_info h3{
   margin: 0;
   margin-left: 10px;
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 600;
   font-size: 1rem;
 }
 .assignment_submissions .as_content .submissions .submission_page .submission_navbar .user_info p{
   margin: 0;
-  color:#5f6368;
+  color:var(--text-muted);
   font-weight: 500;
   margin-left: 10px;
   font-size: 0.825rem;
@@ -1508,19 +1510,19 @@
 }
 .assignment_submissions .as_content .submissions .submission_page .submission_content{
   padding: 20px;
-  height: calc(100vh - 240px);
+  height: calc(100vh - 197px);
   overflow-x: hidden;
   overflow-y: scroll;
 }
 .assignment_submissions .as_content .submissions .submission_page .submission_content .submission_info h3{
   margin: 0;
-  color: #3c4043;
+  color: var(--text-color);
   font-weight: 600;
   font-size: 1rem;
 }
 .assignment_submissions .as_content .submissions .submission_page .submission_content .submission_info p{
   margin: 0;
-  color:#5f6368;
+  color:var(--text-muted);
   font-weight: 500;
   font-size: 0.825rem;
   margin-top: -3px;
@@ -1535,7 +1537,7 @@
   max-width: 54.5rem;
 }
 .resource_doubts .header h3{
-  color: #3c4043;
+  color: var(--text-color);
 }
 .resource_doubts .doubts{
   width: 100%;
@@ -1543,13 +1545,14 @@
 .resource_doubts .doubts .doubt{
   width: calc(100% - 30px);
   margin-bottom: 10px;
-  border: 1px solid #e0e0e0;
+  border: 1px solid var(--border-light);
   border-radius: 5px;
   padding: 10px 15px;
   cursor: pointer;
+  background-color: var(--bg-faint);
 }
 .resource_doubts .doubts .doubt:hover{
-  background: #f7f7f7;
+  background: var(--bg-dull);
 }
 .resource_doubts .doubts .doubt .student_info{
   display: flex;
@@ -1563,17 +1566,17 @@
 .resource_doubts .doubts .doubt .student_info .student_name{
   font-size: 0.825rem;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .resource_doubts .doubts .doubt .student_info .doubt_date{
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.625rem;
   margin-left: 5px;
 }
 .resource_doubts .doubts .doubt .student_info .add_text{
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-size: 0.625rem;
   margin-right: 3px;
 }
@@ -1584,11 +1587,11 @@
 .resource_doubts .doubts .doubt .doubt_content h4{
   margin: 0;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 0.925rem;
 }
 .resource_doubts .doubts .doubt .doubt_content p{
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.725rem;
   margin: 0;
@@ -1602,8 +1605,8 @@
 }
 .resource_doubts .doubts .doubt .doubt_reply .tag p{
   background-color: rgba(255, 0, 0, 0.11);
-  color: red;
-  border: 1px solid red;
+  color: var(--error);
+  border: 1px solid var(--error);
   padding: 2px 5px;
   font-size: 10px;
   border-radius: 20px;
@@ -1628,12 +1631,12 @@
 .resource_doubts .doubts .doubt .doubt_reply .solver_info .student_name{
   font-size: 0.725rem;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .doubt_modal .doubt_content{
   padding:5px 20px;
   font-size: 0.825rem;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
 }
 .doubt_modal .student_info{
@@ -1641,7 +1644,7 @@
   display: flex;
   margin-bottom: 5px;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-light);
   padding-bottom: 5px;
 }
 .doubt_modal .student_info .icon{
@@ -1654,11 +1657,11 @@
   display: flex;
   flex-direction: column;
   font-weight: 500;
-  color: #3c4043;
+  color: var(--text-color);
   font-size:  0.725rem;
 }
 .doubt_modal .student_info .date{
-  color: #5f6368;
+  color: var(--text-muted);
   font-size: 0.625rem;
   font-weight: 500;
   margin: 0;
@@ -1666,10 +1669,11 @@
 }
 .doubt_modal .doubt_reply{
   padding: 0 20px;
+  margin-top: 20px;
   height: max-content;
 }
 .doubt_modal .doubt_reply textarea{
-  color: #3c4043;
+  color: var(--text-color);
 }
 .doubt_modal .button_group{
   display: flex;
@@ -1751,7 +1755,7 @@
   padding: 20px;
 }
 .classroom_about .head{
-  color: #3c4043;
+  color: var(--text-color);
   margin-top: -10px;
 }
 .classroom_about .head h2{
@@ -1761,19 +1765,19 @@
 .classroom_about .head h3{
   margin: 0;
   margin-top: -5px;
-  color: #5f6368;
+  color: var(--text-muted);
 }
 .classroom_about .about_content{
   margin-top: 10px;
 }
 .classroom_about .about_content h3{
-  color: #3c4043;
+  color: var(--text-color);
   margin: 0;
   font-size: 1rem;
   font-weight: 500;
 }
 .classroom_about .about_content p{
-  color: #5f6368;
+  color: var(--text-muted);
   margin: 0;
   font-weight: 500;
   font-size: 0.825rem;
@@ -1785,7 +1789,7 @@
   margin-top: 10px;
 }
 .classroom_about .about_content .creator_info .title{
-  color: #3c4043;
+  color: var(--text-color);
   margin: 0;
   margin-bottom: 5px;
   font-size: 1rem;
@@ -1807,12 +1811,12 @@
 .classroom_about .about_content .creator_info .info h3{
   margin: 0;
   font-size: 0.875rem;
-  color: #3c4043;
+  color: var(--text-color);
   margin-top: -2px;
 }
 .classroom_about .about_content .creator_info .info p{
   margin: 0;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   font-size: 0.75rem;
   margin-top: -2px;
@@ -1823,7 +1827,7 @@
   flex-wrap: wrap;
 }
 .classroom_about .bottom_content p{
-  color: #3c4043;
+  color: var(--text-color);
   margin: 0;
   font-weight: 500;
   font-size: 0.85rem;
@@ -1833,11 +1837,11 @@
   display: flex;
   position: sticky;
   width: calc(100% - 20px);
-  background: white;
+  background: var(--bg-dull);
   padding: 0 10px;
   left: 0;
   top: 0;
-  border-bottom: 1px solid rgb(218,220,224);
+  border-bottom: 1px solid var(--border-gray);
   height: 50px;
   align-items: center;
   justify-content: space-between;
@@ -1849,7 +1853,7 @@
 }
 .new_nav .title .close{
   font-size: 1.3rem;
-  color: #5f6368;
+  color: var(--text-muted);
   width: 40px;
   display: flex;
   align-items: center;
@@ -1859,7 +1863,7 @@
   height: 40px;
 }
 .new_nav .title .close:hover{
-  background-color: #e2e2e2;
+  background-color: var(--border-lighter);
 }
 .new_nav .title .icon{
   height: 30px;
@@ -1872,12 +1876,12 @@
 }
 .new_nav .title span{
   font-size: 1.2rem;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
   margin-left: 5px;
 }
 .new_work{
-  background-color: rgb(248,249,250);
+  background-color: var(--bg-lighter);
   display: flex;
   /* flex-wrap: wrap; */
   width: 100%;
@@ -1897,10 +1901,11 @@
 }
 .new_work .options{
   /* width: 100%; */
-  border-left: 1px solid rgb(218,220,224);
+  width: 300px;
+  border-left: 1px solid var(--border-gray);
   height: calc(100vh - 151px);
   padding: 20px;
-  background: white;
+  background: var(--bg-dull);
 }
 @media screen and (max-width: 800px){
   .new_work .options{
@@ -1916,9 +1921,9 @@
   margin: 20px;
   padding: 20px;
   margin-bottom: 0;
-  background-color: white;
+  background-color: var(--bg-dull);
   border-radius: 5px;
-  border: 1px solid rgb(218,220,224);
+  border: 1px solid var(--border-gray);
   /* max-width: 900px; */
 }
 .new_work .form .inner_form .input-field_sec{
@@ -1927,7 +1932,7 @@
 .new_work .form .inner_form >span{
   font-size: 0.725rem;
   margin-left: 5px;
-  color: #5f6368;
+  color: var(--text-muted);
   margin-bottom: 20px;
 }
 .new_work .form .inner_form .text-area{
@@ -1935,7 +1940,7 @@
 }
 .new_work .form .inner_form h3{
   margin: 0;
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -1954,12 +1959,17 @@
   font-size: 15px;
   margin: 0 auto;
   position: relative;
-  color: #3c4043;
+  color: var(--text-color);
+  background-color: var(--bg-lightest);
   margin-bottom: 40px;
+}
+.new_work .form .inner_form .file_input_label:hover{
+  background-color: var(--bg-dull);
 }
 .new_work .form .inner_form .file_input_label::after{
   content: "Upload";
   position: absolute;
+  color: var(--text-muted);
   bottom: -25px;
 }
 .new_work .options .input-field_sec{
@@ -1980,14 +1990,14 @@
   align-items: center;
   font-size: 18px;
   font-weight: 500;
-  color: #5f6368;
+  color: var(--text-muted);
   bottom: 50%;
   height: 100%;
   transform: translate(-50%,-50%);
 }
 .new_work .options h3{
   margin: 0;
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 15px;
   font-weight: 500;
   margin-bottom: 10px;
@@ -2021,7 +2031,7 @@
 .class_work .header h2{ 
   margin: 0;
   margin-top: 20px;
-  color: #3c4043;
+  color: var(--text-color);
   font-size: 1.2rem;
   font-weight: 500;
   margin-bottom: 10px;
@@ -2032,8 +2042,8 @@
 }
 .class_work .topic_container .topic_title{
   font-size: 1.4rem;
-  color: #3c4043;
-  border-bottom: 1px solid #e0e0e0;
+  color: var(--text-color);
+  border-bottom: 1px solid var(--border-light);
   padding: 15px;
   font-weight: 500;
 }
@@ -2055,11 +2065,11 @@
   flex-wrap: wrap;
   width: calc(100% - 50px);
   height: 40px;
-  color: #3c4043;
+  color: var(--text-color);
 }
 .class_work .topic_container .topic_cards .topic_card .info .date{
   font-size: 0.825rem;
-  color: #5f6368;
+  color: var(--text-muted);
   font-weight: 500;
 }
 .class_work .topic_container.skeleton .topic_cards .topic_card .info .date{
@@ -2103,11 +2113,11 @@
   padding:5px 15px;
   display: flex;
   align-items: center;
-  border-bottom: 1px solid #e0e0e0;
+  border-bottom: 1px solid var(--border-light);
   cursor: pointer;
 }
 .class_work .topic_container .topic_cards .topic_card:hover{
-  background-color: #f5f5f5;
+  background-color: var(--bg-dull);
   border-radius: 5px;
 }
 .class_work .topic_container.skeleton .topic_cards .topic_card{

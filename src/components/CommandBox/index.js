@@ -44,8 +44,8 @@ const CommandBox = ({classrooms}) => {
             ref.current.style.display = "flex";
             ref3.current.focus()
             setTimeout(()=>{
-                ref.current.style.background= "#00000048";
-                ref2.current.background="red"
+                ref.current.style.background= "var(--black-bg)";
+                ref2.current.background="var(--error)"
                 ref2.current.style.transform = "scale(1)";
                 ref2.current.style.opacity = "1";
             },[5])

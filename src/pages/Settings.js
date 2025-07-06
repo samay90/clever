@@ -11,7 +11,7 @@ const Settings = () => {
         const temp = location.pathname.split("/");
         if (!temp[3]){
             setCrr(0);
-        }else if (temp[3].toLowerCase()==="privacy"){
+        }else if (temp[3].toLowerCase()==="general"){
             setCrr(1);
         }else if (temp[3].toLowerCase()==="notifications"){
             setCrr(2); 
@@ -29,9 +29,9 @@ const Settings = () => {
                 <i className="fa-regular fa-id-card"></i>
                     Profile
                 </Link>
-                <Link to="/app/settings/privacy" className={`tab ${crr===1?"active":""}`}>
-                <i className="fa-regular fa-shield-keyhole"></i>
-                    Privacy
+                <Link to="/app/settings/general" className={`tab ${crr===1?"active":""}`}>
+                <i className="fa-regular fa-toolbox"></i>
+                    General
                 </Link>
                 <Link to="/app/settings/notifications" className={`tab ${crr===2?"active":""}`}>
                 <i className="fa-regular fa-bell"></i>

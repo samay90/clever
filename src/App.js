@@ -13,6 +13,7 @@ import {UiContext} from './store/UiContext'
 import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 import FileViewer from './components/FileViewer'
+import SettingsGeneral from './pages/SettingsGeneral'
 const App = () => {
   const url = "http://192.168.0.102:9920"
   const [token,setToken] = React.useState("")
@@ -24,6 +25,26 @@ const App = () => {
   const [side_open,setSide_Open] = React.useState(false)
   const [crr,setCrr] = React.useState(-1);
   const [files,setFiles] = React.useState([]);
+  const [theme,setTheme] = React.useState(null);
+  useEffect(()=>{
+    const getTheme = async () =>{
+      const temp =await localStorage.getItem("theme")
+      if (theme===null){
+        if (!temp){
+          localStorage.setItem("theme","light")
+          setTheme("light")
+        }else{
+          setTheme(temp)
+        }
+      }else{
+        if (temp!==theme){
+          localStorage.setItem("theme",theme)
+        }
+      }
+      document.documentElement.setAttribute('data-theme', theme);
+    }
+    getTheme()
+  },[theme])
   useEffect(() => {
     const navigateToLogin = () =>{
       if (location.pathname!=="/auth/signup" && location.pathname!=="/auth/signin"){
@@ -40,7 +61,7 @@ const App = () => {
       }
     }
   },[token,navigate,location.pathname])
-  useEffect(() => {
+  useEffect(() => { 
     if (token){
       setLoading(true)
       const getClassrooms = async () =>{
@@ -72,10 +93,10 @@ const App = () => {
         const data =await req.json()
         if (data.error){
           toast.error(data.message,{
-            iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+            iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
             style:{
               borderRadius:"30px",
-              background:"#5C60F5",
+              background:"var(--primary-color)",
               color:"white",
               fontWeight:"100",
               fontSize:"12px"
@@ -98,7 +119,7 @@ const App = () => {
       <Toaster/>
       <CommandBox classrooms={classrooms}/>
       <Loading loading={loading}/>
-      <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open,crr:crr,setCrr:setCrr,files:files,setFiles:setFiles}}>
+      <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open,crr:crr,setCrr:setCrr,files:files,setFiles:setFiles,theme,setTheme}}>
       <FileViewer/>
       <Routes>
         <Route path='/auth/signin' element={<Signin api={url} token={token} setToken={setToken}/>}></Route>
@@ -108,6 +129,7 @@ const App = () => {
           <Route path="/app/classroom/:class_id/*" element={<Classroom classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>
           <Route path='/app/settings/*' element={<Settings api={url} token={token} user={user}/>}>
             <Route path="" element={<SettingsProfile api={url} token={token} user={user}/>}></Route>
+            <Route path="general" element={<SettingsGeneral api={url} token={token} user={user}/>}></Route>
           </Route>
         </Route>
         <Route path='/redirect/*' element={<Redirects api={url} token={token}/>}></Route>

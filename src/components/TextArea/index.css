@@ -5,7 +5,7 @@
     margin-bottom: 20px;
     position: relative;
     height: 100%;
-    background-color: #fafafa;
+    background-color: var(--bg-lighter);
     border-radius: 5px;
     /* overflow: hidden; */
 }
@@ -20,12 +20,13 @@
     font-family: inherit;
     /* height: auto; */
     min-height: 15px;
+    color: var(--text-color);
     padding: 22px 12px 5px 15px;
     outline: none;
     z-index: 1;
     border-radius: 5px;
-    border: 1px solid #e2e2e2; 
-    border-bottom: 2px solid #e2e2e2; 
+    border: 1px solid var(--border-lighter); 
+    border-bottom: 2px solid var(--border-lighter); 
     transition: .2s ease;
 }
 
@@ -62,6 +63,6 @@
     z-index: 1000;
     
     bottom: 20px;
-    color: #707070;
+    color: var(--text-light);
     transform: translate(0%,-50%);
 }

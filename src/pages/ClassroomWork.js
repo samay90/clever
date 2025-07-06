@@ -16,7 +16,9 @@ const ClassroomWork = ({
   const navigate = useNavigate();
   const [classwork, setClasswork] = React.useState([]);
   const [loading, setLoading] = React.useState(false);
+  
   useEffect(() => {
+    setVisible(true);
     if (class_id && api && token) {
       const getClasswork = async () => {
         setLoading(true);
@@ -38,7 +40,7 @@ const ClassroomWork = ({
       };
       getClasswork();
     }
-  }, [class_id, api, token]);
+  }, [class_id, api, token,setVisible]);
   return (
     <div
       className="class_work page"

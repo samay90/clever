@@ -66,10 +66,10 @@ const ClassroomClass = ({api,class_id,token,classroom,user,setVisible}) => {
         if (!parsed.error){
             getUserData(user_id);
             toast.success("Class Updated",{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -77,10 +77,10 @@ const ClassroomClass = ({api,class_id,token,classroom,user,setVisible}) => {
               })
         }else{
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"

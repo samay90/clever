@@ -5,20 +5,22 @@
     margin-bottom: 20px;
 }
 .input-field input{
-    background-color: #EDF0F4;
+    background-color: var(--gray-300);
     font-weight: 400;
     border: none;
     margin-top: 5px;
     font-size: 16px;
     padding: 8px 5px;
+    color: var(--black);
     border-radius: 5px;
     outline: none;
-    border: 2px solid #EDF0F4 
+    border: 2px solid var(--gray-300) 
 }
 .input-field input:focus{
-    border: 2px solid rgb(209, 209, 209);
+    border: 2px solid var(--gray-700);
 }
 .input-field label{
     font-size: 12px;
     font-weight: 500;
+    color: var(--gray-800);
 }

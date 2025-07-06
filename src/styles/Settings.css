@@ -7,7 +7,7 @@
 }
 .settings_page .settings_navigation{
     height: 100px;
-    background: #fcfcfc;
+    background-color: var(--bg-dull);
     overflow: hidden;
     align-items: center;
     position: sticky;
@@ -15,7 +15,7 @@
     right: 0;
     z-index: 100;
     width: 100%;
-    border-bottom: 1px solid #e2e2e2;
+    border-bottom: 1px solid var(--border-gray);
 }   
 .settings_page .settings_navigation .tabs{
     display: flex;
@@ -26,7 +26,7 @@
     font-size: 20px;
     margin-top: 15px;
     margin-left: 15px;
-    color: var(--tertiary-color);
+    color: var(--text-color);
 }
 .settings_page .settings_navigation .tab{
     height: 30px;
@@ -45,7 +45,7 @@
     position: relative;
 }
 .settings_page .settings_navigation .tab.active{
-    background: #ebecff;
+    background: var(--bg-blue-tint);
     color: var(--primary-color);
 }
 .settings_page .settings_navigation .tab::before{
@@ -72,7 +72,6 @@
 }
 .settings_page .settings_content{
     width: 100%;
-    background: #fff;
     display: flex;
     justify-content: center;
     padding-bottom: 50px;
@@ -103,7 +102,6 @@
     flex-direction: column;
     width: 100%;
     align-items: flex-start;
-    background: white;
     margin-top: 10px;
     border-radius: 10px;
     margin-bottom: 20px;
@@ -136,19 +134,19 @@
     border-radius: 50%;
     display: flex;
     align-items: center;
-    background: #0000003d;
+    background: var(--black-weaker);
     justify-content: center;
     cursor: pointer;
     transition: .2s ease;
     z-index: 90;
-    color: #e4e4e4;
+    color: var(--skeleton-light);
 }
 .settings_page .settings_content .settings_form .form .input .container .edit_profile .file_input{
     position: absolute;
     top: 0;
     height: 80px;
     width: 80px;
-    background: red;
+    background: var(--error);
     border-radius: 50%;
     opacity: 0;
 }
@@ -198,4 +196,46 @@
     .settings_page .settings_navigation{
         width: 100vw !important;
     }
+}
+.settings_general .form_header{
+    font-size: 1.4rem;
+    color: var(--text-color);
+}
+.settings_general .form_header h3{
+    margin: 0;
+    margin-top: 20px;
+}
+.settings_general .form_field {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid var(--border-gray);
+    padding: 10px;
+    margin-top: 10px;
+    cursor: pointer;
+    border-radius: 5px 5px 0 0;
+}
+.settings_general .form_field:hover{
+    background-color: var(--bg-dull);
+}
+.settings_general .form_field .label{
+    color: var(--text-color);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.settings_general .form_field .label h3{
+    margin: 0;
+    font-size: 1.2rem;
+    color: var(--text-color);
+}
+.settings_general .form_field .label p{
+    font-size: 0.8rem;
+    color: var(--text-muted);
+    margin-top: -3px;
+}
+.settings_general .form_field .button{
+    display: flex;
+    align-items: center;
+    padding-left: 5px;
 }

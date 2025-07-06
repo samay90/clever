@@ -2,12 +2,13 @@
     height: 100vh;
     overflow: hidden;
     display: flex; 
+    background: var(--bg-lightest);
 }
 .page.auth_page .side_bar{
     width: 350px;
     min-width: 350px;
     height: 100vh;
-    background: #5C60F5;
+    background: var(--primary-color);
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -70,6 +71,9 @@
 .page.auth_page .form_section .inner_section{
     width: 300px;
 }
+.page.auth_page .form_section .inner_section .header{
+    color: var(--text-color);
+}
 .page.auth_page .form_section .inner_section .form .input-field{
     width: 300px;
 }
@@ -94,12 +98,12 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #53607E;
+    color: var(--accent-link);
     font-size: 12px;
     font-weight: 600;
 }
 .page.auth_page .form_section .inner_section .refer_section p{
-    color: #53607E;
+    color: var(--accent-link);
     font-size: 12px;
 }
 

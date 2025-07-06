@@ -35,6 +35,7 @@ const AssignmentSubmissions = ({ api, class_id, token,assignment, classroom }) =
     };
     getSubmissions();
   }, [assignment_id, api, class_id, token, navigate]);
+  
   return (
     <div className="page assignment_submissions">
       <div className="as_content">
@@ -45,7 +46,7 @@ const AssignmentSubmissions = ({ api, class_id, token,assignment, classroom }) =
           </div>
           {
             submissions.filter((i)=>(i.first_name+i.last_name).toLowerCase().includes(search.toLowerCase())|| i.email.toLowerCase().includes(search.toLowerCase())).map((i,key)=>{
-              return <div className="student_card" onClick={()=>{setSubmission(i);navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions/${i.submission_id}`);navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions/${i.submission_id}`)}} key={key}>
+              return <div className="student_card" onClick={()=>{setSubmission(i);navigate(`/app/classroom/${class_id}/assignment/${assignment_id}/submissions/${i.submission_id?i.submission_id:""}`);}} key={key}>
                 <div className="student_info">
                   <div className="icon">
                     <Icon url={i.profile_image} height={35} chr={i.first_name.charAt(0)+i.last_name.charAt(0)}></Icon>
@@ -121,7 +122,7 @@ const AssignmentSubmissions = ({ api, class_id, token,assignment, classroom }) =
                 <span className="status orange"></span>Student has not submitted the assignment.
               </p>
               <p>
-                <span className="status red"></span>Remained for evaluation.
+                <span className="status var(--error)"></span>Remained for evaluation.
               </p>
               <p>
                 <span className="status green"></span>Graded.

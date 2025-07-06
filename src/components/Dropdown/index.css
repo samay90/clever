@@ -9,14 +9,14 @@
     left: 0;
     width: 100vw;
     z-index: 2;
-    /* background: #0000001a; */
+    /* background: var(--black-weak); */
 }
 .dropdown_content{
     position: absolute;
     width: max-content;
     z-index: 101;
-    background: #ffffff;
-    box-shadow: 0px 0px 10px #0000002f;
+    background: var(--bg-dull);
+    box-shadow: 0px 0px 10px var(--bg-shadow);
     right: -25px;
     top: -25px;
     display: flex;
@@ -52,7 +52,7 @@
     position: relative;
 }
 .dropdown_content ul li:hover{
-    background: #ebebeb;
+    background: var(--hover-shadow);
 }
 .dropdown_content ul li .link{
     text-decoration: none;

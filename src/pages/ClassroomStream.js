@@ -39,10 +39,10 @@ const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,ha
       setAnnouncement({title:"",body:""})
     }else{
       toast.error(result.message,{
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -88,8 +88,8 @@ const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,ha
     <ModalSecondary heading="Quick announcement" open={announceOpen} setOpen={setAnnounceOpen}>
 
       <div className='announce_form'>
-            <InputSecondary placeholder="Title" type="text" onChange={(e)=>{setAnnouncement({...announcement,title:e.target.value})}} value={announcement?.title}></InputSecondary>
-            <TextArea placeholder="Body" type="text" onChange={(e)=>{setAnnouncement({...announcement,body:e.target.value})}} value={announcement?.body}></TextArea>
+            <InputSecondary placeholder="Title" secondary_placeholder="Endsem exam result" type="text" onChange={(e)=>{setAnnouncement({...announcement,title:e.target.value})}} value={announcement?.title}></InputSecondary>
+            <TextArea placeholder="Body" secondary_placeholder="Body here..." type="text" onChange={(e)=>{setAnnouncement({...announcement,body:e.target.value})}} value={announcement?.body}></TextArea>
             <div className='btn_group'>
               <div className='btn_tertiary' onClick={()=>setAnnounceOpen(!announceOpen)}>Cancel</div>
               <div className='btn_secondary' style={{width:"32px"}}  onClick={postAnnouncement} disabled={true}>{announceLoading?<span className='btn_loading'></span>:"Post"}</div>

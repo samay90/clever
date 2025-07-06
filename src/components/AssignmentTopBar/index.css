@@ -3,9 +3,9 @@
   height: 45px;
   position: sticky;
   top:0px !important;
-  background-color: #ffffff;
+  background-color: var(--bg-dull);
   backdrop-filter: blur(20px);
-  border-bottom: 1px solid #c0c0c0;
+  border-bottom: 1px solid var(--border-gray);
   z-index: 20000;
   right: 0;
   left: 0;
@@ -64,7 +64,7 @@
   width: calc(100% - 20px);
 }
 .assignment_top_bar .tabs .tab.active {
-  background: #ebecff;
+  background: var(--bg-blue-tint);
 }
 .assignment_top_bar .tabs .tab.active {
   color: var(--primary-color);

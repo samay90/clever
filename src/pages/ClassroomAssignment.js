@@ -21,7 +21,8 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
     const handleFiles = (e)=>{
         setFiles([...e.target.files])
     }
-
+    console.log(assignment);
+    
     
     const handleAssignmentSubmit =async ()=>{
         setLoading(true)
@@ -33,10 +34,10 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
           const raw = await axios.post(api+`/classroom/${class_id}/assignment/${assignment_id}/submit`,newForm,{headers:{authorization:"Bearer "+token}})
           setLoading(false)
           toast.success(raw.data.message,{
-            iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+            iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
             style:{
               borderRadius:"30px",
-              background:"#5C60F5",
+              background:"var(--primary-color)",
               color:"white",
               fontWeight:"100",
               fontSize:"12px"
@@ -47,10 +48,10 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
         }catch(e){
             setLoading(false)
                 toast.error(e.response.data.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -71,10 +72,10 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
         const parsed = await raw.json()
         if (parsed.error){
             toast.error(parsed.message,{
-                iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+                iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                 style:{
                   borderRadius:"30px",
-                  background:"#5C60F5",
+                  background:"var(--primary-color)",
                   color:"white",
                   fontWeight:"100",
                   fontSize:"12px"
@@ -159,9 +160,9 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
                 <div className='title'>
                     <h4><i className="fa-regular fa-memo-pad"></i>&nbsp;Your last submission</h4>
                 </div>
-                {assignment?.attachments.length>0?<div className='attachments'>
+                {assignment?.submissions.url.length>0?<div className='attachments'>
                     <div className='data' style={{display:"flex",flexWrap:"wrap",gap:"10px"}}>
-                        {assignment?.submissions?.url.map((item,key)=>{
+                        {assignment?.submissions.url.map((item,key)=>{
                             return <FileView files={assignment?.submissions?.url} key={key} path={item} fileName={item}/>
                         })}
                     </div>

@@ -13,10 +13,10 @@
     top:0;
     justify-content: space-between;
     left: 0;
-    background-color: #ffffff6b;
+    background-color: var(--bg-dull);
     backdrop-filter: blur(20px);
     z-index: 101;
-    border-bottom: 1px solid #c0c0c0;
+    border-bottom: 1px solid var(--border-gray);
 }
 .home_page .navbar .nav_left{
     display: flex;
@@ -42,7 +42,7 @@
 .home_page .navbar .hamburger_button .hamburger span{
     width: 20px;
     height: 0.125rem !important;
-    background-color: #4D4D4D;
+    background-color: var(--text-light);
     margin: 0;
     transition: .3s ease;
     border-radius: 1px;
@@ -85,7 +85,7 @@
     cursor: pointer;
     height: 40px;
     margin-left: 10px;
-    color: #4D4D4D;
+    color: var(--text-light);
     margin-right: 10px;
     overflow: hidden;
 }
@@ -94,7 +94,7 @@
     width: 35px !important;
 }
 .home_page .navbar .nav_button:hover{
-    background: #00000018;
+    background: var(--hover-shadow);
 }
 .home_page .navbar .nav_left .logo{
     width: auto;
@@ -109,7 +109,7 @@
 .home_page .navbar .nav_left .logo img{
     height: 25px;
     margin-bottom: -2px;
-    filter: invert(0.7);
+    filter: invert(var(--logo-invert));
 }
 .home_page .navbar .nav_right{
     display: flex;
@@ -126,8 +126,8 @@
     position: relative;
     width:59px;
     height: calc(100vh - 60px);
-    background: #fff;
-    border-right: 1px solid #c0c0c0;
+    background: var(--bg-dull);
+    border-right: 1px solid var(--border-gray);
     display: flex;
     flex-direction: column;
     z-index: 99;
@@ -200,17 +200,16 @@
     cursor: pointer;
     margin: 0 5px;
     border-radius: 30px;
-    border: 1px solid #fff;
+    border: 1px solid var(--bg-dull);
     position: relative;
 }
 .home_page .main .sidebar_open .class_placeholder:hover {
-    filter: alpha(opacity=90);
-    background-color: rgba(var(--bg),0.1);
+    background-color: rgba(var(--bg),var(--bg-opacity));
     /* border: 1px solid rgb(var(--bg)); */
 }
 .home_page .main .sidebar_open .class_placeholder:hover h1{
     background: transparent;
-    border: 1px solid rgba(var(--bg),0.2);
+    border: 2px solid rgba(var(--bg),var(--bg-opacity));
     /* font-size: 20px; */
 }
 .home_page .main .side_bar .app_title{
@@ -222,19 +221,20 @@
 .home_page .main .side_bar .app_title img{
     height: 25px;
     /* margin-bottom: -2px; */
-    filter: invert(0.7);
+    filter: invert(var(--logo-invert));
 }
 .home_page .main .side_bar .class_placeholder.active h1{
     width: 30px;
     background: rgb(var(--bg));
     color: white;
+    outline: 2px solid rgb(var(--bg));
     /* margin-left: -4px; */
 }
 .home_page .main .side_bar .class_placeholder h1{
     width: 30px;
     height: 30px;
     font-size: 15px;
-    color: rgb(var(--bg));
+    color: white;
     text-align: center;
     display: flex;
     text-transform: uppercase;
@@ -242,21 +242,22 @@
     justify-content: center;    
     margin: 0 ;
     margin-left: 3px;
-    border: 1px solid transparent;
+    border: 2px solid var(--bg-dull);
+    outline: 2px solid var(--bg-dull);
     border-radius: 20px;
     padding: 0;
-    background: rgba(var(--bg),0.2);
-    
+    background: rgba(var(--bg));
     transition: .1s ease-out;
 }
 .home_page .main .sidebar_open .class_placeholder.active{
-    filter: alpha(opacity=90);
-    background-color: rgba(var(--bg),0.1);
+    /* outline: 2px solid rgb(var(--bg-dull)); */
 }
 .home_page .main .sidebar_open .class_placeholder h1{
     border-radius: 50%;
     width: 30px !important;
+    border: 2px solid var(--bg-dull);
     margin-left: 3px !important;
+    outline: 2px solid rgb(var(--bg-dull));
     height: 30px;
 }
 .home_page .main .side_bar .class_placeholder .icon{
@@ -292,7 +293,7 @@
     margin: 0;
     font-weight: 500;
     font-size: 0.875rem;
-    color: #4D4D4D;
+    color: var(--tertiary-color);
     display: block;
     word-wrap: break-word;
     overflow: hidden;
@@ -309,7 +310,7 @@
     overflow: hidden;
     text-overflow: ellipsis;
     white-space: nowrap;
-    color: #7e7e7e;
+    color: var(--text-grayish);
     font-weight: 400;
 }
 /** For Class Title **/
@@ -345,11 +346,11 @@
     align-items: center;
     justify-content: center;
     font-size: 18px;
-    color: #4D4D4D;
+    color: var(--tertiary-color);
 }
 .home_page .main .sidebar_open .class_title.clickable.active{
     color: var(--primary-color);
-    background: var(--faded-color);
+    background: var(--bg-blue-tint);
 }
 .home_page .main .side_bar .class_title.clickable.active .icon{
     height: 40px;
@@ -361,13 +362,13 @@
     justify-content: center;
     border-radius: 20px;
     color: var(--primary-color);
-    background: var(--faded-color);
+    background: var(--bg-blue-tint);
 }
 .home_page .main .sidebar_open .class_title.clickable:hover{
-    background-color: #e2e2e2;
+    background-color: var(--border-lighter);
 }
 .home_page .main .sidebar_open .class_title.clickable.active:hover{
-    background: var(--faded-color);
+    background: var(--bg-blue-tint);
 
 }
 .home_page .main .sidebar_open .class_title{
@@ -380,12 +381,12 @@
     justify-content: flex-start;
 
     margin-top: 5px;
-    color: #4D4D4D;
+    color: var(--tertiary-color);
     overflow: hidden;
     padding: 0;
     cursor: pointer;
     border-radius: 0px 30px 30px 0px;
-    border: 1px solid #fff;
+    border: 1px solid var(--bg-dull);
     position: relative;
 }
 .home_page .main .sidebar_open .class_title .title{
@@ -400,7 +401,7 @@
         position: fixed;
         width: 280px;
         top:0;
-        left: -280px;
+        left: -281px;
         z-index: 10000000;
         border-radius: 0 15px 15px 0;
         height: 100vh;
@@ -430,7 +431,7 @@
     .home_page .main .side_bar .app_title i{
         font-size: 20px;
         cursor: pointer;
-        color: #4D4D4D;
+        color: var(--tertiary-color);
     }
     .home_page .main .sidebar_open{
         left: 0;

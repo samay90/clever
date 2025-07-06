@@ -1,8 +1,9 @@
 .home_content{
     padding: 10px 30px;
-    color: #4D4D4D;
+    color: var(--tertiary-color);
     height: auto;
     min-width: 300px;
+    background-color: var(--bg-lightest);
 }
 .home_content .header {
     display: flex;
@@ -52,7 +53,7 @@
     border-radius: 10px;
     top: 0;
     left: 0;
-    background: linear-gradient(to bottom, #00000028, transparent);
+    background: linear-gradient(to bottom, var(--black-weaker), transparent);
     z-index: 0;
 }
 .home_content .classrooms .classroom_card .poster_img{
@@ -117,7 +118,7 @@
 }
 
 .home_content .classrooms .classroom_card:hover{
-    box-shadow: 0px 10px 10px #00000062;
+    box-shadow: 0px 10px 10px var(--bg-shadow);
     transform: translateY(-3px);
 }
 @media screen and (max-width:690px){

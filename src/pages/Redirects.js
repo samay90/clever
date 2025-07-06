@@ -18,10 +18,10 @@ const Redirects = ({api,token}) => {
     const parsed = await raw.json()
     if (parsed.error){
       toast.error(parsed.message,{
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"
@@ -29,10 +29,10 @@ const Redirects = ({api,token}) => {
       })
     }else{
       toast.success(parsed.message,{
-        iconTheme:{primary:"#fff",secondary:"#5C60F5"},
+        iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
         style:{
           borderRadius:"30px",
-          background:"#5C60F5",
+          background:"var(--primary-color)",
           color:"white",
           fontWeight:"100",
           fontSize:"12px"

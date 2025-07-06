@@ -9,7 +9,7 @@
     justify-content: center;
     z-index: 1050;
     transition: .3s ease;
-    background: #00000048;
+    background: var(--black-bg);
 }
 
 .command_box .command_content{
@@ -31,7 +31,7 @@
     padding: 10px 15px;
     align-items: center;
     justify-content: start;
-    background: #ffffffb0;
+    background: var(--bg-overlay);
     backdrop-filter: blur(20px);
     border-radius: 10px;
     position: absolute;
@@ -57,7 +57,7 @@
     display: flex;
     flex-direction: column;
     padding: 5px;
-    background: #ffffffb0;
+    background: var(--bg-overlay);
     backdrop-filter: blur(20px);
     position: absolute;
     top: 40%;
