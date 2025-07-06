@@ -4,7 +4,7 @@ import colors from "../static/colors.json"
 import Icon from "../components/icon"
 import moment from 'moment'
 import {Empty} from '../components/Empty'
-import { Link, useNavigate } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import ModalSecondary from '../components/ModalSecondary';
 import InputSecondary from '../components/InputSecondary'
 import TextArea from '../components/TextArea'

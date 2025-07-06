@@ -85,7 +85,7 @@ const ClassroomWork = ({
                   <div className="topic_cards">
                     {Array(3)
                       .fill(0)
-                      .map((_, key) => <div className="topic_card">
+                      .map((_, key) => <div key={key} className="topic_card">
                       <div className="icon"></div>
                       <div className="info">
                         <h3>&nbsp;</h3>
