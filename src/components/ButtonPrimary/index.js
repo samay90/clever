@@ -1,10 +1,9 @@
 import React from 'react'
 import './index.css'
-const ButtonPrimary = ({children,arrow,onClick}) => {
+const ButtonPrimary = ({children,disabled,onClick}) => {
   return (
-    <button onClick={onClick} className='button_primary'>
-        <span className={!arrow?"no_margin":""}>{children}</span>
-        {arrow?<span><i className="fa-regular fa-arrow-right"></i></span>:""}
+    <button disabled={disabled} onClick={onClick} className='button_primary'>
+        {children}
     </button>
   )
 }

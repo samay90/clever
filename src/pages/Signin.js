@@ -12,8 +12,10 @@ const Signin = ({api,setToken}) => {
     "password":"",
   })
   const [checked,setChecked] = React.useState(false)
+  const [loading,setLoading] = React.useState(false)
   const navigate = useNavigate()
   const handleSubmit = async ()=>{
+    setLoading(true)
     await fetch(api+"/auth/login  ",{
       method:"POST",
       headers:{
@@ -23,6 +25,7 @@ const Signin = ({api,setToken}) => {
       body:JSON.stringify(form)
     }).then((res)=>res.json()).then((data)=>{
       if (data.error){
+        setLoading(false)
         toast.error(data.message,{
           iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
           style:{
@@ -34,6 +37,7 @@ const Signin = ({api,setToken}) => {
           }
         })
       }else{
+        setLoading(false)
         toast.success(data.message,{
           iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
           style:{
@@ -79,7 +83,7 @@ const Signin = ({api,setToken}) => {
               <InputPrimary placeholder="Email address" type="text" value={form.authenticator} onChange={(e)=>{setForm({...form,authenticator:e.target.value})}}/>
               <InputPrimary placeholder="Password" type="password" value={form.password} onChange={(e)=>{setForm({...form,password:e.target.value})}}/>
               <CheckBox placeholder="Keep me logged in" value={checked} onChange={()=>{setChecked(!checked)}}/>
-              <ButtonPrimary arrow={true} onClick={handleSubmit}>Sign in</ButtonPrimary>
+              <ButtonPrimary disabled={loading} onClick={handleSubmit}>{loading?<span className='btn_loading'></span>:<>Sign in &nbsp;<i className="fa-regular fa-arrow-right"></i></>}</ButtonPrimary>
             </div>
             <div className='refer_section'>
               <span>OR</span>

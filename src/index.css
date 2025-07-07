@@ -63,18 +63,19 @@ hr{
   display: flex !important;
   align-items: center !important;
   justify-content: center !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   cursor: pointer !important;
-  border: 2px solid var(--primary-color) !important;
+  border: none !important;
 }
 .btn_secondary:disabled{
-  background: var(--bg-blue-tint) !important;
-  cursor: not-allowed !important;
-  border-color: var(--gray-600) !important;
+  opacity: .9 !important;
+  pointer-events: none !important;
 }
 .btn_secondary:disabled:focus{
-  background: var(--bg-blue-tint) !important;
-  cursor: not-allowed !important;
-  opacity: 1 !important;
+  opacity: .9 !important;
+  pointer-events: none !important;
 }
 .text_secondary{
   color: var(--tertiary-color);
@@ -90,7 +91,8 @@ hr{
   color: var(--primary-color);
   border-radius: 50px;
   cursor: pointer;
-  border: 2px solid var(--bg-blue-tint);
+  border: none;
+  border: 2px solid var(--primary-color) !important;
 }
 .key_shortcut{
   background: var(--skeleton-light);
@@ -124,28 +126,24 @@ hr{
 }
 .btn_group{
   display: flex;
-  gap: 0;
+  gap: 10px;
   width: 100%;
   justify-content: flex-end;
 }
 .btn_group .btn_secondary{
-  border-radius: 0 50px 50px 0 !important;
   margin: 0 !important;
 }
 .btn_group .btn_tertiary{
-  border-radius: 50px 0 0 50px !important;
   margin: 0 !important;
 }
 .btn_group-2{
   display: flex;
-  gap: 0;
+  gap: 10px;
 }
 .btn_group-2 button:first-child{
-  border-radius: 50px 0 0 50px !important;
   margin: 0 !important;
 }
 .btn_group-2 button:last-child{
-  border-radius: 0 50px 50px 0 !important;
   margin: 0 !important;
 }
 @keyframes btn_loading {

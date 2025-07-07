@@ -448,7 +448,7 @@
   cursor: pointer;
 }
 .attendance_list .attendance_box:hover{
-  background: var(--bg-light);
+  background: var(--bg-lighter);
 }
 .attendance_list .attendance_box .left{
   display: flex;
@@ -516,7 +516,7 @@
   border-top: 1px solid var(--border-gray);
   position: fixed;
   bottom: 0;
-  background: var(--bg-lightest);
+  background: var(--gray-100);
   left: 0;
   right: 0;
   z-index: 100;
@@ -1974,11 +1974,17 @@
 }
 .new_work .options .input-field_sec{
   height: 53px;
+  width: 100%;
 }
 .new_work .options .custom_topic{
   position: relative;
   display: flex;
   height: 53px;
+  width: 100%;
+}
+.new_work .options .topic_input .option_selector{
+  width: 100%;
+  max-width: 100% !important;
 }
 .new_work .options .custom_topic span{
   position: absolute;

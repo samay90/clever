@@ -8,20 +8,17 @@
     margin-bottom: 20px;
     border:none;
     cursor: pointer;
+    display: flex;
     position: relative;
+    align-items: center;
+    height: 40px;
+    font-family: inherit;
+    justify-content: center !important;
     transition: .3s ease;
+}
+.button_primary:disabled{
+    opacity: .5;
+    pointer-events: none;
 }
 .button_primary span{
-    font-weight: 500;
-    transition: .3s ease;
-    margin-left: 10px;
-}
-.button_primary .no_margin{
-    padding: 0 15px 0 10px;
-}
-.button_primary:hover span:nth-child(1){
-    margin-left: 15px;
-}
-.button_primary:hover span:nth-child(2){
-    margin-left: 15px;
 }

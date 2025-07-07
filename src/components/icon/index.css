@@ -21,7 +21,7 @@
     z-index: 1;
 }
 .icon_image i{
-    color: white;
+    color: white !important;
     font-size:18px;
 }
 .icon_image h2{
@@ -29,11 +29,12 @@
     padding: 0;
     height: 100%;
     font-size: 100%;
+    border: none !important;
     width: 100%;
     padding: 0 !important;
     margin: 0 !important;
     display: flex;
-    color: rgb(245, 245, 245);
+    color: rgb(245, 245, 245) !important;
     font-weight: 500;
     user-select: none;
     align-items: center;

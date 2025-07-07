@@ -130,9 +130,9 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) 
             <div className="input">
             {classroom&&classroom.class_id?<ImageSelector heading="Select Banner" value={changes?.banner_id} current={banner} setCurrent={setBanner} data={Object.keys(banners).map((i)=>{return {key:i,url:`/banners/${banners[i]}`}})}  placeholder="Customise Banner"/>:""}
             </div>
-            <div className="submit_area">
-                <button className="reset" onClick={()=>{setReset(prev=>prev+1)}}>Reset</button>
-                <button className="save" onClick={saveChanges} disabled={buttonDisabled}>{buttonDisabled?<span className="btn_loading"></span>:"Save"}</button>
+            <div className="btn_group" style={{marginTop:"20px"}}>
+                <button className="btn_tertiary" onClick={()=>{setReset(prev=>prev+1)}}>Reset</button>
+                <button className="btn_secondary" style={{width:"65px"}} onClick={saveChanges} disabled={buttonDisabled}>{buttonDisabled?<span className="btn_loading"></span>:"Save"}</button>
             </div>
         </div>
       </div>
