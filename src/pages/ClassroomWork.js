@@ -129,7 +129,7 @@ const ClassroomWork = ({
                         }}
                       >
                         <div className="icon">
-                          {item.assignment_id ? (
+                          {item.resource_id ? (
                             <i className="fa-regular fa-book"></i>
                           ) : (
                             <i className="fa-regular fa-bullseye-arrow"></i>

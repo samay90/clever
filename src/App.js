@@ -16,6 +16,8 @@ import FileViewer from './components/FileViewer'
 import SettingsGeneral from './pages/SettingsGeneral'
 const App = () => {
   const url = "https://clever-alpha.vercel.app"
+  // http://192.168.0.102:9920
+  // https://clever-alpha.vercel.app
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
   const location = useLocation()
