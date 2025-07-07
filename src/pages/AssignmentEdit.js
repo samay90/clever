@@ -116,7 +116,7 @@ const AssignmentEdit = ({
             <Icon
               icon={<i className="fa-regular fa-bullseye-arrow"></i>}
               height={30}
-              background={`rgba(${colors[conv[classroom?.banner_id]]},0.2)`}
+              background={`rgba(${colors[conv[classroom?.banner_id]]},0.5)`}
             ></Icon>
           </div>
           <span>Assignment</span>

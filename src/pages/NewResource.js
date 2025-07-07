@@ -76,7 +76,7 @@ const NewResource = ({ api, token, class_id, classroom, setVisible,topics }) => 
           <Icon
             icon={<i className="fa-regular fa-book"></i>}
             height={30}
-            background={`rgba(${colors[conv[classroom?.banner_id]]},0.2)`}
+            background={`rgba(${colors[conv[classroom?.banner_id]]},0.5)`}
           ></Icon>
           </div>
           <span>Material</span>
