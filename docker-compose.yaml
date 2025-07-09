@@ -1,0 +1,41 @@
+services:
+  frontend:
+    build: 
+      context: ./frontend
+    ports:
+      - "3000:3000"
+    networks:
+      - classroom
+    depends_on:
+      - backend
+  backend:
+    build: ./backend
+    ports:
+      - "9920:9920"
+    networks:
+      - classroom
+    depends_on:
+      - db
+    environment:
+      - MYSQL_DB_PASSWORD=password 
+      - MYSQL_DB_USER=root
+      - MYSQL_DB_HOST=db
+      - MYSQL_DB_PORT=3306
+      - TOKEN_SECRET=KSG$#sSSGw%
+      - MYSQL_DB_NAME=classroom
+  db:
+    image: mysql:oraclelinux9
+    ports:
+      - "3309:3306"
+    networks:
+      - classroom
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+    volumes:
+      - "classroom:/var/lib/mysql"
+    
+networks:
+  classroom:
+    driver: bridge
+volumes:
+  classroom:
