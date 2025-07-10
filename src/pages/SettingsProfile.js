@@ -83,7 +83,6 @@ const SettingsProfile = ({user,api,token}) => {
         formData.append("first_name",form.first_name)
         formData.append("last_name",form.last_name)
         formData.append("email",form.email)
-        formData.append("phone_no",form.phone_no)
         formData.append("country",form.country)
         formData.append("state",form.state)
         formData.append("city",form.city)

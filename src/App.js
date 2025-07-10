@@ -14,9 +14,9 @@ import Settings from './pages/Settings'
 import SettingsProfile from './pages/SettingsProfile'
 import FileViewer from './components/FileViewer'
 import SettingsGeneral from './pages/SettingsGeneral'
+import VerifyUser from './pages/VerifyUser'
 const App = () => {
-  const url = "http://localhost:9920"
-  // http://192.168.0.102:9920
+  const url = "https://clever-alpha.vercel.app"
   // https://clever-alpha.vercel.app
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
@@ -49,7 +49,7 @@ const App = () => {
   },[theme])
   useEffect(() => {
     const navigateToLogin = () =>{
-      if (location.pathname!=="/auth/signup" && location.pathname!=="/auth/signin"){
+      if (location.pathname.split("/")[1]!=="auth"){
         navigate("/auth/signin")
       }
     } 
@@ -126,6 +126,7 @@ const App = () => {
       <Routes>
         <Route path='/auth/signin' element={<Signin api={url} token={token} setToken={setToken}/>}></Route>
         <Route path='/auth/signup' element={<Signup api={url} token={token} setToken={setToken}/>}></Route>
+        <Route path='/auth/verify/:slug' element={<VerifyUser api={url} token={token} setToken={setToken}/>}></Route>
         <Route path="/app" element={<Navbar setLoading={setLoading} classrooms={classrooms} user={user} token={token} setToken={setToken} api={url}/>}>
           <Route path="/app/home" element={<Home classrooms={classrooms} user={user} token={token} api={url}/>}></Route>
           <Route path="/app/classroom/:class_id/*" element={<Classroom classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>

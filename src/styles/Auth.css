@@ -74,6 +74,14 @@
 .page.auth_page .form_section .inner_section .header{
     color: var(--text-color);
 }
+
+.page.auth_page .form_section .inner_section .header p{
+    color: var(--accent-link);
+    font-size: 12px;
+    margin-bottom: 10px;
+    /* margin-top: -10px; */
+    font-weight: 600;
+}
 .page.auth_page .form_section .inner_section .form .input-field{
     width: 300px;
 }
