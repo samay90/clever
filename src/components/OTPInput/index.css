@@ -1,0 +1,20 @@
+.otp_input{
+    display: flex;
+    gap: 5px;
+}
+.otp_input input{
+    background-color: var(--bg-dull);
+    border: 2px solid var(--border-light) !important;
+    border-radius: 5px;
+    color: var(--text-color);
+    border-radius: 5px;
+    outline: none;
+    height: 50px;
+    padding: 0;
+    width: 42.8px;
+    text-align: center;
+    font-size: 1.2rem;
+}
+.otp_input input:focus{
+    border: 2px solid var(--border-gray) !important;
+}

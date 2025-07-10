@@ -108,7 +108,6 @@ const ClassroomClass = ({api,class_id,token,classroom,user,setVisible}) => {
                 </div>
                 <div className='user_info_content'>
                     <p><i className ="fa-regular fa-inbox"></i> <span>{crrUser.email}</span></p>
-                    <p><i className ="fa-regular fa-phone"></i> <span>{crrUser.phone_no}</span></p>
                     {crrUser.country?<><p><i className="fa-regular fa-location-dot"></i> <span>{crrUser.country}{crrUser.state?", "+crrUser.state:""}{crrUser.city?", "+crrUser.city:""}</span></p></>:""}
                     {crrUser.dob?<p><i className="fa-regular fa-cake-candles"></i> <span>{moment(parseInt(crrUser.dob)).format('ll')}</span></p>:""}
                 </div>

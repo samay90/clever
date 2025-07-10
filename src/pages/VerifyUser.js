@@ -1,28 +1,30 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import "../styles/Auth.css"
-import InputPrimary from '../components/InputPrimary'
 import ButtonPrimary from '../components/ButtonPrimary'
-import { Link, useNavigate } from 'react-router-dom'
+import { Link, useLocation, useNavigate, useParams } from 'react-router-dom'
 import toast from 'react-hot-toast'
 import full_logo from "../static/images/full_logo.png"
-const Signup = ({api,setToken}) => {
-  const [form,setForm] = React.useState({
-    "email":"",
-    "password":"",
-    "first_name":"",
-    "last_name":""
-  })
+import OtpInput from '../components/OTPInput'
+const VerifyUser = ({api,setToken}) => {
+  const [otp,setOpt] = React.useState()
   const [loading,setLoading] = React.useState(false)
+  const {slug} = useParams();
+  const {state} = useLocation()
   const navigate = useNavigate()
+  useEffect(()=>{
+    if (!state?.email ){
+      navigate("/auth/signup")
+    }
+  },[state,navigate])
   const handleSubmit = async ()=>{
     setLoading(true)
-    await fetch(api+"/auth/signup",{
+    await fetch(api+"/auth/verify/"+slug,{
       method:"POST",
       headers:{
         "Content-Type":"application/json",
         "Accept":"application/json"
       },
-      body:JSON.stringify(form)
+      body:JSON.stringify({code:otp})
     }).then((res)=>res.json()).then((data)=>{
       if (data.error){
         setLoading(false)
@@ -37,8 +39,20 @@ const Signup = ({api,setToken}) => {
           }
         })
       }else{
-        setLoading(false)     
-        navigate("/auth/verify/"+data.data.slug,{state:{email:form.email}})
+        setLoading(false)
+        toast.success(data.message,{
+          iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
+          style:{
+            borderRadius:"30px",
+            background:"var(--primary-color)",
+            color:"white",
+            fontWeight:"100",
+            fontSize:"12px"
+          }
+        })
+        localStorage.setItem("token",data.data.token)
+        setToken(data.data.token)
+        navigate("/app/home")
       }
     })
   }
@@ -60,22 +74,22 @@ const Signup = ({api,setToken}) => {
         <div className='form_section'>
           <div className='inner_section'>
             <div className='header'>
-              <h1>👋</h1>
-              <h2>Nice to see you!</h2>
+              <h1>Check your email</h1>
+              <h3>Enter the code sent to <br/><span style={{color:"var(--primary-color)",fontSize:"14px"}}>{state?.email}</span></h3>
             </div>
             <div className='form'>
-              <div className='divider'>
-              <InputPrimary placeholder="First name" type="text" value={form.first_name} onChange={(e)=>{setForm({...form,first_name:e.target.value})}}/>
-              <InputPrimary placeholder="Last name" type="text" value={form.last_name} onChange={(e)=>{setForm({...form,last_name:e.target.value})}}/>
-              </div>
-              <InputPrimary placeholder="Email address" type="email" value={form.email} onChange={(e)=>{setForm({...form,email:e.target.value})}}/>
-              <InputPrimary placeholder="Password" type="password" value={form.password} onChange={(e)=>{setForm({...form,password:e.target.value})}}/>
-              <ButtonPrimary disabled={loading} onClick={handleSubmit}>{loading?<span className='btn_loading'></span>:<>Sign up &nbsp;<i className="fa-regular fa-arrow-right"></i></>}</ButtonPrimary>
+                <OtpInput onChange={(t)=>setOpt(t)}/>
+                <br/>
+                <ButtonPrimary disabled={loading} onClick={handleSubmit}>{loading?<span className='btn_loading'></span>:<>Verify &nbsp;<i className="fa-regular fa-arrow-right"></i></>}</ButtonPrimary>
+            </div>
+            <div className='header'>
+              <p>Code expires in 10 minutes.</p>
             </div>
             <div className='refer_section'>
               <span>OR</span>
-              <p>Have an account? <Link className='link_secondary' to="/auth/signin">Sign in</Link></p>
+              <p>Didn't receive the code? <Link className='link_secondary' to="/auth/signup">Sign up</Link></p>
             </div>
+            
           </div>
         </div>
       </div>
@@ -83,4 +97,4 @@ const Signup = ({api,setToken}) => {
   )
 }
 
-export default Signup
+export default VerifyUser

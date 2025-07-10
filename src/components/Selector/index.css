@@ -44,6 +44,7 @@ position: absolute;
     border: 1px solid var(--border-lighter); 
     border-bottom: 2px solid var(--border-lighter); 
     transition: .2s ease;
+    background-color: var(--bg-dull);
     font-weight: 500;
 }
 .option_selector option{
@@ -80,7 +81,7 @@ position: absolute;
     top: 15px;
     left: 10px;
     padding: 0 5px;
-    z-index: 0;
+    z-index: 2;
     height: fit-content;
     transition: .2s ease;
     bottom: 50%;
