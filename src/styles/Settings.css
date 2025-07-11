@@ -232,7 +232,7 @@
 .settings_general .form_field .label p{
     font-size: 0.8rem;
     color: var(--text-muted);
-    margin-top: -3px;
+    margin-top: -1px;
 }
 .settings_general .form_field .button{
     display: flex;

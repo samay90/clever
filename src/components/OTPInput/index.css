@@ -1,6 +1,8 @@
 .otp_input{
     display: flex;
     gap: 5px;
+    width: 300px;
+
 }
 .otp_input input{
     background-color: var(--bg-dull);
@@ -11,9 +13,10 @@
     outline: none;
     height: 50px;
     padding: 0;
-    width: 42.8px;
+    flex: 1;
+    min-width: 0;
     text-align: center;
-    font-size: 1.2rem;
+    font-size: 20px;
 }
 .otp_input input:focus{
     border: 2px solid var(--border-gray) !important;
