@@ -82,6 +82,19 @@
     /* margin-top: -10px; */
     font-weight: 600;
 }
+.page.auth_page .form_section .inner_section .form .forgot-password{
+    color: var(--accent-link);
+    font-size: 12px;
+    font-weight: 500;
+    margin-top: -10px;
+    text-align: right;
+    margin-bottom: 10px;
+}
+.page.auth_page .form_section .inner_section .form .forgot-password .link{
+    color: var(--accent-link);
+    font-size: 12px;
+    font-weight: 500;
+}
 .page.auth_page .form_section .inner_section .form .input-field{
     width: 300px;
 }
