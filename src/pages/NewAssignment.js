@@ -16,6 +16,7 @@ const NewAssignment = ({
   classroom,
   setVisible,
   topics,
+  refreshStream
 }) => {
   useEffect(() => {
     setVisible(false);
@@ -43,6 +44,7 @@ const NewAssignment = ({
         { headers: { authorization: "Bearer " + token } }
       );
       setLoading(false);
+      refreshStream()
       toast.success(raw.data.message, {
         iconTheme: { primary: "#fff", secondary: "var(--primary-color)" },
         style: {

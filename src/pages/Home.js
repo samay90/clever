@@ -24,7 +24,7 @@ const Home = ({ token, api, user ,classrooms}) => {
           return <div className="classroom_card" style={{background:`url(/banners/${conv[classroom.banner_id]})`}} key={key} onClick={()=>handleClassroomClick(key)}>
             <div className="content">
               <div className="classroom_info">
-                <h2>{classroom.class_name.length>20?classroom.class_name.slice(0,20)+"...":classroom.class_name}</h2>
+                <h2>{classroom.class_name}</h2>
                 <p>{classroom.class_description}</p>
               </div>
               <div className="creator_info">

@@ -73,7 +73,7 @@ const SubmissionPage = ({api,class_id,token,assignment,assignment_id,classroom,s
             <MarksInput key={submission?.submission_id} isLoading={isLoading} onSubmit={updateMarks} init_value={submission?.marks??""} placeholder="Enter marks" value={marks} setValue={setMarks} totalMarks={assignment?.total_marks}/>
           </div>
           <div className='submission_file'>
-            <h3>Attachments</h3>
+            <h3 style={{color:"var(--text-color)"}}>Attachments</h3>
             <div className='files'>
               {submission?.submission?.map((file,index)=>{return <FileView files={submission?.submission} key={index} path={file} fileName={file}/>})}
             </div>

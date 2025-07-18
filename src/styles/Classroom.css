@@ -313,16 +313,18 @@
   padding: 0 15px 10px 15px;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .body h4 {
-  color: black;
+  color: var(--text-color);
   margin: 0;
-  margin-top: 10px;
+  margin-top: 5px;
   font-size: 0.925rem;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .body p {
   white-space: pre-wrap;
   width: 100%;
   font-size: 0.8125rem;
-  color: rgba(0, 0, 0, 0.87);
+  margin: 0;
+  margin-top: 5px;
+  color: var(--text-muted);
   font-weight: 500;
 }
 .classroom_page .main_content .classroom_cards .classroom_card .due_date {
