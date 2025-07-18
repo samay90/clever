@@ -5,11 +5,11 @@ import AssignmentEdit from "../../pages/AssignmentEdit";
 import AssignmentTopBar from "../AssignmentTopBar";
 import React from "react";
 
-const AssignmentRouter = ({ classroom, class_id, token, api ,setVisible,topics}) => {
+const AssignmentRouter = ({ classroom, class_id, token, api ,setVisible,topics,refreshStream}) => {
   const { assignment_id } = useParams();
   const [assignment, setAssignment] = React.useState(null);
   const navigate = useNavigate();
-
+  const [refresh, setRefresh] = React.useState(1);
   React.useEffect(() => {
     setVisible(false);
     const getAssignment = async () => {
@@ -34,7 +34,7 @@ const AssignmentRouter = ({ classroom, class_id, token, api ,setVisible,topics})
       }
     };
     getAssignment();
-  }, [assignment_id, api, class_id, token, navigate,setVisible]);
+  }, [assignment_id, api, class_id, token, navigate,setVisible,refresh]);
   return (
     <Routes>
       <Route
@@ -50,6 +50,8 @@ const AssignmentRouter = ({ classroom, class_id, token, api ,setVisible,topics})
               class_id={class_id}
               token={token}
               assignment={assignment}
+              refreshStream={refreshStream}
+              setRefresh={setRefresh}
             />
           }
         ></Route>

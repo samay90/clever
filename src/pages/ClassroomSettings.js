@@ -5,7 +5,7 @@ import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 import ImageSelector from "../components/ImageSelector";
 import banners from "../static/banner.json"
-const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) => {
+const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible,refreshClassrooms}) => {
     const [changes,setChanges] = React.useState({})
     const [sensitive,setSensitive] = React.useState({})
     const [reset,setReset] = React.useState(0)
@@ -87,6 +87,7 @@ const ClassroomSettings = ({ token, api,user, classroom, class_id ,setVisible}) 
                     }
                 })
             }else{
+                refreshClassrooms(prev=>prev+1)
                 toast.success(data.message, {
                     iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
                     style:{

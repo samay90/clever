@@ -11,7 +11,7 @@ import InputSecondary from '../InputSecondary'
 import TextArea from '../TextArea'
 import toast from 'react-hot-toast'
 import { UiContext } from '../../store/UiContext'
-const Navbar = ({token,setToken,api,user,classrooms}) => {
+const Navbar = ({token,setToken,api,user,classrooms,refreshClassroom}) => {
   const {side_open,setSide_Open} = React.useContext(UiContext);
   const [open,setOpen] = useState(false)  
   const [createLoading,setCreateLoading] = useState(false);
@@ -74,6 +74,7 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
           fontSize:"12px"
         }
       })
+      refreshClassroom(prev=>prev+1)
     }
   }
   const joinClassroom = async () =>{
@@ -102,7 +103,7 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
         }
       })
     }else{
-        setJoinLoading(false)
+      setJoinLoading(false)
       setJoinOpen(false);
       toast.success(parsed.message, {
         iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
@@ -114,6 +115,7 @@ const Navbar = ({token,setToken,api,user,classrooms}) => {
           fontSize:"12px"
         }
       })
+      refreshClassroom(prev=>prev+1)
     }
   }
   const navigate = useNavigate();

@@ -18,7 +18,7 @@ import VerifyUser from './pages/VerifyUser'
 import ForgotPassword from './pages/ForgotPassword'
 import ResetPassword from './pages/ResetPassword'
 const App = () => {
-  const url = "http://192.168.0.102:9920"
+  const url = "https://clever-alpha.onrender.com"
   // https://clever-alpha.onrender.com
   const [token,setToken] = React.useState("")
   const navigate = useNavigate()
@@ -29,6 +29,8 @@ const App = () => {
   const [side_open,setSide_Open] = React.useState(false)
   const [crr,setCrr] = React.useState(-1);
   const [files,setFiles] = React.useState([]);
+  const [rClassRoom,refreshClassroom] = React.useState(1);
+  const [rUser,refreshUser] = React.useState(1);
   const [theme,setTheme] = React.useState(null);
   useEffect(()=>{
     const getTheme = async () =>{
@@ -83,9 +85,15 @@ const App = () => {
           setToken("")
         }else{
           setClassroooms(parsed.data)
+          setLoading(false)
         }
       }
-      const getUser = async () => {
+      
+      getClassrooms()
+    }
+  },[token,rClassRoom])
+  useEffect(()=>{     
+    const getUser = async () => {
         const req =await fetch(url+"/user/profile",{
           method:"GET",
           headers:{
@@ -111,10 +119,10 @@ const App = () => {
           setLoading(false)
         }
       }
-      getClassrooms()
-      getUser()
-    }
-  },[token])
+      if (token){
+        getUser()
+      }
+  },[token,rUser])
   useEffect(() => {
     if (location.pathname==="/"){navigate("/app/home")}
   },[location.pathname,navigate])
@@ -131,11 +139,11 @@ const App = () => {
         <Route path='/auth/forgot/password' element={<ForgotPassword api={url} token={token} setToken={setToken}/>}></Route>
         <Route path='/auth/reset/password/:slug' element={<ResetPassword api={url} token={token} setToken={setToken}/>}></Route>
         <Route path='/auth/verify/:slug' element={<VerifyUser api={url} token={token} setToken={setToken}/>}></Route>
-        <Route path="/app" element={<Navbar setLoading={setLoading} classrooms={classrooms} user={user} token={token} setToken={setToken} api={url}/>}>
-          <Route path="/app/home" element={<Home classrooms={classrooms} user={user} token={token} api={url}/>}></Route>
-          <Route path="/app/classroom/:class_id/*" element={<Classroom classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>
+        <Route path="/app" element={<Navbar refreshClassroom={refreshClassroom} setLoading={setLoading} classrooms={classrooms} user={user} token={token} setToken={setToken} api={url}/>}>
+          <Route path="/app/home" element={<Home refreshClassroom={refreshClassroom} refreshUser={refreshUser} classrooms={classrooms} user={user} token={token} api={url}/>}></Route>
+          <Route path="/app/classroom/:class_id/*" element={<Classroom refreshClassrooms={refreshClassroom} refreshUser={refreshUser} classrooms={classrooms} setLoading={setLoading} user={user} token={token} api={url}/>}></Route>
           <Route path='/app/settings/*' element={<Settings api={url} token={token} user={user}/>}>
-            <Route path="" element={<SettingsProfile api={url} token={token} user={user}/>}></Route>
+            <Route path="" element={<SettingsProfile refreshUser={refreshUser} api={url} token={token} user={user}/>}></Route>
             <Route path="general" element={<SettingsGeneral api={url} token={token} user={user}/>}></Route>
           </Route>
         </Route>

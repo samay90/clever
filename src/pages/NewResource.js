@@ -9,7 +9,7 @@ import FileInput from "../components/FileInput";
 import Selector from "../components/Selector";
 import axios from "axios";
 import toast from "react-hot-toast";
-const NewResource = ({ api, token, class_id, classroom, setVisible,topics }) => {
+const NewResource = ({ api, token, class_id, classroom, setVisible,topics,refreshStream }) => {
   useEffect(() => {
     setVisible(false);
   }, [setVisible]);
@@ -35,6 +35,7 @@ const NewResource = ({ api, token, class_id, classroom, setVisible,topics }) => 
         { headers: { authorization: "Bearer " + token } }
       );
       setLoading(false);
+      refreshStream()
       toast.success(raw.data.message, {
         iconTheme: { primary: "#fff", secondary: "var(--primary-color)" },
         style: {

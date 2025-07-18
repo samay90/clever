@@ -18,7 +18,14 @@ import { UiContext } from "../store/UiContext";
 import NewResource from "./NewResource";
 import NewAssignment from "./NewAssignment";
 import ClassroomWork from "./ClassroomWork";
-const Classroom = ({ token, setLoading, user, classrooms, api }) => {
+const Classroom = ({
+  token,
+  setLoading,
+  user,
+  classrooms,
+  api,
+  refreshClassrooms,
+}) => {
   const { class_id } = useParams();
   const [data, setData] = React.useState([]);
   const [classroom, setClassroom] = React.useState({});
@@ -26,7 +33,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
   const [current, setCurrent] = React.useState("stream");
   const location = useLocation();
   const { side_open } = React.useContext(UiContext);
-  
+
   const loadingRef = useRef(false);
   const hasMore = useRef(true);
   const [loading2, setLoading2] = React.useState(false);
@@ -37,7 +44,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
   const fetchPage = async (pageNumber) => {
     if (loadingRef.current) return;
     loadingRef.current = true;
-    setLoading2(true);  
+    setLoading2(true);
     try {
       const res = await fetch(
         `${api}/classroom/${class_id}?page=${pageNumber}`,
@@ -62,7 +69,7 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
           setData((prev) => [...prev, ...result.data]);
         }
 
-        hasMore.current = result.data.length ===5;
+        hasMore.current = result.data.length === 5;
         pageRef.current = pageNumber;
       }
     } catch (e) {
@@ -73,27 +80,35 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
       setInitialLoaded(true);
     }
   };
-    useEffect(() => {
-      if (token && api && class_id) {
-        const getTopic = async () => {
-          const raw = await fetch(api + `/classroom/${class_id}/topics`, {
-            method: "GET",
-            headers: {
-              "Content-Type": "application/json",
-              Accept: "application/json",
-              Authorization: "Bearer " + token,
-            },
-          });
-          const parsed = await raw.json();
-          if (!parsed.error) {
-            setTopics(
-              parsed.data
-            );
-          } 
-        };
-        getTopic();
-      }
-    }, [class_id, token, api]);
+  useEffect(() => {
+    if (token && api && class_id) {
+      const getTopic = async () => {
+        const raw = await fetch(api + `/classroom/${class_id}/topics`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer " + token,
+          },
+        });
+        const parsed = await raw.json();
+        if (!parsed.error) {
+          setTopics(parsed.data);
+        }
+      };
+      getTopic();
+    }
+  }, [class_id, token, api]);
+  const refreshStream = () => {
+    setData([]);
+    pageRef.current = 1;
+    hasMore.current = true;
+    loadingRef.current = false;
+    setInitialLoaded(false);
+    if (token && class_id && api) {
+      fetchPage(1);
+    }
+  };
   useEffect(() => {
     setData([]);
     pageRef.current = 1;
@@ -121,65 +136,71 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
     }
   }, [location.pathname]);
   useEffect(() => {
-  const container = ref.current;
-  if (!container || !initialLoaded) return;
+    const container = ref.current;
+    if (!container || !initialLoaded) return;
 
-  const handleScroll = () => {
-    const { scrollTop, scrollHeight, clientHeight } = container;
-    const ratio = (scrollTop + clientHeight) / scrollHeight;
+    const handleScroll = () => {
+      const { scrollTop, scrollHeight, clientHeight } = container;
+      const ratio = (scrollTop + clientHeight) / scrollHeight;
 
-    if (ratio > 0.8 && hasMore.current && !loadingRef.current) {
-      fetchPage(pageRef.current + 1);
-      
-      
-    }
-  };
+      if (ratio > 0.8 && hasMore.current && !loadingRef.current) {
+        fetchPage(pageRef.current + 1);
+      }
+    };
 
-  container.addEventListener("scroll", handleScroll);
-  return () => container.removeEventListener("scroll", handleScroll);
-}, [initialLoaded]);
+    container.addEventListener("scroll", handleScroll);
+    return () => container.removeEventListener("scroll", handleScroll);
+  }, [initialLoaded]);
 
   return (
     <>
-        <div className={`navigation page ${visible?"visible":""} ${side_open ? "open" : ""}`}>
-          <div className="tabs">
-            <div className={`tab ${current === "stream" ? "active" : ""}`}>
-              <Link to="" className="tab_link">
-                <i className="fa-regular fa-airplay"></i>
-                <span>Stream</span>
-              </Link>
-            </div>
-            <div className={`tab ${current === "classwork" ? "active" : ""}`}>
-              <Link to="classwork" className="tab_link">
-                <i className="fa-regular fa-memo"></i>
-                <span>Classwork</span>
-              </Link>
-            </div>
-            <div className={`tab ${current === "myclass" ? "active" : ""}`}>
-              <Link to="myclass" className="tab_link">
-                <i className="fa-regular fa-screen-users"></i>
-                <span>My</span>class
-              </Link>
-            </div>
-            {classroom && classroom.role === "creator" ? (
-              <div className={`tab ${current === "settings" ? "active" : ""}`}>
-                <Link to="settings" className="tab_link">
-                  <i className="fa-regular fa-sliders"></i>
-                  <span>Settings</span>
-                </Link>
-              </div>
-            ) : (
-              ""
-            )}
+      <div
+        className={`navigation page ${visible ? "visible" : ""} ${
+          side_open ? "open" : ""
+        }`}
+      >
+        <div className="tabs">
+          <div className={`tab ${current === "stream" ? "active" : ""}`}>
+            <Link to="" className="tab_link">
+              <i className="fa-regular fa-airplay"></i>
+              <span>Stream</span>
+            </Link>
           </div>
+          <div className={`tab ${current === "classwork" ? "active" : ""}`}>
+            <Link to="classwork" className="tab_link">
+              <i className="fa-regular fa-memo"></i>
+              <span>Classwork</span>
+            </Link>
+          </div>
+          <div className={`tab ${current === "myclass" ? "active" : ""}`}>
+            <Link to="myclass" className="tab_link">
+              <i className="fa-regular fa-screen-users"></i>
+              <span>My</span>class
+            </Link>
+          </div>
+          {classroom && classroom.role === "creator" ? (
+            <div className={`tab ${current === "settings" ? "active" : ""}`}>
+              <Link to="settings" className="tab_link">
+                <i className="fa-regular fa-sliders"></i>
+                <span>Settings</span>
+              </Link>
+            </div>
+          ) : (
+            ""
+          )}
         </div>
-      
-        <Outlet />
-        <Routes>
-          <Route
-            path="/"
-            element={
-              <div className="page classroom_page" ref={ref} style={{height:"100%"}}>
+      </div>
+
+      <Outlet />
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <div
+              className="page classroom_page"
+              ref={ref}
+              style={{ height: "100%" }}
+            >
               <ClassroomStream
                 loadingStream={loading2}
                 hasMore={hasMore?.current}
@@ -187,18 +208,25 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 // loading={loading2}
                 token={token}
                 classroom={classroom}
+                setData={setData}
+                fetchPage={fetchPage}
+                refreshStream={refreshStream}
                 data={data}
                 user={user}
                 api={api}
                 setVisible={setVisible}
               />
-              </div>
-            }
-          />
-          <Route
-            path="/classwork"
-            element={
-              <div className="page classroom_page" ref={ref} style={{height:"100%"}}>
+            </div>
+          }
+        />
+        <Route
+          path="/classwork"
+          element={
+            <div
+              className="page classroom_page"
+              ref={ref}
+              style={{ height: "100%" }}
+            >
               <ClassroomWork
                 token={token}
                 classroom={classroom}
@@ -208,56 +236,57 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 setVisible={setVisible}
                 topics={topics}
               />
-              </div>
-            }
-          />
-          <Route
-            path="/assignment/:assignment_id/*"
-            element={
-              <AssignmentRouter
-                setVisible={setVisible}
-                api={api}
-                user={user}
-                classroom={classroom}
-                class_id={class_id}
-                topics={topics}
-                token={token}
-              />
-            }
-          />
-          <Route
-            path="/resource/:resource_id/*"
-            element={
-            
-              <ResourceRouter
+            </div>
+          }
+        />
+        <Route
+          path="/assignment/:assignment_id/*"
+          element={
+            <AssignmentRouter
               setVisible={setVisible}
-                api={api}
-                user={user}
-                class_id={class_id}
-                classroom={classroom}
-                topics={topics}
-                token={token}
-              />
-            }
-          />
-          <Route
-            path="/settings"
-            element={
-              <ClassroomSettings
-                setVisible={setVisible}
-                user={user}
-                api={api}
-                classroom={classroom}
-                class_id={class_id}
-                token={token}
-              />
-            }
-          />
-          <Route
-            path="/myclass"
-            element={
-              <div className="page classroom_page">
-
+              api={api}
+              user={user}
+              classroom={classroom}
+              class_id={class_id}
+              topics={topics}
+              refreshStream={refreshStream}
+              token={token}
+            />
+          }
+        />
+        <Route
+          path="/resource/:resource_id/*"
+          element={
+            <ResourceRouter
+              setVisible={setVisible}
+              api={api}
+              user={user}
+              class_id={class_id}
+              classroom={classroom}
+              topics={topics}
+              token={token}
+              refreshStream = {refreshStream}
+            />
+          }
+        />
+        <Route
+          path="/settings"
+          element={
+            <ClassroomSettings
+              setVisible={setVisible}
+              user={user}
+              api={api}
+              classroom={classroom}
+              class_id={class_id}
+              token={token}
+              refreshClassrooms={refreshClassrooms}
+            />
+          }
+        />
+        <Route
+          path="/myclass"
+          element={
+            <div className="page classroom_page">
               <ClassroomClass
                 setVisible={setVisible}
                 api={api}
@@ -265,40 +294,45 @@ const Classroom = ({ token, setLoading, user, classrooms, api }) => {
                 classroom={classroom}
                 class_id={class_id}
                 token={token}
-              /></div>
-            }
-          ></Route>
-          <Route
+              />
+            </div>
+          }
+        ></Route>
+        <Route
           path="/new/resource"
           element={
             <div className="page classroom_page">
-            <NewResource
-              setVisible={setVisible}
-              api={api}
-              topics={topics}
-              user={user}
-              classroom={classroom}
-              class_id={class_id}
-              token={token}
-            /></div>
+              <NewResource
+                setVisible={setVisible}
+                api={api}
+                topics={topics}
+                user={user}
+                classroom={classroom}
+                class_id={class_id}
+                refreshStream={refreshStream}
+                token={token}
+              />
+            </div>
           }
-          ></Route>
+        ></Route>
         <Route
           path="/new/assignment"
           element={
             <div className="page classroom_page">
-            <NewAssignment
-              setVisible={setVisible}
-              api={api}
-              topics={topics}
-              user={user}
-              classroom={classroom}
-              class_id={class_id}
-              token={token}
-            /></div>
+              <NewAssignment
+                setVisible={setVisible}
+                api={api}
+                topics={topics}
+                user={user}
+                classroom={classroom}
+                refreshStream={refreshStream}
+                class_id={class_id}
+                token={token}
+              />
+            </div>
           }
-          ></Route>
-        </Routes>
+        ></Route>
+      </Routes>
     </>
   );
 };

@@ -10,7 +10,7 @@ import toast from 'react-hot-toast'
 import axios from 'axios'
 import ModalSecondary from '../components/ModalSecondary'
 import FileView from '../components/FileView';
-const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
+const ClassroomAssignement = ({api,class_id,token,classroom,assignment,refreshStream,setRefresh}) => {
     const {assignment_id} = useParams() 
     const [isOpen,setIsOpen] = React.useState(false)
     const navigate = useNavigate()
@@ -21,7 +21,6 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
     const handleFiles = (e)=>{
         setFiles([...e.target.files])
     }
-    console.log(assignment);
     
     
     const handleAssignmentSubmit =async ()=>{
@@ -45,6 +44,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
           })
           setIsOpen(false)
           setFiles([])
+          setRefresh(prev=>prev+1)
         }catch(e){
             setLoading(false)
                 toast.error(e.response.data.message,{
@@ -84,6 +84,7 @@ const ClassroomAssignement = ({api,class_id,token,classroom,assignment}) => {
               setDeleteLoading(false)
         }else{
             setDeleteOpen(false)
+            refreshStream()
             navigate(`/app/classroom/${class_id}`)
         }
     }

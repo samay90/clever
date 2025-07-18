@@ -9,7 +9,7 @@ import ModalSecondary from '../components/ModalSecondary';
 import InputSecondary from '../components/InputSecondary'
 import TextArea from '../components/TextArea'
 import toast from 'react-hot-toast'
-const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,hasMore,setVisible}) => {  
+const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,hasMore,setVisible,refreshStream}) => {  
   const navigate = useNavigate() 
   const [infoActive,setInfoActive] = React.useState(false)
   const [announceOpen,setAnnounceOpen] = React.useState(false);
@@ -37,6 +37,7 @@ const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,ha
       setAnnounceOpen(false);
       setAnnounceLoading(false)
       setAnnouncement({title:"",body:""})
+      refreshStream();
     }else{
       toast.error(result.message,{
         iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},

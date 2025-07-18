@@ -7,7 +7,7 @@ import Selector from '../components/Selector'
 import axios from 'axios'
 import toast from 'react-hot-toast'
 
-const SettingsProfile = ({user,api,token}) => {
+const SettingsProfile = ({user,api,token,refreshUser}) => {
     const [form,setForm] = React.useState({})
     const [countries,setCountries] = React.useState([]);
     const [states,setStates] = React.useState([]);
@@ -96,6 +96,7 @@ const SettingsProfile = ({user,api,token}) => {
                 toast.error(res.response.data.message,{iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},style:{borderRadius:"30px",background:"var(--primary-color)",color:"white",fontWeight:"100",fontSize:"12px"}})
             }
         })
+        await refreshUser(prev=>prev+1)
         
     }
     const handleProfileImage = (e) =>{

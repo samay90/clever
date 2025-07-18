@@ -5,11 +5,11 @@ import ResourceEdit from "../../pages/ResourceEdit";
 import ResourceTopBar from "../ResourceTopBar";
 import React from "react";
 
-const ResourceRouter = ({ classroom, class_id, token, api ,user,setVisible,topics}) => {
+const ResourceRouter = ({ classroom, class_id, token, api ,user,setVisible,topics,refreshStream}) => {
   const { resource_id } = useParams();
   const [resource, setResource] = React.useState(null);
   const navigate = useNavigate();
-
+  const [refresh, setRefresh] = React.useState(1);
   React.useEffect(() => {
     setVisible(false)
     const getResource = async () => {
@@ -34,7 +34,7 @@ const ResourceRouter = ({ classroom, class_id, token, api ,user,setVisible,topic
       }
     };
     getResource();
-  }, [resource_id, api, class_id, token, navigate,setVisible]);
+  }, [resource_id, api, class_id, token, navigate,setVisible,refresh]);
   return (
     <Routes>
       <Route path="/" element={<ResourceTopBar class_id={class_id} classroom={classroom}/>}>
@@ -46,6 +46,8 @@ const ResourceRouter = ({ classroom, class_id, token, api ,user,setVisible,topic
               classroom={classroom}
               class_id={class_id}
               token={token}
+              refreshStream={refreshStream}
+              setRefresh={setRefresh}
               resource={resource}
             />
           }

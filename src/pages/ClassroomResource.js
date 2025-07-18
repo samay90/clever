@@ -12,7 +12,7 @@ import {Empty} from '../components/Empty'
 import ModalSecondary from '../components/ModalSecondary'
 import FileView from '../components/FileView'
 import Radio from '../components/Radio'
-const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
+const ClassroomResource = ({api,class_id,token,classroom,resource,setRefresh,refreshStream}) => {
     const {resource_id} = useParams() 
     const [query,setQuery] = React.useState({query_title:'',query_body:''})
     const [isOpen,setIsOpen] = React.useState(false)
@@ -27,6 +27,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
     const [attendanceOpen,setAttendanceOpen] = React.useState(false);
     const [attendance,setAttendance] = React.useState([]);
     const [manageAttendance,setManageAttendance] = React.useState({});
+    const [rQuery,setRQuery] = React.useState(1);
     const onSubmit =async ()=>{
         setSubmitLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/query/ask`,{
@@ -53,6 +54,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
               })
         }else{
             setIsOpen(false)
+            setRQuery(prev=>prev+1)
             setQuery({query_title:'',query_body:''})
             toast.success(parsed.message,{
                 iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
@@ -86,7 +88,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
             }
         }
         getQuerys()
-    },[resource_id,api,class_id,token,navigate,classroom])
+    },[resource_id,api,class_id,token,navigate,classroom,rQuery])
     const deleteResource =async ()=>{
         setDeleteLoading(true)
         const raw = await fetch(api+`/classroom/${class_id}/resource/${resource_id}/delete`,{
@@ -111,6 +113,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
               })
               setDeleteLoading(false)
         }else{
+            refreshStream()
             setDeleteOpen(false)
             navigate(`/app/classroom/${class_id}`)
         }
@@ -140,6 +143,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                 }	
               })
         }else{
+            setRQuery(prev=>prev+1)
             setDeleteLoading(false)
             setQueryDelete(false)
             toast.success(parsed.message,{
@@ -179,6 +183,7 @@ const ClassroomResource = ({api,class_id,token,classroom,resource}) => {
                 }
               })
         }else{
+            setRQuery(prev=>prev+1)
             setQueryEdit(false)
             toast.success(parsed.message,{
                 iconTheme:{primary:"#fff",secondary:"var(--primary-color)"},
