@@ -31,6 +31,8 @@ code {
 .page{
   animation: page_in .3s ease 0s 1;
   transition:.3s ease;
+  /* height: 100%; */
+  /* overflow: hidden; */
 }
 @keyframes page_in {
     0%{

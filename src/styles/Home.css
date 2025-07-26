@@ -1,7 +1,8 @@
 .home_content{
     padding: 10px 30px;
     color: var(--tertiary-color);
-    height: auto;
+    height: 100%;
+    overflow-y: scroll !important;
     min-width: 300px;
     background-color: var(--bg-lightest);
 }

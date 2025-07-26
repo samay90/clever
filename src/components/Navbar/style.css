@@ -120,7 +120,7 @@
 .home_page .main{
     height: calc(100vh - 60px);
     display: flex;
-    overflow-y: scroll;
+    overflow-y: hidden;
 }
 .home_page .main .side_bar{
     position: relative;
@@ -156,7 +156,7 @@
     width: calc(100vw - 60px);
     position: relative;
     overflow-x: hidden;
-    overflow-y: scroll;
+    overflow-y: hidden;
     z-index: 0;
     transition: .3s ease;
     height: calc(100vh - 60px);
