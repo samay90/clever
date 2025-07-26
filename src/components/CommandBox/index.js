@@ -1,8 +1,7 @@
 import React from 'react'
 import './index.css'
 import { useNavigate } from 'react-router-dom'
-const CommandBox = ({classrooms}) => {
-    const [isOpen, setIsOpen] = React.useState(false)
+const CommandBox = ({classrooms,isOpen,setIsOpen}) => {
     const ref = React.useRef()
     const ref2 = React.useRef()
     const ref3 = React.useRef()
@@ -60,6 +59,9 @@ const CommandBox = ({classrooms}) => {
     },[isOpen])
   return (
     <div className={'command_box' + (isOpen?" open":"")} ref={ref}>
+        <div onClick={()=>{setIsOpen(false);setSearch("")}} className='command_overlay'>
+
+        </div>
         <div className='command_content' ref={ref2}>
             <div className='command_input' autoFocus>
                 <i className="fa-regular fa-magnifying-glass"></i>

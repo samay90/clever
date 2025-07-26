@@ -103,14 +103,14 @@ const ClassroomStream = ({classroom,data,api,token,user,loading,loadingStream,ha
           <span className='banner_info' onClick={()=>setInfoActive(!infoActive)} >{!infoActive?<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M11 17h2v-6h-2v6zm1-15C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm0 18c-4.41 0-8-3.59-8-8s3.59-8 8-8 8 3.59 8 8-3.59 8-8 8zM11 9h2V7h-2v2z"></path></svg>:<svg focusable="false" width="24" height="24" viewBox="0 0 24 24" className="YGy4X NMm5M"><path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z"></path></svg>}</span>
         </div>:"":""}
       <div>
-          <div className='announcement_section'>
+         {classroom?.role!=="student" ?<div className='announcement_section'>
             <div className='announce_button' onClick={()=>setAnnounceOpen(!announceOpen)}>
               <div className='icon'>
                 <Icon url={user?.url} height={38} chr={user?.first_name?.charAt(0)+user?.last_name?.charAt(0)}></Icon>
               </div>
               <div className='text'>Announce something to your class</div>
             </div>
-          </div>
+          </div>:""}
         <div className='classroom_cards'>
           {loadingStream&&data.length===0?<div className='skeleton_classroom_card classroom_card'>
             <div className='creator_info'>

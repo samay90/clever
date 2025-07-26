@@ -41,7 +41,9 @@ const Classroom = ({
   const [initialLoaded, setInitialLoaded] = React.useState(false);
   const [visible, setVisible] = React.useState(true);
   const [topics, setTopics] = React.useState([]);
+  const [refreshTopics, setRefreshTopics] = React.useState(1);
   const fetchPage = async (pageNumber) => {
+    setRefreshTopics(refreshTopics + 1);
     if (loadingRef.current) return;
     loadingRef.current = true;
     setLoading2(true);
@@ -98,7 +100,7 @@ const Classroom = ({
       };
       getTopic();
     }
-  }, [class_id, token, api]);
+  }, [class_id, token, api,refreshTopics]);
   const refreshStream = () => {
     setData([]);
     pageRef.current = 1;

@@ -25,6 +25,7 @@ const App = () => {
   const location = useLocation()
   const [user,setUser] = React.useState({})
   const [classrooms,setClassroooms] = React.useState([])
+  const [isOpen, setIsOpen] = React.useState(false)
   const [loading,setLoading] = React.useState(true)
   const [side_open,setSide_Open] = React.useState(false)
   const [crr,setCrr] = React.useState(-1);
@@ -128,8 +129,8 @@ const App = () => {
   },[location.pathname,navigate])
   return (
     <> 
-      <Toaster/>
-      <CommandBox classrooms={classrooms}/>
+      <Toaster />
+      <CommandBox isOpen={isOpen} setIsOpen={setIsOpen} classrooms={classrooms}/>
       <Loading loading={loading}/>
       <UiContext.Provider value={{side_open:side_open,setSide_Open:setSide_Open,crr:crr,setCrr:setCrr,files:files,setFiles:setFiles,theme,setTheme}}>
       <FileViewer/>
